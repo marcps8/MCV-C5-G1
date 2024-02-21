@@ -15,5 +15,4 @@ To run the training process, follow these steps:
 
 2. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your/repository.git
-   cd repository
+   git clone https://github.com/marcps8/MCV-C5-G1.git
