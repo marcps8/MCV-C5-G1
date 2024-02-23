@@ -2,18 +2,23 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, SubsetRandomSampler
 from torchvision.datasets import ImageFolder
 
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
 import matplotlib.pyplot as plt
 import time
 
 import os
 import wandb
 import numpy as np
+
+from tools import *
 
 start_time = time.time()  # Start time
 
@@ -25,7 +30,7 @@ NUM_FOLDS = 5
 NUM_CLASSES = 8
 BATCH_SIZE = 16
 IMG_SIZE = (256, 256)
-EPOCHS = 25
+EPOCHS = 5
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -80,8 +85,6 @@ test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 # train_loader = DeviceDataLoader(train_loader, device)
 test_loader = DeviceDataLoader(test_loader, device)
 
-# Labels
-classes = os.listdir( DATASET_DIR + '/train')
 
 class Model(nn.Module):
     def __init__(self):
@@ -101,6 +104,8 @@ class Model(nn.Module):
         self.max_pool = nn.MaxPool2d(3)
         self.glob_avg_pool = nn.AdaptiveAvgPool2d(1)
         self.dropout = nn.Dropout2d(0.1)
+
+        self.softmax = nn.Softmax()
         
         
     def forward(self, x):
@@ -116,7 +121,7 @@ class Model(nn.Module):
         x = self.glob_avg_pool(x)
         # Flatten the tensor to (batch_size, num_channels)
         x = x.view(x.size(0), -1)  
-        x = self.fc_output(x)
+        x = self.softmax(self.fc_output(x))
 
 
         return x
@@ -125,6 +130,9 @@ class Model(nn.Module):
 model = Model()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.012)
+
+early_stopping = EarlyStopping(patience=10, restore_best_weights=True)
+reduce_lr_on_plateau = ReduceLROnPlateau(optimizer, mode='min', factor=0.25, patience=4, min_lr=1e-3)
 
 # Training loop
 for epoch in range(EPOCHS):
@@ -171,11 +179,21 @@ for epoch in range(EPOCHS):
     val_accuracy = 100 * correct_val / total_val
     val_loss = val_running_loss / len(val_loader)
     print(f'Validation Accuracy: {val_accuracy}')
-    wandb.log({"training_loss": train_loss, 
-                "training_accuracy": train_accuracy,
-                "validation_loss": val_loss, 
-                "validation_accuracy": val_accuracy,
-                "epoch": epoch + 1})
+    wandb.log({
+            "training_loss": train_loss, 
+            "training_accuracy": train_accuracy,
+            "validation_loss": val_loss, 
+            "validation_accuracy": val_accuracy,
+            "epoch": epoch + 1,
+            "learning_rate": optimizer.param_groups[0]['lr']})
+
+    # Learning Rate Decay
+    reduce_lr_on_plateau.step(val_loss)
+
+    # Early stopping
+    if early_stopping(val_loss=val_loss, model=model):
+        model.load_state_dict(early_stopping.best_weights())
+        break
 
 print('Finished Training')
 
@@ -200,8 +218,11 @@ wandb.finish()
 
 
 # Class Results
+classes = os.listdir( DATASET_DIR + '/train')
 correct_pred = {classname: 0 for classname in classes}
 total_pred = {classname: 0 for classname in classes}
+
+conf_matrix = np.zeros((len(classes), len(classes)), dtype=np.int64)
 
 with torch.no_grad():
     for data in test_loader:
@@ -210,6 +231,8 @@ with torch.no_grad():
         _, predictions = torch.max(outputs, 1)
 
         for label, prediction in zip(labels, predictions):
+            conf_matrix[label, prediction] += 1
+
             if label == prediction:
                 correct_pred[classes[label]] += 1
             total_pred[classes[label]] += 1
@@ -218,3 +241,10 @@ with torch.no_grad():
 for classname, correct_count in correct_pred.items():
     accuracy = 100 * float(correct_count) / total_pred[classname]
     print(f'Accuracy for class: {classname:5s} is {accuracy:.1f} %')
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=classes, yticklabels=classes)
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
