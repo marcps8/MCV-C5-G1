@@ -11,8 +11,8 @@ import time
 start_time = time.time()  # Start time
 
 MODEL_NAME = 'model_pytorch_1'
-WEIGHTS_DIR = f'/ghome/group01/group01/project23-24-01/Task4/weights/{MODEL_NAME}.h5'
-RESULTS_DIR = '/ghome/group01/group01/project23-24-01/Task4/results'
+WEIGHTS_DIR = f'/ghome/group01/MCV-C5-G1/weights/{MODEL_NAME}.h5'
+RESULTS_DIR = '/ghome/group01/MCV-C5-G1/results'
 DATASET_DIR = '/ghome/mcv/datasets/C3/MIT_small_train_1'
 DATASET_DIR_GLOBAL = '/ghome/mcv/datasets/C3/MIT_split'
 
@@ -121,77 +121,77 @@ train_accuracies = []
 val_accuracies = []
 
 # Training loop
-# for epoch in range(EPOCHS):
-#     model.train()
-#     correct_train = 0
-#     total_train = 0
-#     for inputs, labels in train_loader:
-#         optimizer.zero_grad()
-#         outputs = model(inputs)
-#         loss = criterion(outputs, labels)
-#         loss.backward()
-#         optimizer.step()
+for epoch in range(EPOCHS):
+    model.train()
+    correct_train = 0
+    total_train = 0
+    for inputs, labels in train_loader:
+        optimizer.zero_grad()
+        outputs = model(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
 
-#         _, predicted = torch.max(outputs.data, 1)
-#         total_train += labels.size(0)
-#         correct_train += (predicted == labels).sum().item()
+        _, predicted = torch.max(outputs.data, 1)
+        total_train += labels.size(0)
+        correct_train += (predicted == labels).sum().item()
 
-#     train_accuracy = correct_train / total_train
-#     train_accuracies.append(train_accuracy)
+    train_accuracy = correct_train / total_train
+    train_accuracies.append(train_accuracy)
 
-#     # Validation
-#     model.eval()
-#     with torch.no_grad():
-#         val_loss = 0.0
-#         correct_val = 0
-#         total_val = 0
-#         for inputs, labels in val_loader:
-#             outputs = model(inputs)
-#             loss = criterion(outputs, labels)
-#             val_loss += loss.item()
-#             _, predicted = torch.max(outputs.data, 1)
-#             total_val += labels.size(0)
-#             correct_val += (predicted == labels).sum().item()
+    # Validation
+    model.eval()
+    with torch.no_grad():
+        val_loss = 0.0
+        correct_val = 0
+        total_val = 0
+        for inputs, labels in val_loader:
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+            val_loss += loss.item()
+            _, predicted = torch.max(outputs.data, 1)
+            total_val += labels.size(0)
+            correct_val += (predicted == labels).sum().item()
 
-#     val_accuracy = correct_val / total_val
-#     val_accuracies.append(val_accuracy)
+    val_accuracy = correct_val / total_val
+    val_accuracies.append(val_accuracy)
 
-#     # Save results for plotting
-#     train_losses.append(loss.item())
-#     val_losses.append(val_loss / len(val_loader))
+    # Save results for plotting
+    train_losses.append(loss.item())
+    val_losses.append(val_loss / len(val_loader))
 
-#     print(
-#         f'Epoch {epoch + 1}/{EPOCHS}, Loss: {loss.item():.4f}, Train Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}')
-# end_time = time.time()  # End time
-# training_time = end_time - start_time
-# print(f'Training completed in {training_time:.2f} seconds')
-# # Save the PyTorch model
-# torch.save(model.state_dict(), WEIGHTS_DIR)
+    print(
+        f'Epoch {epoch + 1}/{EPOCHS}, Loss: {loss.item():.4f}, Train Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}')
+end_time = time.time()  # End time
+training_time = end_time - start_time
+print(f'Training completed in {training_time:.2f} seconds')
+# Save the PyTorch model
+torch.save(model.state_dict(), WEIGHTS_DIR)
 
-# # Plotting results
-# plt.figure(figsize=(12, 6))
+# Plotting results
+plt.figure(figsize=(12, 6))
 
-# # Plotting losses
-# plt.subplot(1, 2, 1)
-# plt.plot(train_losses, label='Train Loss')
-# plt.plot(val_losses, label='Validation Loss')
-# plt.title('Losses')
-# plt.xlabel('Epochs')
-# plt.ylabel('Loss')
-# plt.legend()
-# plt.grid()
+# Plotting losses
+plt.subplot(1, 2, 1)
+plt.plot(train_losses, label='Train Loss')
+plt.plot(val_losses, label='Validation Loss')
+plt.title('Losses')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+plt.grid()
 
-# # Plotting accuracies
-# plt.subplot(1, 2, 2)
-# plt.plot(train_accuracies, label='Train Accuracy')
-# plt.plot(val_accuracies, label='Validation Accuracy')
-# plt.title('Accuracies')
-# plt.xlabel('Epochs')
-# plt.ylabel('Accuracy')
-# plt.legend()
-# plt.grid()
+# Plotting accuracies
+plt.subplot(1, 2, 2)
+plt.plot(train_accuracies, label='Train Accuracy')
+plt.plot(val_accuracies, label='Validation Accuracy')
+plt.title('Accuracies')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.grid()
 
-# # Save plots
-# plt.tight_layout()
-# plt.savefig(f'{RESULTS_DIR}/{MODEL_NAME}_loss_accuracy.jpg')
-# plt.show()
+# Save plots
+plt.tight_layout()
+plt.savefig(f'{RESULTS_DIR}/{MODEL_NAME}_loss_accuracy.jpg')
+plt.show()
