@@ -11,8 +11,8 @@ import time
 start_time = time.time()  # Start time
 
 MODEL_NAME = 'model_pytorch_1'
-WEIGHTS_DIR = f'/ghome/group01/MCV-C5-G1/weights/{MODEL_NAME}.h5'
-RESULTS_DIR = '/ghome/group01/MCV-C5-G1/results'
+WEIGHTS_DIR = f'/ghome/group01/MCV-C5-G1/Week1/weights/{MODEL_NAME}.h5'
+RESULTS_DIR = '/ghome/group01/MCV-C5-G1/Week1/results'
 DATASET_DIR = '/ghome/mcv/datasets/C3/MIT_small_train_1'
 DATASET_DIR_GLOBAL = '/ghome/mcv/datasets/C3/MIT_split'
 
