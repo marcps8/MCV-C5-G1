@@ -36,6 +36,7 @@ if device.type == 'cuda':
     print('Memory Usage:')
     print('Allocated:', round(torch.cuda.memory_allocated(0) / 1024 ** 3, 1), 'GB')
     print('Cached:   ', round(torch.cuda.memory_reserved(0) / 1024 ** 3, 1), 'GB')
+    print()
 
 
 class CNNModel(nn.Module):
@@ -165,11 +166,13 @@ else:
     end_time = time.time()  # End time
     training_time = end_time - start_time
     print(f'Training completed in {training_time:.2f} seconds')
-
+    print()
+    
     # Save the PyTorch model
     torch.save(model.state_dict(), WEIGHTS_DIR)
 
-model.eval()    
+model.eval()  
+print(f'Train Accuracy: {evaluate(model, train_loader):.4f}%')
 print(f'Test Accuracy: {evaluate(model, test_loader):.4f}%')
 print(f'Validation Accuracy: {evaluate(model, val_loader):.4f}%')
 
