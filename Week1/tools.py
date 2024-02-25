@@ -1,4 +1,7 @@
 import torch
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 class EarlyStopping:
     def __init__(self, patience=10, delta=0, verbose=False, restore_best_weights=True):
@@ -67,3 +70,59 @@ def evaluate(model, loader):
             
     acc = 100 * correct / total
     return acc
+
+def save_confusion_matrix(model, classes, test_loader, save_path):
+    conf_matrix = np.zeros((len(classes), len(classes)), dtype=np.int64)
+    correct_pred = {classname: 0 for classname in classes}
+    total_pred = {classname: 0 for classname in classes}
+
+    with torch.no_grad():
+        for data in test_loader:
+            images, labels = data
+            outputs = model(images)
+            _, predictions = torch.max(outputs, 1)
+
+            for label, prediction in zip(labels, predictions):
+                conf_matrix[label, prediction] += 1
+                if label == prediction:
+                    correct_pred[classes[label]] += 1
+                total_pred[classes[label]] += 1
+
+
+    for classname, correct_count in correct_pred.items():
+        accuracy = 100 * float(correct_count) / total_pred[classname]
+        print(f'Accuracy for class: {classname:5s} is {accuracy:.1f} %')
+
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=classes, yticklabels=classes)
+    plt.title('Confusion Matrix')
+    plt.xlabel('Predicted')
+    plt.ylabel('Actual')
+    plt.savefig(save_path)
+
+def save_loss_acc_plot(train_losses, val_losses, train_accuracies, val_accuracies, save_path):
+    # Plotting results
+    plt.figure(figsize=(12, 6))
+
+    plt.subplot(1, 2, 1)
+    plt.plot(train_losses, label='Train Loss')
+    plt.plot(val_losses, label='Validation Loss')
+    plt.title('Losses')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.grid()
+
+    plt.subplot(1, 2, 2)
+    plt.plot(train_accuracies, label='Train Accuracy')
+    plt.plot(val_accuracies, label='Validation Accuracy')
+    plt.title('Accuracies')
+    plt.xlabel('Epochs')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    plt.grid()
+
+    # Save plots
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.show()

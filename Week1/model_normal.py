@@ -4,14 +4,10 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
-import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, SubsetRandomSampler
 from torchvision.datasets import ImageFolder
 
-from sklearn.metrics import confusion_matrix
-import seaborn as sns
-import matplotlib.pyplot as plt
 import time
 
 import os
@@ -22,16 +18,19 @@ from tools import *
 
 start_time = time.time()  # Start time
 
-MODEL_NAME = 'model_pytorch_1'
-DATASET_DIR = 'MIT_split'
-SAVED_MODELS = './model1.pth'
+MODEL_NAME = 'model_pytorch_correct'
+MODEL_PATH = f'/ghome/group01/MCV-C5-G1/Week1/weights/{MODEL_NAME}.pt'
+RESULTS_DIR = '/ghome/group01/MCV-C5-G1/Week1/results'
+DATASET_DIR = '/ghome/mcv/datasets/C3/MIT_small_train_1'
+DATASET_DIR_GLOBAL = '/ghome/mcv/datasets/C3/MIT_split'
 
-NUM_FOLDS = 5
 NUM_CLASSES = 8
 BATCH_SIZE = 16
 IMG_SIZE = (256, 256)
-EPOCHS = 5
+EPOCHS = 80
 
+LOAD_MODEL = False
+PLOT_RESULTS = True
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('Using device:', device)
@@ -40,6 +39,7 @@ print()
 wandb.finish()
 wandb.login(key="d1eed7aeb7e90a11c24c3644ed2df2d6f2b25718")
 wandb.init(project="C5_T1_b")
+
 config = wandb.config
 config.learning_rate = 0.012
 config.batch_size = BATCH_SIZE
@@ -63,6 +63,7 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)) # zero-centered
 ])
+
 train_dataset = ImageFolder(root=DATASET_DIR + '/train/', transform=transform)
 test_dataset = ImageFolder(root=DATASET_DIR + '/test/', transform=transform)
 
@@ -78,13 +79,11 @@ val_sampler = SubsetRandomSampler(val_indices)
 
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, sampler=train_sampler)
 val_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, sampler=val_sampler)
-
-# train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
-# train_loader = DeviceDataLoader(train_loader, device)
+train_loader = DeviceDataLoader(train_loader, device)
+val_loader = DeviceDataLoader(val_loader, device)
 test_loader = DeviceDataLoader(test_loader, device)
-
 
 class Model(nn.Module):
     def __init__(self):
@@ -122,129 +121,113 @@ class Model(nn.Module):
         # Flatten the tensor to (batch_size, num_channels)
         x = x.view(x.size(0), -1)  
         x = self.softmax(self.fc_output(x))
-
-
+        
         return x
 
 
 model = Model()
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.012)
+model.to(device)
 
-early_stopping = EarlyStopping(patience=10, restore_best_weights=True)
-reduce_lr_on_plateau = ReduceLROnPlateau(optimizer, mode='min', factor=0.25, patience=4, min_lr=1e-3)
+if LOAD_MODEL:
+    model.load_state_dict(torch.load(MODEL_PATH))
 
-# Training loop
-for epoch in range(EPOCHS):
-    model.train()
-    running_loss = 0.0
-    correct_train = 0
-    total_train = 0
+else:
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=0.012)
 
-    for i, data in enumerate(train_loader, 0):
-        inputs, labels = data
-        optimizer.zero_grad()
-        outputs = model(inputs)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
+    early_stopping = EarlyStopping(patience=10, restore_best_weights=True)
+    reduce_lr_on_plateau = ReduceLROnPlateau(optimizer, mode='min', factor=0.25, patience=4, min_lr=1e-3)
 
-        running_loss += loss.item()
-        _, predicted = torch.max(outputs.data, 1)
-        total_train += labels.size(0)
-        correct_train += (predicted == labels).sum().item()
+    train_accuracies = []
+    val_accuracies = []
+    train_losses = []
+    val_losses = []
 
-    train_accuracy = 100 * correct_train / total_train
-    train_loss = running_loss / len(train_loader)
-    print(f'Train Accuracy: {train_accuracy}')
+    # Training loop
+    for epoch in range(EPOCHS):
+        model.train()
+        running_loss = 0.0
+        correct_train = 0
+        total_train = 0
 
-    # Validation
-    model.eval()
-    correct_val = 0
-    total_val = 0
-    val_running_loss = 0.0
-
-    with torch.no_grad():
-        for data in val_loader:
-            images, labels = data
-            images, labels = images.to(device), labels.to(device)
-            outputs = model(images)
+        for i, data in enumerate(train_loader, 0):
+            inputs, labels = data
+            optimizer.zero_grad()
+            outputs = model(inputs)
             loss = criterion(outputs, labels)
-            val_running_loss += loss.item()
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
             _, predicted = torch.max(outputs.data, 1)
-            total_val += labels.size(0)
-            correct_val += (predicted == labels).sum().item()
+            total_train += labels.size(0)
+            correct_train += (predicted == labels).sum().item()
 
-    # Calculate validation accuracy and log to wandb
-    val_accuracy = 100 * correct_val / total_val
-    val_loss = val_running_loss / len(val_loader)
-    print(f'Validation Accuracy: {val_accuracy}')
-    wandb.log({
-            "training_loss": train_loss, 
-            "training_accuracy": train_accuracy,
-            "validation_loss": val_loss, 
-            "validation_accuracy": val_accuracy,
-            "epoch": epoch + 1,
-            "learning_rate": optimizer.param_groups[0]['lr']})
+        train_accuracy = 100 * correct_train / total_train
+        train_accuracies.append(train_accuracy)
+        train_loss = running_loss / len(train_loader)
+        train_losses.append(train_loss)
+        print(f'Train Accuracy: {train_accuracy}')
 
-    # Learning Rate Decay
-    reduce_lr_on_plateau.step(val_loss)
+        # Validation
+        model.eval()
+        correct_val = 0
+        total_val = 0
+        val_running_loss = 0.0
 
-    # Early stopping
-    if early_stopping(val_loss=val_loss, model=model):
-        model.load_state_dict(early_stopping.best_weights())
-        break
+        with torch.no_grad():
+            for data in val_loader:
+                images, labels = data
+                images, labels = images.to(device), labels.to(device)
+                outputs = model(images)
+                loss = criterion(outputs, labels)
+                val_running_loss += loss.item()
+                _, predicted = torch.max(outputs.data, 1)
+                total_val += labels.size(0)
+                correct_val += (predicted == labels).sum().item()
 
-print('Finished Training')
+        # Calculate validation accuracy and log to wandb
+        val_accuracy = 100 * correct_val / total_val
+        val_accuracies.append(val_accuracy)
+        val_loss = val_running_loss / len(val_loader)
+        val_losses.append(val_loss)
+        print(f'Validation Accuracy: {val_accuracy}')
+        
+        wandb.log({
+                "training_loss": train_loss, 
+                "training_accuracy": train_accuracy,
+                "validation_loss": val_loss, 
+                "validation_accuracy": val_accuracy,
+                "epoch": epoch + 1,
+                "learning_rate": optimizer.param_groups[0]['lr']})
 
-torch.save(model.state_dict(), SAVED_MODELS)
+        # Learning Rate Decay
+        reduce_lr_on_plateau.step(val_loss)
 
-# Testing
-correct = 0
-total = 0
-with torch.no_grad():
-    for data in test_loader:
-        inputs, labels = data
-        outputs = model(inputs)
-        _, predicted = torch.max(outputs.data, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
+        # Early stopping
+        if early_stopping(val_loss=val_loss, model=model):
+            model.load_state_dict(early_stopping.best_weights())
+            break
 
-test_accuracy = 100 * correct // total
+    print('Finished Training')
+    torch.save(model.state_dict(), MODEL_PATH)
+
+# Eval mode for model
+model.eval()
+
+val_accuracy = evaluate(model, val_loader)
+test_accuracy = evaluate(model, test_loader)
+print(f'Val Accuracy: {val_accuracy} %')
 print(f'Test Accuracy: {test_accuracy} %')
+
+wandb.log({"val_accuracy": val_accuracy})
 wandb.log({"test_accuracy": test_accuracy})
 wandb.finish()
 
+if PLOT_RESULTS:
+    # Loss / Acc plot
+    save_loss_acc_plot(train_losses, val_losses, train_accuracies, val_accuracies, f'{RESULTS_DIR}/{MODEL_NAME}_loss_accuracy.jpg')
 
-
-# Class Results
-classes = os.listdir( DATASET_DIR + '/train')
-correct_pred = {classname: 0 for classname in classes}
-total_pred = {classname: 0 for classname in classes}
-
-conf_matrix = np.zeros((len(classes), len(classes)), dtype=np.int64)
-
-with torch.no_grad():
-    for data in test_loader:
-        images, labels = data
-        outputs = model(images)
-        _, predictions = torch.max(outputs, 1)
-
-        for label, prediction in zip(labels, predictions):
-            conf_matrix[label, prediction] += 1
-
-            if label == prediction:
-                correct_pred[classes[label]] += 1
-            total_pred[classes[label]] += 1
-
-
-for classname, correct_count in correct_pred.items():
-    accuracy = 100 * float(correct_count) / total_pred[classname]
-    print(f'Accuracy for class: {classname:5s} is {accuracy:.1f} %')
-
-plt.figure(figsize=(10, 8))
-sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=classes, yticklabels=classes)
-plt.title('Confusion Matrix')
-plt.xlabel('Predicted')
-plt.ylabel('Actual')
-plt.show()
+    # Confusion Matrix
+    classes = os.listdir( DATASET_DIR + '/train')
+    save_confusion_matrix(model, classes, test_loader, f'{RESULTS_DIR}/{MODEL_NAME}_confusion_matrix.jpg')
