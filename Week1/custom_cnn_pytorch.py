@@ -22,7 +22,7 @@ BATCH_SIZE = 64
 IMG_SIZE = (256, 256)
 EPOCHS = 80
 
-INFERENCE = True
+LOAD_MODEL = True
 PLOT_RESULTS = False
 
 # setting device on GPU if available, else CPU
@@ -116,10 +116,8 @@ val_losses = []
 train_accuracies = []
 val_accuracies = []
 
-if INFERENCE:
+if LOAD_MODEL:
     model.load_state_dict(torch.load(WEIGHTS_DIR))
-    print(f'Test Accuracy: {evaluate(model, test_loader)}%')
-    print(f'Validation Accuracy: {evaluate(model, test_loader)}%')
 
 else:
     criterion = nn.CrossEntropyLoss()
@@ -173,6 +171,9 @@ else:
 
     # Save the PyTorch model
     torch.save(model.state_dict(), WEIGHTS_DIR)
+
+print(f'Test Accuracy: {evaluate(model, test_loader)}%')
+print(f'Validation Accuracy: {evaluate(model, val_loader)}%')
 
 if PLOT_RESULTS:
     # Plotting results
