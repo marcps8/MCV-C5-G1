@@ -14,11 +14,10 @@ import numpy as np
 
 from tools import *
 
-MODEL_NAME = 'model_pytorch_correct_200epochs'
+MODEL_NAME = 'model_pytorch_correct_full_200epochs'
 MODEL_PATH = f'/ghome/group01/MCV-C5-G1/Week1/weights/{MODEL_NAME}.pt'
 RESULTS_DIR = '/ghome/group01/MCV-C5-G1/Week1/results'
-DATASET_DIR = '/ghome/mcv/datasets/C3/MIT_small_train_1'
-DATASET_DIR_GLOBAL = '/ghome/mcv/datasets/C3/MIT_split'
+DATASET_DIR = '/ghome/mcv/datasets/C3/MIT_split'
 
 NUM_CLASSES = 8
 BATCH_SIZE = 16
