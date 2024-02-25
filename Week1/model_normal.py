@@ -8,15 +8,11 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, SubsetRandomSampler
 from torchvision.datasets import ImageFolder
 
-import time
-
 import os
 import wandb
 import numpy as np
 
 from tools import *
-
-start_time = time.time()  # Start time
 
 MODEL_NAME = 'model_pytorch_correct_200epochs'
 MODEL_PATH = f'/ghome/group01/MCV-C5-G1/Week1/weights/{MODEL_NAME}.pt'
@@ -35,14 +31,6 @@ PLOT_RESULTS = True
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('Using device:', device)
 print()
-
-wandb.finish()
-wandb.login(key="d1eed7aeb7e90a11c24c3644ed2df2d6f2b25718")
-wandb.init(project="C5_T1_b")
-
-config = wandb.config
-config.learning_rate = 0.012
-config.batch_size = BATCH_SIZE
 
 class DeviceDataLoader:
     def __init__(self, dataloader, device):
@@ -132,6 +120,14 @@ if LOAD_MODEL:
     model.load_state_dict(torch.load(MODEL_PATH))
 
 else:
+    wandb.finish()
+    wandb.login(key="d1eed7aeb7e90a11c24c3644ed2df2d6f2b25718")
+    wandb.init(project="C5_T1_b")
+
+    config = wandb.config
+    config.learning_rate = 0.012
+    config.batch_size = BATCH_SIZE
+
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.012)
 
@@ -220,14 +216,16 @@ test_accuracy = evaluate(model, test_loader)
 print(f'Val Accuracy: {val_accuracy} %')
 print(f'Test Accuracy: {test_accuracy} %')
 
-wandb.log({"val_accuracy": val_accuracy})
-wandb.log({"test_accuracy": test_accuracy})
-wandb.finish()
+if not LOAD_MODEL:
+    wandb.log({"val_accuracy": val_accuracy})
+    wandb.log({"test_accuracy": test_accuracy})
+    wandb.finish()
 
 if PLOT_RESULTS:
-    # Loss / Acc plot
-    save_loss_acc_plot(train_losses, val_losses, train_accuracies, val_accuracies, f'{RESULTS_DIR}/{MODEL_NAME}_loss_accuracy.jpg')
+    # Loss / Acc plot -- only if model has been trained
+    if not LOAD_MODEL:
+        save_loss_acc_plot(train_losses, val_losses, train_accuracies, val_accuracies, f'{RESULTS_DIR}/{MODEL_NAME}_loss_accuracy.jpg')
 
     # Confusion Matrix
-    classes = os.listdir( DATASET_DIR + '/train')
+    classes = os.listdir(DATASET_DIR + '/train')
     save_confusion_matrix(model, classes, test_loader, f'{RESULTS_DIR}/{MODEL_NAME}_confusion_matrix.jpg')
