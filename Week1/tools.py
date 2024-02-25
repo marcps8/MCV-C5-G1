@@ -1,3 +1,5 @@
+import torch
+
 class EarlyStopping:
     def __init__(self, patience=10, delta=0, verbose=False, restore_best_weights=True):
         """
@@ -50,3 +52,18 @@ class EarlyStopping:
 
     def best_weights(self):
         return self.best_model_state
+
+
+def evaluate(model, loader):
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for data in loader:
+            inputs, labels = data
+            outputs = model(inputs)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+            
+    acc = 100 * correct // total
+    return acc
