@@ -5,32 +5,51 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 MODEL_NAME = 'keras_model'
-WEIGHTS_DIR = f'/ghome/group01/group01/project23-24-01/Task4/weights/{MODEL_NAME}.h5'
-RESULTS_DIR = '/ghome/group01/group01/project23-24-01/Task4/results'
-DATASET_DIR = '/ghome/mcv/datasets/C3/MIT_small_train_1'
+DATASET_DIR = '/ghome/mcv/datasets/C3/MIT_split'
 DATASET_DIR_GLOBAL = '/ghome/mcv/datasets/C3/MIT_split'
+WEIGHTS_DIR = f'/ghome/group01/MCV-C5-G1/Week1/weights/{MODEL_NAME}.pt'
+RESULTS_DIR = '/ghome/group01/MCV-C5-G1/Week1/results'
 
 NUM_CLASSES = 8
 BATCH_SIZE = 64
 IMG_SIZE = (64, 64)
 EPOCHS = 250
 
-def save_confusion_matrix(model, classes, test_loader, save_path):
-    conf_matrix = np.zeros((len(classes), len(classes)), dtype=np.int64)
-    correct_pred = {classname: 0 for classname in classes}
-    total_pred = {classname: 0 for classname in classes}
+def save_confusion_matrix(model, classes, test_data, save_path):
+    # Extracting images and labels from test data
+    images, labels = test_data
 
-    with torch.no_grad():
-        for data in test_loader:
-            images, labels = data
-            outputs = model(images)
-            _, predictions = torch.max(outputs, 1)
+    # Making predictions
+    predictions = model.predict(images)
+    predicted_labels = np.argmax(predictions, axis=1)
 
-            for label, prediction in zip(labels, predictions):
-                conf_matrix[label, prediction] += 1
-                if label == prediction:
-                    correct_pred[classes[label]] += 1
-                total_pred[classes[label]] += 1
+    # Calculate confusion matrix
+    conf_matrix = confusion_matrix(labels, predicted_labels)
+
+    # Plot confusion matrix
+    plt.figure(figsize=(8, 8))
+    plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
+    plt.title('Confusion Matrix')
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
+
+    fmt = 'd'
+    thresh = conf_matrix.max() / 2.
+    for i, j in itertools.product(range(conf_matrix.shape[0]), range(conf_matrix.shape[1])):
+        plt.text(j, i, format(conf_matrix[i, j], fmt),
+                 horizontalalignment="center",
+                 color="white" if conf_matrix[i, j] > thresh else "black")
+
+    plt.tight_layout()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.savefig(save_path)
+    plt.close()
+
+
+
 def get_datasets():
     train_data_generator = ImageDataGenerator(
         rescale=1./255    
