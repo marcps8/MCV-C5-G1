@@ -1,174 +1,136 @@
-import os
-os.environ["KERAS_BACKEND"] = "tensorflow"  # Or "jax" or "torch"!
-os.environ["CUDA_VISIBLE_DEVICES"]=""
-
-import keras
-import tensorflow as tf
-from keras.layers import Dense, Dropout, Conv2D, Input, BatchNormalization, MaxPooling2D
-from keras.utils import plot_model
-from keras.optimizers import Adam, Adagrad
-from keras.utils.layer_utils import count_params
-
-from keras.models import Model
-from keras.layers import Dense, GlobalAveragePooling2D
-
-import tensorflow as tf
+from keras.layers import Dense, Dropout, Conv2D, BatchNormalization, MaxPooling2D, Flatten
+from keras.models import Sequential
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import matplotlib.pyplot as plt
+import numpy as np
 
-import wandb
-from wandb.keras import WandbMetricsLogger, WandbModelCheckpoint
-
-from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
-
-
-import optuna
-
-print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-
-wandb.finish()
-wandb.login(key="d1eed7aeb7e90a11c24c3644ed2df2d6f2b25718")
-
+MODEL_NAME = 'keras_model'
+WEIGHTS_DIR = f'/ghome/group01/group01/project23-24-01/Task4/weights/{MODEL_NAME}.h5'
+RESULTS_DIR = '/ghome/group01/group01/project23-24-01/Task4/results'
 DATASET_DIR = '/ghome/mcv/datasets/C3/MIT_small_train_1'
 DATASET_DIR_GLOBAL = '/ghome/mcv/datasets/C3/MIT_split'
-IMG_WIDTH = 256
-IMG_HEIGHT=256
-NUMBER_OF_EPOCHS=50
 
+NUM_CLASSES = 8
+BATCH_SIZE = 64
+IMG_SIZE = (64, 64)
+EPOCHS = 250
 
-def get_datasets(batch_size):
+def save_confusion_matrix(model, classes, test_loader, save_path):
+    conf_matrix = np.zeros((len(classes), len(classes)), dtype=np.int64)
+    correct_pred = {classname: 0 for classname in classes}
+    total_pred = {classname: 0 for classname in classes}
+
+    with torch.no_grad():
+        for data in test_loader:
+            images, labels = data
+            outputs = model(images)
+            _, predictions = torch.max(outputs, 1)
+
+            for label, prediction in zip(labels, predictions):
+                conf_matrix[label, prediction] += 1
+                if label == prediction:
+                    correct_pred[classes[label]] += 1
+                total_pred[classes[label]] += 1
+def get_datasets():
     train_data_generator = ImageDataGenerator(
-    rescale=1./255    
+        rescale=1./255    
     )
 
-    # Load and preprocess the training dataset
     train_dataset = train_data_generator.flow_from_directory(
         directory=DATASET_DIR+'/train/',
-        target_size=(IMG_WIDTH, IMG_HEIGHT),
-        batch_size=batch_size,
+        target_size=IMG_SIZE,
+        batch_size=BATCH_SIZE,
         class_mode='categorical',
         shuffle=True
     )
 
-
-    # Load and preprocess the validation dataset
     validation_data_generator = ImageDataGenerator(
         rescale=1./255
     )
 
     validation_dataset = validation_data_generator.flow_from_directory(
         directory=DATASET_DIR+'/test/',
-        target_size=(IMG_WIDTH, IMG_HEIGHT),
-        batch_size=batch_size,
+        target_size=IMG_SIZE,
+        batch_size=BATCH_SIZE,
         class_mode='categorical',
         shuffle=True
     )
 
-    # Load and preprocess the test dataset
     test_data_generator = ImageDataGenerator(
         rescale=1./255
     )
 
     test_dataset = test_data_generator.flow_from_directory(
         directory=DATASET_DIR_GLOBAL+'/test/',
-        target_size=(IMG_WIDTH, IMG_HEIGHT),
-        batch_size=batch_size,
+        target_size=IMG_SIZE,
+        batch_size=BATCH_SIZE,
         class_mode='categorical',
         shuffle=True
     )
 
-
     return train_dataset, validation_dataset, test_dataset
 
-wandb.finish()
-train_dataset, validation_dataset, test_dataset = get_datasets(batch_size=16)
+def build_model():
+    model = Sequential()
 
-def objective(trial):
-    wandb.init(project="final_K2", config=trial.params, name=f"run_{trial.number}")
+    model.add(Conv2D(32, (3, 3), input_shape=(IMG_SIZE[0], IMG_SIZE[1], 3), activation='relu'))
+    model.add(BatchNormalization())
+    model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    # create the base pre-trained model
-    inputs = Input(shape=(IMG_WIDTH, IMG_HEIGHT, 3))
-    x = Conv2D(29, (3, 3), activation='relu')(inputs)
-    x = BatchNormalization()(x)
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(BatchNormalization())
+    model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    x = Conv2D(1, (3, 3), activation='relu')(x)
-    x = BatchNormalization()(x)
-    x = MaxPooling2D((3, 3))(x)
+    model.add(Conv2D(128, (3, 3), activation='relu'))
+    model.add(BatchNormalization())
+    model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    x = Conv2D(14, (3, 3), activation='relu')(x)
-    x = BatchNormalization()(x)
-    x = Dropout(0.1)(x)
+    model.add(Flatten())
 
-    x = Conv2D(19, (3, 3), activation='relu')(x)
-    x = BatchNormalization()(x)
-    x = Dropout(0.1)(x)
+    model.add(Dense(512, activation='relu'))
+    model.add(Dropout(0.5))
 
-    x = Conv2D(27, (3, 3), activation='relu')(x)
-    x = BatchNormalization()(x)
-    x = Dropout(0.1)(x)
+    model.add(Dense(NUM_CLASSES, activation='softmax'))
 
-    x = GlobalAveragePooling2D()(x)
-    predictions = Dense(8, activation='softmax')(x)
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-    model = Model(inputs=inputs, outputs=predictions)
+    return model
 
-    optimizer = Adam(learning_rate = 0.012)
-    model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
+def plot_metrics(history):
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'])
+    plt.title('model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'validation'], loc='upper left')
+    plt.savefig(f'{RESULTS_DIR}/{MODEL_NAME}_accuracy.jpg')
+    plt.close()
 
-    print(model.summary())
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'validation'], loc='upper left')
+    plt.savefig(f'{RESULTS_DIR}/{MODEL_NAME}_loss.jpg')
+    plt.close()
 
-    # Early Stopping
-    early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-    reduce_lr_on_plateau = ReduceLROnPlateau(monitor='val_loss', patience=4, factor=0.25, min_lr=1e-3)
+train_dataset, validation_dataset, test_dataset = get_datasets()
+model = build_model()
 
-    print('Start training...\n') 
-    # train the model on the new data for a few epochs
-    history = model.fit(train_dataset,
-                        epochs=NUMBER_OF_EPOCHS,
-                        validation_data=validation_dataset,
-                        verbose=0,
-                        callbacks=[
-                        WandbMetricsLogger(log_freq=5),
-                        WandbModelCheckpoint(filepath=os.path.join(wandb.run.dir, "model_weights.h5"),
-                                            monitor="val_loss",
-                                            save_weights_only=True,
-                                            save_best_only=True,
-                                            mode='min'), 
-                        early_stopping, 
-                        reduce_lr_on_plateau
-                        ])
+print('Start training...\n')
+history = model.fit(
+    train_dataset,
+    epochs=EPOCHS,
+    validation_data=validation_dataset,
+    verbose=0,
+    callbacks=[]
+)
 
-    model.save_weights(os.path.join(wandb.run.dir, "model_weights.h5"))
-    wandb.finish()
+model.save_weights(WEIGHTS_DIR)
+plot_metrics(history)
 
-    test_evaluation = model.evaluate(test_dataset, verbose=0)
-    print(f"Test evaluation: {test_evaluation[1]}")
+# Compute confusion matrix
 
-    trainable_params = count_params(model.trainable_weights)
-    print(f"Trainable: {trainable_params}")
-
-    efficient_accuracy = max(history.history['val_accuracy']) * 100000 / trainable_params
-    print(f"Efficient Accuracy: {efficient_accuracy}")
-
-    print("Best trial number:", trial.number)
-
-    return efficient_accuracy
-    #return test_evaluation
-
-
-
-study = optuna.create_study(storage="sqlite:///c3_task4.db", 
-                        study_name="final_K2",
-                        direction="maximize")
-
-study.optimize(objective, n_trials=150)
-
-# Print the best hyperparameters and result
-print('Number of finished trials: ', len(study.trials))
-print('Best trial:')
-trial = study.best_trial
-
-print("Best trial number:", trial.number)
-print('Value: ', trial.value)
-print('Params: ')
-for key, value in trial.params.items():
-    print(f'    {key}: {value}')
+classes = os.listdir(DATASET_DIR + '/train')
+save_confusion_matrix(model, classes, test_dataset, f'{RESULTS_DIR}/{MODEL_NAME}_confusion_matrix.jpg')
