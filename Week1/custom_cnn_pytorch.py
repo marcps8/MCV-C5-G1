@@ -22,7 +22,7 @@ BATCH_SIZE = 64
 IMG_SIZE = (256, 256)
 EPOCHS = 80
 
-LOAD_MODEL = True
+LOAD_MODEL = False
 PLOT_RESULTS = False
 
 # setting device on GPU if available, else CPU
@@ -118,7 +118,6 @@ val_accuracies = []
 
 if LOAD_MODEL:
     model.load_state_dict(torch.load(WEIGHTS_DIR))
-
 else:
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
@@ -141,6 +140,7 @@ else:
 
         train_accuracy = correct_train / total_train
         train_accuracies.append(train_accuracy)
+        train_losses.append(loss.item())
 
         # Validation
         model.eval()
@@ -158,12 +158,9 @@ else:
 
         val_accuracy = correct_val / total_val
         val_accuracies.append(val_accuracy)
-
-        # Save results for plotting
-        train_losses.append(loss.item())
         val_losses.append(val_loss / len(val_loader))
 
-        print(f'Epoch {epoch + 1}/{EPOCHS}, Loss: {loss.item():.4f}, Train Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}')
+        print(f'Epoch {epoch + 1}/{EPOCHS}, Loss: {train_losses[-1]:.4f}, Train Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}')
 
     end_time = time.time()  # End time
     training_time = end_time - start_time
@@ -172,8 +169,9 @@ else:
     # Save the PyTorch model
     torch.save(model.state_dict(), WEIGHTS_DIR)
 
-print(f'Test Accuracy: {evaluate(model, test_loader)}%')
-print(f'Validation Accuracy: {evaluate(model, val_loader)}%')
+model.eval()    
+print(f'Test Accuracy: {evaluate(model, test_loader):.4f}%')
+print(f'Validation Accuracy: {evaluate(model, val_loader):.4f}%')
 
 if PLOT_RESULTS:
     # Plotting results

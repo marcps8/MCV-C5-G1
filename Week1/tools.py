@@ -65,5 +65,5 @@ def evaluate(model, loader):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
             
-    acc = 100 * correct // total
+    acc = 100 * correct / total
     return acc
