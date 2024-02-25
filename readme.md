@@ -7,8 +7,9 @@
 # Code Explanation
 This repository contains the code related to the project on 'Object Detection and Segmentation' of the C5: Visual Recognition of the Master in Computer Vision at UAB.
 
-
-## Instructions
+## Week 1
+>To see the slides click [here](https://docs.google.com/presentation/d/1CoujhU4kM0HRyDuOHyaCCPdV8Ej7_X9nboHhPHJPP5E/edit?usp=sharing)  
+### Instructions
 To run the training process, follow these steps:
 
 1. **Set Up Environment:**
