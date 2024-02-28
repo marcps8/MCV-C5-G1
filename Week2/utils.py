@@ -1,9 +1,11 @@
 from pathlib import Path
-from typing import List, Dict
+from typing import Dict, List
+
+import numpy as np
+import pycocotools.mask as rletools
 from detectron2.structures import BoxMode
 from PIL import Image
-import pycocotools.mask as rletools
-import numpy as np
+
 
 class SegmentedObject:
     def __init__(self, mask, class_id, track_id):
