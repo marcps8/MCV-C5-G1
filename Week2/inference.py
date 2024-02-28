@@ -68,11 +68,10 @@ def run_inference(model_index: int, mode: str):
         for image in os.listdir(folder_path):
             img_path = os.path.join(folder_path, image)
             out_path = os.path.join(out_dir, image)
-            print(out_path)
-            # img = inference(img_path, predictor, cfg)
+            img = inference(img_path, predictor, cfg)
 
-            # cv2.imwrite(out_path, img, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
-            # print(f"Processed img {img_path} for {model_type}")
+            cv2.imwrite(out_path, img, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
+            print(f"Processed img {img_path} with model {model_name}")
 
 
 if __name__ == "__main__":
