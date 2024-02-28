@@ -115,7 +115,3 @@ def load_annotations(annotation_path: str):
             objs[frame_id] = frame_objs
 
     return objs
-
-if __name__ == "__main__":
-    print(load_images("/ghome/group01/mcv/datasets/C5/KITTI-MOTS/instances/0000"))
-    print(load_annotations("/ghome/group01/mcv/datasets/C5/KITTI-MOTS/instances_txt/0000.txt"))
