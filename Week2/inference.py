@@ -27,13 +27,9 @@ def inference(img_path, predictor, cfg):
     im = cv2.imread(img_path)
     outputs = predictor(im)
 
-    # Look at the outputs. See https://detectron2.readthedocs.io/tutorials/models.html#model-output-format for specification
-    # print(outputs["instances"].pred_classes)
-    # print(outputs["instances"].pred_boxes)
-
-    # We can use `Visualizer` to draw the predictions on the image.
+    # To visualize results on images
     visualizer = Visualizer(
-        im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2
+        im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0], scale=1.2)
     )
     out = visualizer.draw_instance_predictions(outputs["instances"].to("cpu"))
     return out.get_image()[:, :, ::-1]
@@ -46,18 +42,10 @@ def run_inference(model_index: int, mode: str):
     results_dir = RESULTS_DIR.format(model_name)
 
     cfg = get_cfg()
-
-    # Add project-specific config (e.g., TensorMask) here if you're not running a model in detectron2's core library
     cfg.merge_from_file(model_zoo.get_config_file(model))
-    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
-
-    # Find a model from detectron2's model zoo. You can use the https://dl.fbaipublicfiles... url as well
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7  # set threshold for this model
     cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(model)
     predictor = DefaultPredictor(cfg)
-
-    # root: /home/mcv/datasets/KITTI-MOTS/testing/00XX
-    # file: 000XXX.png
-    # out_path: ./results/KITTI-MOTS/testing/00XX
 
     # Run inference with pre-trained Faster R-CNN (detection) and Mask R-CNN (detection and segmentation) on all KITTI-MOTS dataset
     for folder in os.listdir(dataset_dir):
