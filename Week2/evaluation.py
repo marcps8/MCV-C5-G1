@@ -38,7 +38,7 @@ SAVE_PATH_TRAIN_INFERENCES_KM = "/ghome/group01/C5-W2/task_c/mask/train_inferenc
 KITTY_MOTS_CLASSES = {0: "Car", 1: "Pedestrian"}
 
 def from_KITTY_to_COCO(path, part):
-    COCO_classes = {0: 81, 1: 2, 2: 0, 10: 81}  # Mapping KITTY to COCO classes
+    COCO_classes = {0: 81, 1: 2, 2: 0, 10: 71}  # Mapping KITTY to COCO classes
     with open("./config/dataset_split.json") as f_splits:
         sequences = json.load(f_splits)[part]
 
