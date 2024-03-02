@@ -12,6 +12,8 @@ from detectron2.engine import DefaultPredictor
 from detectron2.evaluation import COCOEvaluator, inference_on_dataset
 from detectron2.structures import BoxMode
 from pycocotools.mask import toBbox
+
+from dataset import class_mapping_kitti_to_coco
 from inference import MODELS
 from argparse import ArgumentParser
 
@@ -34,70 +36,6 @@ PATH_INSTANCES = os.path.join(BASE_DIR, "instances")
 PATH_INSTANCES_TXT = os.path.join(BASE_DIR, "instances_txt")
 SAVE_PATH_TRAIN_INFERENCES_KM = "/ghome/group01/C5-W2/task_c/mask/train_inferences_KM"
 
-# Class configuration
-KITTY_MOTS_CLASSES = {0: "Car", 1: "Pedestrian"}
-
-def from_KITTY_to_COCO(path, part):
-    COCO_classes = {0: 81, 1: 2, 2: 0, 10: 71}  # Mapping KITTY to COCO classes
-    with open("./config/dataset_split.json") as f_splits:
-        sequences = json.load(f_splits)[part]
-
-    if part == "val":
-        part = "training"
-    sequence_dir = os.path.join(path, part, "image_02")
-    annotations = []
-    for seq in Path(sequence_dir).glob("*"):
-        sequence = seq.parts[-1]
-        if sequence not in sequences:
-            continue
-        with open(os.path.join(path, "instances_txt", sequence + ".txt")) as f_ann:
-            gt = pd.read_table(
-                f_ann,
-                sep=" ",
-                header=0,
-                names=["frame", "obj_id", "class_id", "height", "width", "rle"],
-                dtype={
-                    "frame": int,
-                    "obj_id": int,
-                    "class_id": int,
-                    "height": int,
-                    "width": int,
-                    "rle": str,
-                },
-            )
-        for img_path in Path(seq).glob("*.png"):
-            img_name = img_path.parts[-1]
-            frame = int(img_path.parts[-1].split(".")[0])
-            frame_gt = gt[gt["frame"] == frame]
-            if len(frame_gt) == 0:
-                continue
-            ann = []
-            for _, _, class_id, height, width, rle in frame_gt.itertuples(index=False):
-                mask = {"counts": rle.encode("utf8"), "size": [height, width]}
-                bbox = toBbox(mask).tolist()
-                ann.append(
-                    {
-                        "bbox": bbox,
-                        "bbox_mode": BoxMode.XYWH_ABS,
-                        "category_id": COCO_classes[class_id],
-                        "segmentation": mask,
-                        "keypoints": [],
-                        "iscrowd": 0,
-                    }
-                )
-            annotations.append(
-                {
-                    "file_name": str(img_path),
-                    "height": frame_gt.iloc[0]["height"],
-                    "width": frame_gt.iloc[0]["width"],
-                    "image_id": int(f"{sequence}{frame:05}"),
-                    "sem_seg_file_name": str(
-                        os.path.join(path, "instances", sequence, img_name)
-                    ),
-                    "annotations": ann,
-                }
-            )
-    return annotations
 
 def run_evaluation(model: str):
     cfg = get_cfg()
@@ -106,19 +44,18 @@ def run_evaluation(model: str):
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # Set threshold for this model
     predictor = DefaultPredictor(cfg)
 
-    coco_names = [""] * 81
-    coco_names[80] = "background"
-    coco_names[0] = "pedestrian"
-    coco_names[2] = "car"
-    coco_names[71] = "sink"
+    class_labels = ["" for _ in range(81)]
+    class_labels[80] = "background"
+    class_labels[0] = "pedestrian"
+    class_labels[2] = "car"
 
     DATASET_NAME = "KITTI-MOTS-COCO_"
     for d in ["training", "val"]:
         DatasetCatalog.register(
-            DATASET_NAME + d, lambda d=d: from_KITTY_to_COCO(BASE_DIR, d)
+            DATASET_NAME + d, lambda d=d: class_mapping_kitti_to_coco(BASE_DIR, d)
         )
         MetadataCatalog.get(DATASET_NAME + d).set(
-            thing_classes=coco_names, stuff_classes=coco_names
+            thing_classes=class_labels, stuff_classes=class_labels
         )
     
     model_name = model.split("/")[-1].split('.')[0]
