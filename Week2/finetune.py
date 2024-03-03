@@ -13,6 +13,7 @@ from detectron2.evaluation import COCOEvaluator, inference_on_dataset
 from detectron2.engine import DefaultTrainer
 from detectron2.utils.visualizer import Visualizer
 
+
 from dataset import class_mapping_kitti_to_coco
 from inference import MODELS
 
@@ -35,8 +36,20 @@ PATH_INSTANCES_TXT = os.path.join(BASE_DIR, "instances_txt")
 PATH_RESULTS = "/ghome/group01/MCV-C5-G1/Week2/results/finetunning"
 SAVE_PATH_TRAIN_INFERENCES_KM = "/ghome/group01/C5-W2/task_c/mask/train_inferences_KM"
 
+
 # Class configuration
 DATASET_NAME = "KITTI-MOTS-COCO_"
+
+def inference(img_path, predictor, cfg):
+    im = cv2.imread(img_path)
+    outputs = predictor(im)
+
+    # To visualize results on images
+    visualizer = Visualizer(
+        im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
+    )
+    out = visualizer.draw_instance_predictions(outputs["instances"].to("cpu"))
+    return out.get_image()[:, :, ::-1]
 
 def run_finetunning(model: str):
     class_labels = ["" for _ in range(81)]
@@ -57,12 +70,12 @@ def run_finetunning(model: str):
     cfg.merge_from_file(model_zoo.get_config_file(model))
     cfg.INPUT.MASK_FORMAT = "bitmask"
     cfg.DATASETS.TRAIN = ("KITTI-MOTS-COCO_training",)
-    cfg.DATASETS.TEST = ("KITTI-MOTS-COCO_val",)
+    cfg.DATASETS.TEST = ()
     cfg.DATALOADER.NUM_WORKERS = 2
     cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(model)  # Let training initialize from model zoo
     cfg.SOLVER.IMS_PER_BATCH = 16  
     cfg.SOLVER.BASE_LR = 0.00025  
-    cfg.SOLVER.MAX_ITER = 500    
+    cfg.SOLVER.MAX_ITER = 3000    
     cfg.SOLVER.STEPS = []        # do not decay learning rate
     cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 128   # The "RoIHead batch size". 128 is faster, and good enough for this toy dataset (default: 512)
     cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(class_labels)  
@@ -72,6 +85,7 @@ def run_finetunning(model: str):
     trainer.train()
 
 
+    model_name = model.split("/")[-1].split('.')[0]
     cfg.MODEL.WEIGHTS = os.path.join(PATH_RESULTS, "model_final.pth")  # path to the model we just trained
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7   # set a custom testing threshold
     predictor = DefaultPredictor(cfg)
@@ -85,7 +99,20 @@ def run_finetunning(model: str):
     val_loader = build_detection_test_loader(cfg, "KITTI-MOTS-COCO_val")
     print(inference_on_dataset(predictor.model, val_loader, evaluator))
 
-    img_path = '/ghome/group01/mcv/datasets/C5/KITTI-MOTS/testing/image_02/0027/000002.png'
+    dataset_dir = '/ghome/group01/mcv/datasets/C5/KITTI-MOTS/testing/image_02/'
+    for folder in os.listdir(dataset_dir):
+        folder_path = os.path.join(dataset_dir, folder)
+        out_dir = os.path.join(PATH_RESULTS, 'mask', folder)
+        os.makedirs(out_dir, exist_ok=True)
+
+        for image in os.listdir(folder_path):
+            img_path = os.path.join(folder_path, image)
+            out_path = os.path.join(out_dir, image)
+            img = inference(img_path, predictor, cfg)
+
+            cv2.imwrite(out_path, img, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
+
+    """        
     im = cv2.imread(img_path)
     outputs = predictor(im)
     # To visualize results on images
@@ -94,8 +121,8 @@ def run_finetunning(model: str):
     )
     out = visualizer.draw_instance_predictions(outputs["instances"].to("cpu"))
     pred_img = out.get_image()[:, :, ::-1]
-    cv2.imwrite(os.path.join(PATH_RESULTS, 'predicted.png'), pred_img, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
-
+    cv2.imwrite(os.path.join(PATH_RESULTS, f'predicted_{model_name}.png'), pred_img, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
+    """
 
 
 if __name__ == "__main__":
