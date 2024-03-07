@@ -7,7 +7,8 @@ import torch.nn as nn
 import torchvision.models as models
 import torchvision.transforms as transforms
 from PIL import Image
-
+from sklearn.metrics import average_precision_score
+from utils_week3 import *
 # Load pre-trained ResNet model
 resnet = models.resnet50(weights=True)
 # Remove the last linear layer
@@ -22,37 +23,6 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
-# Function to extract features from an image
-def extract_features(image_path, model, transform):
-    image = Image.open(image_path)
-    image = transform(image).unsqueeze(0)  # Add batch dimension
-    with torch.no_grad():
-        features = model(image)
-    return features.squeeze().numpy()
-
-# Function to extract features from a folder of images
-def extract_features_from_folder(folder_path, model, transform):
-    features = []
-    image_paths = []
-    for root, dirs, files in os.walk(folder_path):
-        for file in files:
-            if file.endswith(".jpg") or file.endswith(".png"):
-                image_path = os.path.join(root, file)
-                image_paths.append(image_path)
-                features.append(extract_features(image_path, model, transform))
-    return np.array(features), image_paths
-
-# Function to save features into a pickle file
-def save_features(features, file_path):
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)  # Create directory if it doesn't exist
-    with open(file_path, 'wb') as f:
-        pickle.dump(features, f)
-
-# Function to load features from a pickle file
-def load_features(file_path):
-    with open(file_path, 'rb') as f:
-        features = pickle.load(f)
-    return features
 
 # Check if features file exists
 features_file = '/export/home/group01/MCV-C5-G1/Week3/pickles/train_features.pkl'
@@ -69,16 +39,63 @@ else:
     save_features(train_image_paths, paths_file)
 
 # Extract features of the query image (val/test set)
-query_image_path = "/export/home/group01/mcv/datasets/C3/MIT_split/test/inside_city/a0010.jpg"
-query_features = extract_features(query_image_path, resnet, transform)
+test_folder = "/export/home/group01/mcv/datasets/C3/MIT_split/test"
+test_features_file = '/export/home/group01/MCV-C5-G1/Week3/pickles/test_features.pkl'
+test_paths_file = '/export/home/group01/MCV-C5-G1/Week3/pickles/test_paths.pkl'
 
-# Retrieve the most similar images from the database using KNN
-k = 5  # Number of nearest neighbors to retrieve
-nbrs = NearestNeighbors(n_neighbors=k, metric='euclidean').fit(train_features)
-distances, indices = nbrs.kneighbors(query_features.reshape(1, -1))
-print('indices:::', indices)
-# Display retrieved images and their Euclidean distances
-print("Most similar images and their distances:")
-for i, (idx, dist) in enumerate(zip(indices.squeeze(), distances.squeeze())):
-    print(idx)
-    print(f"Image {i+1}: {train_image_paths[idx]} (Distance: {dist})")
+if os.path.exists(test_features_file):
+    test_features = load_features(test_features_file)
+    test_image_paths = load_features(test_paths_file)
+else:
+    # Extract features from database images (test set)
+    test_folder = '/export/home/group01/mcv/datasets/C3/MIT_split/test'
+    test_features, test_image_paths = extract_features_from_folder(test_folder, resnet, transform)
+    # Save extracted features
+    save_features(test_features, test_features_file)
+    save_features(test_image_paths, test_paths_file)
+
+
+# Load test image paths and their labels
+test_image_labels = extract_labels(test_image_paths)
+# Perform KNN retrieval
+k = 10  # Example value of k
+knn = NearestNeighbors(n_neighbors=k, metric='euclidean')
+knn.fit(train_features)
+
+# Find nearest neighbors for each test image
+distances, indices = knn.kneighbors(test_features)
+
+# Initialize variables for metrics calculation
+precisions_at_1 = []  # Precision at 1
+precisions_at_5 = []  # Precision at 5
+average_precisions = []  # Mean Average Precision (MAP)
+
+# Evaluate retrieval performance
+for i, neighbors in enumerate(indices):
+    query_label = test_image_labels[i]
+    retrieved_labels = [os.path.basename(os.path.dirname(train_image_paths[idx])) for idx in neighbors]
+    
+    # Calculate binary results (1 if label matches, 0 otherwise)
+    binary_results = [1 if label == query_label else 0 for label in retrieved_labels]
+    
+    # Calculate precision at 1 and append to list
+    precision_at_1 = binary_results[0]  # 1 if the first retrieved item is correct, 0 otherwise
+    precisions_at_1.append(precision_at_1)
+    
+    # Calculate precision at 5 and append to list
+    precision_at_5 = sum(binary_results[:5]) / 5  # Count how many of the top 5 retrieved items are correct
+    precisions_at_5.append(precision_at_5)
+    
+    # Calculate average precision and append to list
+    average_precision = average_precision_score(binary_results, np.arange(1, k + 1) / k)  # Compute AP using scikit-learn function
+    average_precisions.append(average_precision)
+
+# Calculate mean values for each metric
+mean_prec_at_1 = np.mean(precisions_at_1)
+mean_prec_at_5 = np.mean(precisions_at_5)
+mean_map = np.mean(average_precisions)
+
+# Print results
+print("Precision@1:", mean_prec_at_1)
+print("Precision@5:", mean_prec_at_5)
+print("Mean Average Precision (MAP):", mean_map)
