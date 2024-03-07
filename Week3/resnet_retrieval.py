@@ -71,13 +71,18 @@ precisions_at_5 = []  # Precision at 5
 average_precisions = []  # Mean Average Precision (MAP)
 
 # Evaluate retrieval performance
-for i, neighbors in enumerate(indices):
+for i, (query_neighbors, query_distances) in enumerate(zip(indices, distances)):
     query_label = test_image_labels[i]
-    retrieved_labels = [os.path.basename(os.path.dirname(train_image_paths[idx])) for idx in neighbors]
+    retrieved_labels = [os.path.basename(os.path.dirname(train_image_paths[idx])) for idx in query_neighbors]
     
     # Calculate binary results (1 if label matches, 0 otherwise)
     binary_results = [1 if label == query_label else 0 for label in retrieved_labels]
-    
+    # good_labels = sum(binary_results)
+    # if good_labels < 5: # print name of images that got a retrieval with less than 50% with the correct class
+    #     print(f"Query Image Path: {test_image_paths[i]}")
+    #     print("Retrieved Neighbors:")
+    #     for j, (neighbor_idx, distance) in enumerate(zip(query_neighbors[:10], query_distances[:10])):  # Print only the first 5 neighbors
+    #         print(f"Neighbor {j + 1}: {train_image_paths[neighbor_idx]} (Distance: {distance})")
     # Calculate precision at 1 and append to list
     precision_at_1 = binary_results[0]  # 1 if the first retrieved item is correct, 0 otherwise
     precisions_at_1.append(precision_at_1)
