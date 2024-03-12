@@ -3,3 +3,6 @@
 **/weights
 **/__pycache__
 **/wandb
+*.pkl*
+*.pth*
+**/tensorboard/**
