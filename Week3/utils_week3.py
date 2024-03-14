@@ -72,6 +72,7 @@ def visualizer_hook(umapper, umap_embeddings, labels, split_name, keyname, *args
         idx = labels == label_set[i]
         plt.plot(umap_embeddings[idx, 0], umap_embeddings[idx, 1], ".", markersize=1)
     plt.show()
+    plt.savefig(f'plots/{split_name}_{keyname}.png')
 
 
 def apk(actual, predicted, k=10):

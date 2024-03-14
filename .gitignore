@@ -6,3 +6,4 @@
 *.pkl*
 *.pth*
 **/tensorboard/**
+*.png*
