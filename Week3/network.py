@@ -125,14 +125,16 @@ class Network:
         with torch.no_grad():
             self.model.eval()
             for ii, (img, _) in enumerate(self.train_dataset):
-                catalogue_data[ii, :] = self.model(img.unsqueeze(0)).squeeze().numpy()
+                img = img.to(self.device)
+                catalogue_data[ii, :] = self.model(img.unsqueeze(0)).squeeze().cpu().numpy()
 
         query_data = np.empty((len(self.test_dataset), self.config["embed_size"]))
 
         with torch.no_grad():
             self.model.eval()
             for ii, (img, _) in enumerate(self.test_dataset):
-                query_data[ii, :] = self.model(img.unsqueeze(0)).squeeze().numpy()
+                img = img.to(self.device)
+                query_data[ii, :] = self.model(img.unsqueeze(0)).squeeze().cpu().numpy()
 
         catalogue_labels = np.asarray([x[1] for x in catalogue_meta])
         query_labels = np.asarray([x[1] for x in query_meta])
