@@ -1,11 +1,15 @@
+import json
+import logging
 import os
 import pickle
-import torch
-from PIL import Image
-import numpy as np
-import logging
+import random
+
 import matplotlib.pyplot as plt
+import numpy as np
+import torch
+import tqdm
 from cycler import cycler
+from PIL import Image
 
 
 # Function to extract features from an image
@@ -72,7 +76,7 @@ def visualizer_hook(umapper, umap_embeddings, labels, split_name, keyname, *args
         idx = labels == label_set[i]
         plt.plot(umap_embeddings[idx, 0], umap_embeddings[idx, 1], ".", markersize=1)
     plt.show()
-    plt.savefig(f'plots/{split_name}_{keyname}.png')
+    plt.savefig(f"plots/{split_name}_{keyname}.png")
 
 
 def apk(actual, predicted, k=10):
@@ -82,8 +86,9 @@ def apk(actual, predicted, k=10):
     for i in range(len(predicted)):
         if actual == predicted[i]:
             score += 1
-    
+
     return score / len(predicted)
+
 
 def mapk(actual, predicted, k=10):
     pk_list = []
@@ -92,21 +97,23 @@ def mapk(actual, predicted, k=10):
         pk_list.append(score)
     return np.mean(pk_list)
 
+
 def AP(actual, predicted):
     gtp = 0
     ap = 0
     for i in range(len(predicted)):
-        a = apk(actual, predicted, i+1)
-        if actual == predicted[i]: 
+        a = apk(actual, predicted, i + 1)
+        if actual == predicted[i]:
             b = 1
             gtp += 1
-        else: 
+        else:
             b = 0
-        c = a*b
+        c = a * b
         ap += c
     if gtp == 0:
         return 0
-    return ap/gtp
+    return ap / gtp
+
 
 def mAP(actual, predicted):
     ap_list = []
@@ -114,3 +121,74 @@ def mAP(actual, predicted):
         ap = AP(actual[i], predicted[i])
         ap_list.append(ap)
     return np.mean(ap_list)
+
+
+def coco_annotations():
+    with open(
+        "/ghome/group01/mcv/datasets/C5/COCO/mcv_image_retrieval_annotations.json", "r"
+    ) as f:
+        annotations = json.load(f)
+
+    inverted_annotations = {}
+    for category, category_data in annotations.items():
+        if not (category in inverted_annotations.keys()):
+            inverted_annotations[category] = {}
+        for object_id, image_ids in category_data.items():
+            for image_id in image_ids:
+                if image_id in inverted_annotations[category].keys():
+                    inverted_annotations[category][image_id].append(object_id)
+                else:
+                    inverted_annotations[category][image_id] = [object_id]
+
+    with open("inverted_annotations/inverted_annotations.json", "w") as f:
+        json.dump(inverted_annotations, f)
+
+
+def get_triplets(annotations: dict, category: str):
+    triplets = []
+
+    for anchor_image_id, anchor_labels in tqdm.tqdm(annotations[category].items()):
+        shuffled_image_ids = list(annotations[category].keys())
+        random.shuffle(shuffled_image_ids)
+
+        positive_image_id = anchor_image_id
+        common_labels = []
+
+        for shuffled_id in shuffled_image_ids:
+            if shuffled_id == anchor_image_id:
+                continue
+
+            positive_image_id = shuffled_id
+            positive_labels = annotations[category][positive_image_id]
+            common_labels = list(set(anchor_labels) & set(positive_labels))
+            if len(common_labels) > 0:
+                break
+
+        if len(common_labels) == 0:
+            continue
+
+        negative_image_id = anchor_image_id
+
+        for shuffled_id in shuffled_image_ids:
+            if shuffled_id == anchor_image_id:
+                continue
+
+            negative_image_id = shuffled_id
+            if not any(
+                label in annotations[category][negative_image_id]
+                for label in common_labels
+            ):
+                negative_image_id = None
+                continue
+            else:
+                break
+
+        if negative_image_id is None:
+            continue
+
+        triplets.append(
+            (anchor_image_id, positive_image_id, negative_image_id, anchor_labels)
+        )
+        print(f"Number of triplets: {len(triplets)}")
+
+    return triplets
