@@ -174,9 +174,9 @@ def get_triplets(annotations: dict, category: str):
                 continue
 
             negative_image_id = shuffled_id
-            if not any(
+            if any(
                 label in annotations[category][negative_image_id]
-                for label in common_labels
+                for label in anchor_labels
             ):
                 negative_image_id = None
                 continue
@@ -192,3 +192,122 @@ def get_triplets(annotations: dict, category: str):
         print(f"Number of triplets: {len(triplets)}")
 
     return triplets
+
+def get_positives_triplets(annotations: dict, category: str):
+    triplets = []
+
+    for anchor_image_id, anchor_labels in tqdm.tqdm(annotations[category].items()):
+        shuffled_image_ids = list(annotations[category].keys())
+        random.shuffle(shuffled_image_ids)
+
+        positive_image_id = anchor_image_id
+        common_labels = []
+
+        max_positives = 0
+        selected_positive_id = None
+        for shuffled_id in shuffled_image_ids:
+            if shuffled_id == anchor_image_id:
+                continue
+
+            positive_image_id = shuffled_id
+            positive_labels = annotations[category][positive_image_id]
+            common_labels = list(set(anchor_labels) & set(positive_labels))
+            if len(common_labels) > max_positives:
+                max_positives = len(common_labels)
+                selected_positive_id = positive_image_id
+                if len(common_labels) == len(anchor_labels):
+                    break
+
+        if len(common_labels) == 0:
+            continue
+
+        negative_image_id = anchor_image_id
+
+        for shuffled_id in shuffled_image_ids:
+            if shuffled_id == anchor_image_id:
+                continue
+
+            negative_image_id = shuffled_id
+            if any(
+                label in annotations[category][negative_image_id]
+                for label in anchor_labels
+            ):
+                negative_image_id = None
+                continue
+            else:
+                break
+
+        if negative_image_id is None:
+            continue
+
+        triplets.append(
+            (anchor_image_id, selected_positive_id, negative_image_id, anchor_labels)
+        )
+        print(f"Number of triplets: {len(triplets)}")
+
+    return triplets
+
+
+import random
+
+def get_selective_triplets(annotations: dict, category: str):
+    triplets = []
+
+    for anchor_image_id, anchor_labels in tqdm.tqdm(annotations[category].items()):
+        shuffled_image_ids = list(annotations[category].keys())
+        random.shuffle(shuffled_image_ids)
+
+        anchor_label_set = set(anchor_labels)
+
+        max_common_labels = 0
+        min_diff_labels = float('inf')
+        selected_positive_id = None
+
+        for shuffled_id in shuffled_image_ids:
+            if shuffled_id == anchor_image_id:
+                continue
+
+            positive_image_id = shuffled_id
+            positive_labels = annotations[category][positive_image_id]
+
+            common_labels = anchor_label_set & set(positive_labels)
+            diff_labels = len(set(positive_labels) - anchor_label_set)
+
+            if len(common_labels) > max_common_labels or \
+               (len(common_labels) == max_common_labels and diff_labels < min_diff_labels):
+                max_common_labels = len(common_labels)
+                min_diff_labels = diff_labels
+                selected_positive_id = positive_image_id
+
+            if max_common_labels == len(anchor_label_set) and min_diff_labels == 0:
+                break
+
+        if max_common_labels == 0:
+            continue
+
+        negative_image_id = anchor_image_id
+
+        for shuffled_id in shuffled_image_ids:
+            if shuffled_id == anchor_image_id:
+                continue
+
+            negative_image_id = shuffled_id
+            if any(
+                label in annotations[category][negative_image_id]
+                for label in anchor_labels
+            ):
+                negative_image_id = None
+                continue
+            else:
+                break
+
+        if negative_image_id is None:
+            continue
+
+        triplets.append(
+            (anchor_image_id, selected_positive_id, negative_image_id, anchor_labels)
+        )
+        print(f"Number of triplets: {len(triplets)}")
+
+    return triplets
+

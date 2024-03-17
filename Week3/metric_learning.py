@@ -9,6 +9,33 @@ IMAGES_PATH = "/export/home/group01/mcv/datasets/C3/MIT_split/"
 OUTPUT_PATH = "/export/home/group01/MCV-C5-G1/Week3/"
 
 
+def find_indexs(query_labels, neighbors_labels):
+    best_idx = worst_idx = -1
+    best_count = worst_count = 0
+    for i in range(len(query_labels)):
+        curr_label = query_labels[i]
+        neighb_labels = neighbors_labels[i][:5]
+
+        count_wrong = 0
+        count_corr = 0
+
+        for l in neighb_labels:
+            if l != curr_label:
+                count_wrong += 1
+            else:
+                count_corr += 1
+
+        if worst_count <= count_wrong:
+            worst_idx = i
+            worst_count = count_wrong
+
+        if best_count <= count_corr:
+            best_idx = i
+            best_count = count_corr
+
+    return best_idx, worst_idx
+
+
 def get_transforms():
     train_transfs = transforms.Compose(
         [
@@ -31,7 +58,7 @@ def get_transforms():
     return train_transfs, test_transfs
 
 
-def main(config):
+def retrieve(config):
     train_transfs, test_transfs = get_transforms()
 
     train_dataset = ImageFolder(IMAGES_PATH + "train", transform=train_transfs)
@@ -39,39 +66,56 @@ def main(config):
     train_labels = [x for _, x in train_dataset.samples]
 
     net = Network(config, train_dataset, test_dataset, train_labels)
-    save_path = "{}/models/weights_{}.pth".format(config["out_path"], config["arch_type"])
+    config["load_path"] = OUTPUT_PATH + f"/models/weights_{config['arch_type']}.pth"
+
+    net.load_model()
+    query_meta, neighbors_meta, query_labels, neighbors_labels = net.test(
+        load_data=True
+    )
+    print("EVALUATION:\n", net.evaluate(query_labels, neighbors_labels))
+
+    best_idx, worst_index = find_indexs(query_labels, neighbors_labels)
+
+    print("QUERY META (POS):", query_meta[best_idx])
+    print("NEIGHBORS LABELS (POS):", neighbors_labels[best_idx][:5])
+    print("NEIGHBORS META (POS):", neighbors_meta[best_idx][:5])
+
+    print("QUERY META (NEG):", query_meta[worst_index])
+    print("NEIGHBORS LABELS (NEG):", neighbors_labels[worst_index][:5])
+    print("NEIGHBORS META (NEG):", neighbors_meta[worst_index][:5])
+
+
+def evaluate(config):
+    train_transfs, test_transfs = get_transforms()
+
+    train_dataset = ImageFolder(IMAGES_PATH + "train", transform=train_transfs)
+    test_dataset = ImageFolder(IMAGES_PATH + "test", transform=test_transfs)
+    train_labels = [x for _, x in train_dataset.samples]
+
+    net = Network(config, train_dataset, test_dataset, train_labels)
+    save_path = "{}/models/weights_{}.pth".format(
+        config["out_path"], config["arch_type"]
+    )
     net.train(epochs=config["epochs"], save_path=save_path)
-    map1, map5, map = net.test()
+    map1, map5, map = net.evaluate()
     print(f"map@1: {map1}, map@5: {map5}, mAP: {map}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("--out-path", type=str, default=OUTPUT_PATH)
+    parser.add_argument("--embed-size", type=int, default=32)
+    parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument(
-        "--out-path",
-        type=str,
-        default=OUTPUT_PATH
-    )
-    parser.add_argument(
-        "--embed-size",
-        type=int,
-        default=32
-    )
-    parser.add_argument(
-        "--batch-size",
-        type=int,
-        default=64
-    )
-    parser.add_argument(
-        "--arch-type",
-        type=str,
-        default="siamese",
-        choices=["siamese", "triplet"]
+        "--arch-type", type=str, default="siamese", choices=["siamese", "triplet"]
     )
     parser.add_argument(
         "--epochs",
         type=int,
         default=10,
+    )
+    parser.add_argument(
+        "--process", type=str, default="eval", choices=["eval", "retrieve"]
     )
     args = parser.parse_args()
     config = {
@@ -79,7 +123,11 @@ if __name__ == "__main__":
         "embed_size": args.embed_size,
         "batch_size": args.batch_size,
         "arch_type": args.arch_type,
-        "epochs": args.epochs
+        "epochs": args.epochs,
     }
     logging.getLogger().setLevel(logging.INFO)
-    main(config)
+
+    if args.process == "eval":
+        evaluate(config)
+    else:
+        retrieve(config)
