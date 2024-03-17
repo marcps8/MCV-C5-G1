@@ -151,14 +151,15 @@ Run the following command in the terminal to execute the script for evaluation:
 python metric_learning.py --process eval
 ```
 The rest of the arguments (optional) are the following:
-- `--out-path`: *(str)* Path to the output directory. Default is `/export/home/group01/MCV-C5-G1/Week3/`.
-- `--embed-size`: *(int)* Embedding size for the metric learning model. Default is `32`.
-- `--batch-size`: *(int)* Batch size for training. Default is `64`.
-- `--arch-type`: *(str)* Architecture type for the metric learning model. Choose between `siamese` or `triplet`. Default is `siamese`.
-- `--epochs`: *(int)* Number of epochs for training. Default is `10`.
-- `--process`: *(str)* Process to execute. Choose between `eval` for evaluation and `retrieve` for retrieval. Default is `eval`.
+`--out-path`: Path to the output directory. Default is `/export/home/group01/MCV-C5-G1/Week3/`.
+`--embed-size`: Embedding size for the metric learning model. Default is `32`.
+`--batch-size`: Batch size for training. Default is `64`.
+`--arch-type`: Architecture type for the metric learning model. Choose between `siamese` or `triplet`. Default is `siamese`.
+`--epochs`: Number of epochs for training. Default is `10`.
+`--process`: Process to execute. Choose between `eval` for evaluation and `retrieve` for retrieval. Default is `eval`.
 
   * Coco retrieval 
+
 The ```bash coco_retrieval.py``` script performs image retrieval using a pre-trained Faster R-CNN model fine-tuned on COCO dataset. It extracts features from the database images and performs k-nearest neighbor (k-NN) search to retrieve similar images for validation and test datasets. The script also includes visualization of t-SNE transformed features and COCO class-based color-coded plots. It supports training, evaluation, and visualization functionalities.
 
 Run the following command in the terminal to execute the script:
