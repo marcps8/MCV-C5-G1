@@ -104,11 +104,14 @@ class Network:
         neighbors = knn.kneighbors(query_data)[1]
 
         neighbors_labels = []
+        neighbors_meta = []
         for i in range(len(neighbors)):
             neighbors_class = [catalogue_meta[j][1] for j in neighbors[i]]
             neighbors_labels.append(neighbors_class)
+            neighbors_data = [catalogue_meta[j][0] for j in neighbors[i]]
+            neighbors_meta.append(neighbors_data)
 
-        return neighbors_labels
+        return neighbors_meta, neighbors_labels
 
     def train(self, epochs, save_path=None):
         self.metric_trainer.train(1, epochs)
@@ -158,17 +161,16 @@ class Network:
 
         catalogue_labels = np.asarray([x[1] for x in catalogue_meta])
         query_labels = np.asarray([x[1] for x in query_meta])
-        query_labels = [x[1] for x in query_meta]
 
-        neighbors_labels = self.get_neighbors_labels(
+        neighbors_meta, neighbors_labels = self.get_neighbors_labels(
             query_data, catalogue_labels, catalogue_data, catalogue_meta
         )
 
-        return query_labels, neighbors_labels
+        return query_meta, neighbors_meta, query_labels, neighbors_labels
 
     def evaluate(self, query_labels = None, neighbors_labels = None):
-        if not query_labels or not neighbors_labels:
-            query_labels = neighbors_labels = self.test()
+        if query_labels is None or neighbors_labels is None:
+            _, _, query_labels, neighbors_labels = self.test()
         map1 = mapk(query_labels, neighbors_labels, 1)
         map5 = mapk(query_labels, neighbors_labels, 5)
         map = mAP(query_labels, neighbors_labels)
