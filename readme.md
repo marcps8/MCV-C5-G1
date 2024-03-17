@@ -151,12 +151,12 @@ Run the following command in the terminal to execute the script for evaluation:
 python metric_learning.py --process eval
 ```
 The rest of the arguments (optional) are the following:
-`--out-path`: Path to the output directory. Default is `/export/home/group01/MCV-C5-G1/Week3/`.
-`--embed-size`: Embedding size for the metric learning model. Default is `32`.
-`--batch-size`: Batch size for training. Default is `64`.
-`--arch-type`: Architecture type for the metric learning model. Choose between `siamese` or `triplet`. Default is `siamese`.
-`--epochs`: Number of epochs for training. Default is `10`.
-`--process`: Process to execute. Choose between `eval` for evaluation and `retrieve` for retrieval. Default is `eval`.
+- `--out-path`: Path to the output directory. Default is `/export/home/group01/MCV-C5-G1/Week3/`.
+- `--embed-size`: Embedding size for the metric learning model. Default is `32`.
+- `--batch-size`: Batch size for training. Default is `64`.
+- `--arch-type`: Architecture type for the metric learning model. Choose between `siamese` or `triplet`. Default is `siamese`.
+- `--epochs`: Number of epochs for training. Default is `10`.
+- `--process`: Process to execute. Choose between `eval` for evaluation and `retrieve` for retrieval. Default is `eval`.
 
   * Coco retrieval 
 
