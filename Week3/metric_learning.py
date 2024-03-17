@@ -39,9 +39,8 @@ def retrieve(config):
     train_labels = [x for _, x in train_dataset.samples]
 
     net = Network(config, train_dataset, test_dataset, train_labels)
-    load_path = OUTPUT_PATH + "/models/weights_triplet.pth"
-
-    config["load_path"] = load_path
+    config["load_path"] = OUTPUT_PATH + f"/models/weights_{config['arch_type']}.pth"
+    
     net.load_model()
     query_labels, neighbors_labels = net.test(load_data=True)
     print(net.evaluate(query_labels, neighbors_labels))
