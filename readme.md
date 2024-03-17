@@ -145,11 +145,7 @@ Replace K_NEIGHBOURS with the number of neihbours to perform the retrieval metri
   * Metric Learning Script 
 
 This script provides functionalities for training and evaluating a metric learning model for image retrieval using a siamese or triplet network architecture.
-
-### Usage
-
 Navigate to the project directory.
-
 Run the following command in the terminal to execute the script for evaluation:
 ```bash
 python metric_learning.py --process eval
@@ -162,7 +158,7 @@ The rest of the arguments (optional) are the following:
 - `--epochs`: *(int)* Number of epochs for training. Default is `10`.
 - `--process`: *(str)* Process to execute. Choose between `eval` for evaluation and `retrieve` for retrieval. Default is `eval`.
 
-* Coco retrieval 
+  * Coco retrieval 
 The ```bash coco_retrieval.py``` script performs image retrieval using a pre-trained Faster R-CNN model fine-tuned on COCO dataset. It extracts features from the database images and performs k-nearest neighbor (k-NN) search to retrieve similar images for validation and test datasets. The script also includes visualization of t-SNE transformed features and COCO class-based color-coded plots. It supports training, evaluation, and visualization functionalities.
 
 Run the following command in the terminal to execute the script:
