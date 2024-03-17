@@ -9,6 +9,10 @@ This repository contains the code related to the project on 'Object Detection an
 
 ## Week 1
 >To see the slides click [here](https://docs.google.com/presentation/d/1CoujhU4kM0HRyDuOHyaCCPdV8Ej7_X9nboHhPHJPP5E/edit?usp=sharing)  
+
+<details>
+  <summary>Click me to read about this week!</summary>
+
 ### Instructions
 To run the training process, follow these steps:
 
@@ -37,9 +41,16 @@ optional arguments:
 ```
 There are two arguments that can be used, `load-model` and `save-plots`. The first one loads the model from a specified path in the code whereas the second stores the plots in `jpg` files to the paths in the code.
 
+</details>
+
+
 ## Week 2
 
 >To see the slides click [here](https://docs.google.com/presentation/d/10djQgyC_lXfmIj28mknT_SJXyfd-LtPIwiabJMvIgsA/edit#slide=id.g2bed5711158_1_7) 
+
+<details>
+  <summary>Click me to read about this week!</summary>
+
 ### Instructions
 
 To run the evaluation process for object detection models, follow these steps:
@@ -92,3 +103,14 @@ The inference results will be saved in the results/{model_name}/{dataset_mode}/{
 The inference script utilizes the inference.py file for running inference and dataset.py for handling dataset loading.
 
 These scripts provide a comprehensive toolset for evaluating and performing inference with object detection models trained on the KITTI-MOTS dataset.
+</details>
+
+## Week 3
+
+>To see the slides click [here](https://docs.google.com/presentation/d/1CkdWHK1STnMNZHGVYpRNxGoxr4cdO-IuxOuMx7xC8kc/edit?usp=sharing) 
+
+<details>
+  <summary>Click me to read about this week!</summary>
+
+jaja no hay nada
+</details>
