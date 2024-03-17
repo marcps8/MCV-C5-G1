@@ -31,7 +31,7 @@ def get_transforms():
     return train_transfs, test_transfs
 
 
-def main(config):
+def retrieve(config):
     train_transfs, test_transfs = get_transforms()
 
     train_dataset = ImageFolder(IMAGES_PATH + "train", transform=train_transfs)
@@ -39,39 +39,46 @@ def main(config):
     train_labels = [x for _, x in train_dataset.samples]
 
     net = Network(config, train_dataset, test_dataset, train_labels)
-    save_path = "{}/models/weights_{}.pth".format(config["out_path"], config["arch_type"])
+    load_path = OUTPUT_PATH + "/models/weights_triplet.pth"
+
+    config["load_path"] = load_path
+    net.load_model()
+    query_labels, neighbors_labels = net.test(load_data=True)
+    print(net.evaluate(query_labels, neighbors_labels))
+    # print(query_labels, neighbors_labels)
+
+
+def evaluate(config):
+    train_transfs, test_transfs = get_transforms()
+
+    train_dataset = ImageFolder(IMAGES_PATH + "train", transform=train_transfs)
+    test_dataset = ImageFolder(IMAGES_PATH + "test", transform=test_transfs)
+    train_labels = [x for _, x in train_dataset.samples]
+
+    net = Network(config, train_dataset, test_dataset, train_labels)
+    save_path = "{}/models/weights_{}.pth".format(
+        config["out_path"], config["arch_type"]
+    )
     net.train(epochs=config["epochs"], save_path=save_path)
-    map1, map5, map = net.test()
+    map1, map5, map = net.evaluate()
     print(f"map@1: {map1}, map@5: {map5}, mAP: {map}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("--out-path", type=str, default=OUTPUT_PATH)
+    parser.add_argument("--embed-size", type=int, default=32)
+    parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument(
-        "--out-path",
-        type=str,
-        default=OUTPUT_PATH
-    )
-    parser.add_argument(
-        "--embed-size",
-        type=int,
-        default=32
-    )
-    parser.add_argument(
-        "--batch-size",
-        type=int,
-        default=64
-    )
-    parser.add_argument(
-        "--arch-type",
-        type=str,
-        default="siamese",
-        choices=["siamese", "triplet"]
+        "--arch-type", type=str, default="siamese", choices=["siamese", "triplet"]
     )
     parser.add_argument(
         "--epochs",
         type=int,
         default=10,
+    )
+    parser.add_argument(
+        "--process", type=str, default="eval", choices=["eval", "retrieve"]
     )
     args = parser.parse_args()
     config = {
@@ -79,7 +86,11 @@ if __name__ == "__main__":
         "embed_size": args.embed_size,
         "batch_size": args.batch_size,
         "arch_type": args.arch_type,
-        "epochs": args.epochs
+        "epochs": args.epochs,
     }
     logging.getLogger().setLevel(logging.INFO)
-    main(config)
+    
+    if args.process == "eval":
+        evaluate(config)
+    else:
+        retrieve(config)

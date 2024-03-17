@@ -2,6 +2,7 @@ import numpy as np
 import pytorch_metric_learning.utils.logging_presets as logging_presets
 import torch
 import umap
+import pickle
 from pytorch_metric_learning import losses, miners, samplers, testers, trainers
 from pytorch_metric_learning.utils.accuracy_calculator import AccuracyCalculator
 from sklearn.neighbors import KNeighborsClassifier
@@ -117,24 +118,43 @@ class Network:
                 save_path,
             )
 
-    def test(self):
+    def test(self, load_data: bool = False):
         catalogue_meta = [(x[0].split("/")[-1], x[1]) for x in self.train_dataset.imgs]
         query_meta = [(x[0].split("/")[-1], x[1]) for x in self.test_dataset.imgs]
 
-        catalogue_data = np.empty((len(self.train_dataset), self.config["embed_size"]))
-        with torch.no_grad():
-            self.model.eval()
-            for ii, (img, _) in enumerate(self.train_dataset):
-                img = img.to(self.device)
-                catalogue_data[ii, :] = self.model(img.unsqueeze(0)).squeeze().cpu().numpy()
+        if load_data:
+            with open(f"pickles/catalogue_data_{self.config['arch_type']}.pkl", "rb") as f:
+                catalogue_data = pickle.load(f)
+        else:
+            catalogue_data = np.empty(
+                (len(self.train_dataset), self.config["embed_size"])
+            )
+            with torch.no_grad():
+                self.model.eval()
+                for ii, (img, _) in enumerate(self.train_dataset):
+                    img = img.to(self.device)
+                    catalogue_data[ii, :] = (
+                        self.model(img.unsqueeze(0)).squeeze().cpu().numpy()
+                    )
 
-        query_data = np.empty((len(self.test_dataset), self.config["embed_size"]))
+            with open(f"pickles/catalogue_data_{self.config['arch_type']}.pkl", "wb") as f:
+                pickle.dump(catalogue_data, f)
 
-        with torch.no_grad():
-            self.model.eval()
-            for ii, (img, _) in enumerate(self.test_dataset):
-                img = img.to(self.device)
-                query_data[ii, :] = self.model(img.unsqueeze(0)).squeeze().cpu().numpy()
+        if load_data:
+            with open(f"pickles/query_data_{self.config['arch_type']}.pkl", "rb") as f:
+                query_data = pickle.load(f)
+        else:
+            query_data = np.empty((len(self.test_dataset), self.config["embed_size"]))
+            with torch.no_grad():
+                self.model.eval()
+                for ii, (img, _) in enumerate(self.test_dataset):
+                    img = img.to(self.device)
+                    query_data[ii, :] = (
+                        self.model(img.unsqueeze(0)).squeeze().cpu().numpy()
+                    )
+
+            with open(f"pickles/query_data_{self.config['arch_type']}.pkl", "wb") as f:
+                pickle.dump(query_data, f)
 
         catalogue_labels = np.asarray([x[1] for x in catalogue_meta])
         query_labels = np.asarray([x[1] for x in query_meta])
@@ -144,7 +164,15 @@ class Network:
             query_data, catalogue_labels, catalogue_data, catalogue_meta
         )
 
+        return query_labels, neighbors_labels
+
+    def evaluate(self, query_labels = None, neighbors_labels = None):
+        if not query_labels or not neighbors_labels:
+            query_labels = neighbors_labels = self.test()
         map1 = mapk(query_labels, neighbors_labels, 1)
         map5 = mapk(query_labels, neighbors_labels, 5)
         map = mAP(query_labels, neighbors_labels)
         return map1, map5, map
+
+    def load_model(self):
+        self.model = torch.load(self.config["load_path"])
