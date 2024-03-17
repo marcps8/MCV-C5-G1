@@ -10,7 +10,9 @@ from PIL import Image
 from sklearn.metrics import average_precision_score
 from utils_week3 import *
 import argparse
-def retrieval_metrics(k):
+import faiss
+
+def retrieval_metrics(k, method):
     # Load pre-trained ResNet model
     resnet = models.resnet50(weights=True)
     # Remove the last linear layer
@@ -59,13 +61,26 @@ def retrieval_metrics(k):
 
     # Load test image paths and their labels
     test_image_labels = extract_labels(test_image_paths)
-    # Perform KNN retrieval
+    
+    if method == "FAISS":
+        index = faiss.IndexFlatL2(train_features.shape[1])
+        index.add(train_features)  # Add training features to the index
 
-    knn = NearestNeighbors(n_neighbors=k, metric='euclidean')
-    knn.fit(train_features)
+        # Perform a search
+        distances, indices = index.search(test_features, k=k)
+    elif method == "NN":
+        # Compute pairwise distances using PyTorch
+        test_features_tensor = torch.tensor(test_features)
+        train_features_tensor = torch.tensor(train_features)
 
-    # Find nearest neighbors for each test image
-    distances, indices = knn.kneighbors(test_features)
+        distances = torch.cdist(test_features_tensor, train_features_tensor, p=2)  # Compute L2 distances
+        distances, indices = torch.topk(distances, k=k, largest=False)
+    else: # Perform KNN retrieval
+        knn = NearestNeighbors(n_neighbors=k, metric='euclidean')
+        knn.fit(train_features)
+
+        # Find nearest neighbors for each test image
+        distances, indices = knn.kneighbors(test_features)
 
     # Initialize variables for metrics calculation
     precisions_at_1 = []  # Precision at 1
@@ -111,9 +126,10 @@ def retrieval_metrics(k):
 def main():
     parser = argparse.ArgumentParser(description='Resnet50 Image Retrieval')
     parser.add_argument('--k', type=int, default=10, help='Number of neighbors for retrieval metrics')
+    parser.add_argument('--method', type=str, default="KNN", help="Method for retrieval")
     args = parser.parse_args()
 
-    retrieval_metrics(args.k)
+    retrieval_metrics(args.k, args.method)
 
 if __name__ == "__main__":
     main()
