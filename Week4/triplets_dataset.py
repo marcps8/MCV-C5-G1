@@ -38,3 +38,107 @@ class TripletsDataset(Dataset):
         )
         image = Image.open(image_path).convert("RGB")
         return image
+
+class TripletsDatasetVal(Dataset):
+    def __init__(self, triplets, root_dir, transform=None):
+        """
+        Args:
+            triplets (list of tuples): List of (anchor_caption, positive_id, negative_id, anchor_labels) tuples.
+            root_dir (string): Directory with all the images.
+            transform (callable, optional): Optional transform to be applied on a sample.
+        """
+        self.triplets = triplets
+        self.root_dir = root_dir
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.triplets)
+
+    def __getitem__(self, idx):
+        anchor_caption, positive_id, negative_id = self.triplets[idx]
+
+        # Load images
+        positive_image = self.load_image(positive_id)
+        # negative_image = self.load_image(negative_id)
+
+        if self.transform:
+            positive_image = self.transform(positive_image)
+            # negative_image = self.transform(negative_image)
+
+        return positive_image, anchor_caption, anchor_caption
+
+    def load_image(self, image_id):
+        image_path = os.path.join(
+            self.root_dir, f"COCO_val2014_{str(image_id).zfill(12)}.jpg"
+        )
+        image = Image.open(image_path).convert("RGB")
+        return image
+
+
+class TripletsDatasetImg2Txt(Dataset):
+    def __init__(self, triplets, root_dir, transform=None):
+        """
+        Args:
+            triplets (list of tuples): List of (anchor_caption, positive_id, negative_id, anchor_labels) tuples.
+            root_dir (string): Directory with all the images.
+            transform (callable, optional): Optional transform to be applied on a sample.
+        """
+        self.triplets = triplets
+        self.root_dir = root_dir
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.triplets)
+
+    def __getitem__(self, idx):
+        anchor_id, positive_caption, negative_caption = self.triplets[idx]
+
+        # Load images
+        anchor_image = self.load_image(anchor_id)
+
+        if self.transform:
+            anchor_image = self.transform(anchor_image)
+
+        return anchor_image, positive_caption, negative_caption
+
+    def load_image(self, image_id):
+        image_path = os.path.join(
+            self.root_dir, f"COCO_train2014_{str(image_id).zfill(12)}.jpg"
+        )
+        image = Image.open(image_path).convert("RGB")
+        return image
+    
+    
+    
+class CorrespondencesDatasetImg2Txt(Dataset):
+    def __init__(self, triplets, root_dir, transform=None):
+        """
+        Args:
+            triplets (list of tuples): List of (anchor_caption, positive_id, negative_id, anchor_labels) tuples.
+            root_dir (string): Directory with all the images.
+            transform (callable, optional): Optional transform to be applied on a sample.
+        """
+        self.triplets = triplets
+        self.root_dir = root_dir
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.triplets)
+
+    def __getitem__(self, idx):
+        anchor_id, positive_caption = self.triplets[idx]
+
+        # Load images
+        anchor_image = self.load_image(anchor_id)
+
+        if self.transform:
+            anchor_image = self.transform(anchor_image)
+
+        return anchor_image, positive_caption
+
+    def load_image(self, image_id):
+        image_path = os.path.join(
+            self.root_dir, f"COCO_train2014_{str(image_id).zfill(12)}.jpg"
+        )
+        image = Image.open(image_path).convert("RGB")
+        return image

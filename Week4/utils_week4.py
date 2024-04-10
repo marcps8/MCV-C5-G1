@@ -9,6 +9,8 @@ import tqdm
 from PIL import Image
 import fasttext
 from transformers import AutoTokenizer, AutoModel
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 # Function to extract features from an image
@@ -150,6 +152,85 @@ def get_triplets_from_text_to_image(
 
     return triplets
 
+# TO-DO
+def get_triplets_from_image_to_text(
+    annotations: dict = None, load_triplets: bool = False, output_path: str = None
+):
+    if load_triplets:
+        with open(output_path, "rb") as f:
+            triplets = pickle.load(f)
+
+        return triplets
+
+    triplets = []
+
+    shuffle_annotations = annotations
+    for annotation in tqdm.tqdm(annotations):
+        anchor_caption = annotation["caption"]
+        anchor_image_id = annotation["image_id"]
+
+        min_similarity = 1
+        most_negative_caption = None
+        random.shuffle(shuffle_annotations)
+        for annotation in shuffle_annotations:
+            if annotation["image_id"] == anchor_image_id:
+                continue
+        
+            negative_caption = annotation["caption"]
+            similarity_score = calculate_similarity(anchor_caption, negative_caption)
+            if similarity_score < min_similarity:
+                min_similarity = similarity_score
+                most_negative_caption = negative_caption
+
+                if similarity_score > 0.2 and similarity_score < 0.5:
+                    break
+
+        print(f"Posit,ve Sentence: {anchor_caption}")
+        print(f"Negative Sentence: {most_negative_caption}")
+        print(f"Similarity Score: {similarity_score}")
+        triplets.append((anchor_image_id, anchor_caption, most_negative_caption))
+
+    with open(output_path, "wb") as f:
+        pickle.dump(triplets, f)
+
+    return triplets
+
+
+def get_correspondences_from_image_to_text(annotations:dict, load_correspondences, output_path):
+
+    
+    correspondences = []
+    
+    if load_correspondences:
+        with open(output_path, "rb") as f:
+            corresp = pickle.load(f)
+
+        return corresp        
+    
+    for annotation in tqdm.tqdm(annotations):
+        anchor_caption = annotation["caption"]
+        anchor_image_id = annotation["image_id"]
+        
+        correspondences.append((anchor_image_id, anchor_caption))
+    
+    
+    with open(output_path, "wb") as f:
+        pickle.dump(correspondences, f) 
+        
+    return correspondences
+    
+    
+
+
+def calculate_similarity(sentence1, sentence2):
+    vectorizer = CountVectorizer()
+    vectorized_sentences = vectorizer.fit_transform([sentence1, sentence2])
+
+    cosine_sim = cosine_similarity(vectorized_sentences)
+    similarity_score = cosine_sim[0][1]
+
+    return similarity_score
+
 
 def load_json(file_path):
     with open(file_path, "r") as f:
@@ -200,3 +281,51 @@ def generate_embeddings(triplets, text_model):
         embeddings = embeddings_bert(model_txt, tokenizer, captions=captions)
 
     return embeddings
+
+# Image to Text utils functions
+def embeddings_fasttext_img2txt(model_txt, captions):
+    embedded_captions = {}
+    for caption_pair in tqdm.tqdm(captions):
+        for caption in caption_pair:
+            embedded_word = []
+            for word in caption.split():
+                if word.lower() in model_txt:
+                    embedded_word.append(torch.tensor(model_txt[word.lower()]))
+            embedded_captions.update({caption: torch.stack(embedded_word).mean(dim=0)})
+    return embedded_captions
+
+
+def embeddings_bert_img2txt(model_txt, tokenizer, captions):
+    embedded_captions = {}
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model_txt.to(device)
+    for caption_pair in tqdm.tqdm(captions):
+        for caption in caption_pair:
+            inputs = tokenizer(
+                caption,
+                return_tensors="pt",
+                padding="longest",
+                add_special_tokens=True,
+                return_attention_mask=True,
+            ).to(device)
+            embedded_caption = model_txt(**inputs).last_hidden_state[:, 0, :]
+            embedded_captions.update({caption: embedded_caption.squeeze().cpu()})
+    return embedded_captions
+
+
+def generate_embeddings_img2txt(triplets, text_model):
+    captions = [triplet[1:] for triplet in triplets]
+    if text_model == "fasttext":
+        model_txt = fasttext.load_model("/export/home/mcv/C5/fasttext_wiki.en.bin")
+        embeddings = embeddings_fasttext_img2txt(model_txt, captions=captions)
+    elif text_model == "bert":
+        model_txt = AutoModel.from_pretrained("bert-base-uncased")
+        tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+        model_txt.eval()
+        for param in model_txt.parameters():
+            param.requires_grad = False
+
+        embeddings = embeddings_bert_img2txt(model_txt, tokenizer, captions=captions)
+
+    return embeddings
+

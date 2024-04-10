@@ -28,8 +28,8 @@ def get_transforms():
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--embed-size", type=int, default=32)
-    parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument("--embed-size", type=int, default=2048)
+    parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--text-model", type=str, default="fasttext", choices=["fasttext", "bert"])
     parser.add_argument("--sample-size", type=float, default=1.0)
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     }
 
     triplets_path = OUTPUT_PATH + f"/pickles/triplets_25perc.pkl"
-    model_path = OUTPUT_PATH + f"/weights/text2img_v0_25perc_{args.text_model}.pth"
+    model_path = OUTPUT_PATH + f"/weights/text2img_25perc_{args.text_model}.pth"
     
     train_annotations = load_json(TRAIN_CAPTIONS_PATH)
     val_annotations = load_json(VAL_CAPTIONS_PATH)
