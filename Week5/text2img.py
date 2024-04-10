@@ -8,7 +8,7 @@ from network import Network
 from triplets_dataset import TripletsDataset
 from utils_week5 import generate_embeddings, get_triplets_from_text_to_image, load_json
 
-OUTPUT_PATH = "/export/home/group01/MCV-C5-G1/Week5"
+OUTPUT_PATH = "/export/home/group01/MCV-C5-G1/Week4"
 TRAIN_PATH = "/ghome/group01/mcv/datasets/C5/COCO/train2014"
 VAL_PATH = "/ghome/group01/mcv/datasets/C5/COCO/val2014"
 TRAIN_CAPTIONS_PATH = (
@@ -34,7 +34,7 @@ def get_transforms():
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--embed-size", type=int, default=2048)
-    parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument(
         "--text-model", type=str, default="fasttext", choices=["fasttext", "bert"]
@@ -48,35 +48,28 @@ if __name__ == "__main__":
         "batch_size": args.batch_size,
         "text_model": args.text_model,
         "margin": 0.5,
-        "lr": 1e-4
+        "eps": 1e-7,
+        "lr": 3e-4,
+        "p": 2,
     }
 
-    triplets_path = OUTPUT_PATH + f"/pickles/triplets_25perc.pkl"
+    triplets_path = OUTPUT_PATH + f"/pickles/triplets_25perc_prova.pkl"
     model_path = OUTPUT_PATH + f"/weights/text2img_25perc_{args.text_model}.pth"
 
     train_annotations = load_json(TRAIN_CAPTIONS_PATH)
+    val_annotations = load_json(VAL_CAPTIONS_PATH)
     len_train_annotations = len(train_annotations["annotations"])
 
     sampled_annotations = random.sample(
         train_annotations["annotations"],
-        int(len_train_annotations * args.sample_size)
+        int(len_train_annotations * args.sample_size),  # If 1.0, it won't be sampled
     )
 
     print("Processing triplets...")
     load_triplets = False
     triplets = get_triplets_from_text_to_image(
-        sampled_annotations[:5], load_triplets=load_triplets, output_path=triplets_path
+        sampled_annotations, load_triplets=load_triplets, output_path=triplets_path
     )
-
-    print("Generating embeddings...")
-    text_embeddings = generate_embeddings(triplets, config["text_model"])
-    train_dataset = TripletsDataset(
-        triplets=triplets, root_dir=TRAIN_PATH, transform=get_transforms()
-    )
-    train_loader = DataLoader(
-        train_dataset, batch_size=config["batch_size"], shuffle=True, num_workers=8
-    )
-
-    net = Network(config, train_loader=train_loader, text_embeddings=text_embeddings)
-    print("Training model...")
-    net.train(args.epochs, save_path=model_path)
+    print("Example of triplets: ")
+    print(triplets[:10])
+    print("Total triplets: ", len(sampled_annotations))

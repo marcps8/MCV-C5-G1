@@ -56,17 +56,13 @@ class TripletsDatasetVal(Dataset):
         return len(self.triplets)
 
     def __getitem__(self, idx):
-        anchor_caption, positive_id, negative_id = self.triplets[idx]
-
-        # Load images
+        anchor_caption, positive_id, _ = self.triplets[idx]
         positive_image = self.load_image(positive_id)
-        # negative_image = self.load_image(negative_id)
 
         if self.transform:
             positive_image = self.transform(positive_image)
-            # negative_image = self.transform(negative_image)
 
-        return positive_image, anchor_caption, anchor_caption
+        return anchor_caption, positive_image
 
     def load_image(self, image_id):
         image_path = os.path.join(
