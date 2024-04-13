@@ -2,14 +2,13 @@ import random
 from argparse import ArgumentParser
 
 from torch.utils.data import DataLoader
-from torchvision import transforms
 
 from network import Network
 from triplets_dataset import TripletsDataset
 from utils_week5 import (
     generate_embeddings,
     get_train_transforms,
-    get_triplets_from_text_to_image,
+    get_triplets_from_text_to_image_old as get_triplets_from_text_to_image,
     load_json,
 )
 
@@ -36,13 +35,12 @@ if __name__ == "__main__":
         "lr": 1e-4,
     }
 
-    triplets_path = OUTPUT_PATH + f"/pickles/triplets/triplets.pkl"
-    model_path = OUTPUT_PATH + f"/weights/text2img.pth"
-    embed_path = OUTPUT_PATH + f"/weights/embed.pth"
+    triplets_path = OUTPUT_PATH + f"/pickles/triplets/triplets_final.pkl"
+    model_path = OUTPUT_PATH + f"/weights/text2img_final.pth"
+    embed_path = OUTPUT_PATH + f"/weights/embed_final.pth"
 
     train_annotations = load_json(TRAIN_CAPTIONS_PATH)
     len_train_annotations = len(train_annotations["annotations"])
-
     sampled_annotations = random.sample(
         train_annotations["annotations"], int(len_train_annotations * args.sample_size)
     )
@@ -50,7 +48,7 @@ if __name__ == "__main__":
     print("Processing triplets...")
     load_triplets = True
     triplets = get_triplets_from_text_to_image(
-        sampled_annotations[:128],
+        sampled_annotations,
         load_triplets=load_triplets,
         output_path=triplets_path,
     )

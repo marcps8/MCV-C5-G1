@@ -48,10 +48,9 @@ def generate_image(
         image = pipe(prompt=prompt).images[0]
     elif model_id == "stabilityai/sdxl-turbo":
         image = pipe(prompt=prompt, num_inference_steps=1, guidance_scale=0.0).images[0]
-
     # Save the generated image with a unique ID
     file_id = len(os.listdir(output_folder)) + 1
-    image_path = os.path.join(output_folder, f"train_{model_id.split('/')[-1]}_2.png")
+    image_path = os.path.join(output_folder, f"train_{file_id}.png")
     image.save(image_path)
 
     return image_path

@@ -1,0 +1,177 @@
+Let's do more sentences, I will give you the keyword noun and its most used verbs and the number of sentences for each one.
+
+For the keyword 'sidewalk' do 877 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'walking': 89, 'sitting': 121, 'riding': 36, 'holding': 38, 'is': 162, 'stands': 15, 'are': 47, 'standing': 52, 'has': 11, 'carrying': 14, 'sits': 23, 'wearing': 13}
+
+For the keyword 'building' do 2282 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 328, 'sitting': 162, 'walking': 28, 'riding': 29, 'are': 103, 'standing': 103, 'has': 145, 'stand': 12, 'looking': 18, 'stands': 31, 'sits': 13, 'showing': 15, 'driving': 25, 'passing': 11, 'hanging': 47, "'s": 24, 'leaning': 13, 'flying': 34}
+
+For the keyword 'surf' do 356 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'surfing': 12, 'are': 28, 'walking': 36, 'riding': 64, 'holding': 45, 'is': 47, 'standing': 54, 'carrying': 40, 'sitting': 14, 'stands': 13}
+
+For the keyword 'intersection' do 400 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 51, 'driving': 15, 'are': 47, 'stop': 11, 'has': 20, 'sitting': 13}
+
+For the keyword 'motorcycle' do 1306 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 284, 'sitting': 115, 'riding': 248, 'standing': 50, 'rides': 19, 'are': 43, 'wearing': 58, 'sits': 23, 'driving': 27, 'posing': 23, 'looking': 22, 'going': 13, 'stands': 14, 'doing': 11, 'leaning': 17, 'stand': 13}
+
+For the keyword 'monitor' do 268 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 39, 'sitting': 68, 'looking': 19}
+
+For the keyword 'windows' do 252 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 15, 'has': 14, 'sitting': 14}
+
+For the keyword 'clock' do 2054 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'hanging': 69, 'sitting': 155, 'is': 373, "'s": 52, 'looking': 28, 'rises': 13, 'standing': 55, 'stands': 46, 'has': 184, 'sits': 11, 'showing': 21, 'are': 31, 'says': 11, 'shows': 21, 'reads': 33, 'looks': 13}
+
+For the keyword 'soccer' do 536 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'are': 111, 'play': 23, 'watching': 14, 'playing': 260, 'running': 39, 'is': 61, 'kicking': 70, 'standing': 20, 'kick': 30, 'trying': 13, 'holding': 11, 'wearing': 20}
+
+For the keyword 'tie' do 712 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'wearing': 386, 'looking': 16, 'is': 136, 'standing': 36, 'sitting': 66, 'has': 36, 'posing': 24, 'smiling': 40, 'holding': 33, 'adjusting': 11}
+
+For the keyword 'brick' do 476 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'sitting': 69, 'is': 79, 'has': 21, 'standing': 36, 'stands': 15}
+
+For the keyword 'dogs' do 617 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'has': 20, 'sitting': 59, 'is': 67, 'are': 165, 'laying': 44, 'being': 11, 'playing': 55, 'walking': 48, 'cooking': 14, 'holding': 38, 'running': 14, 'riding': 12, 'standing': 60, 'looking': 33, 'sleeping': 16, 'fighting': 14}
+
+For the keyword 'camera' do 616 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'holding': 83, 'is': 153, 'posing': 40, 'sitting': 53, 'smiling': 48, 'wearing': 28, 'taking': 18, 'are': 22, 'standing': 37, 'looking': 149, 'looks': 45, 'holds': 16, 'facing': 11, 'pose': 11, 'staring': 18, 'stands': 12, 'laying': 11, 'stares': 11, 'look': 11}
+
+For the keyword 'paper' do 488 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'holding': 37, 'is': 99, 'cutting': 21, 'are': 38, 'eating': 13, 'sitting': 105, 'has': 24}
+
+For the keyword 'bread' do 271 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 50, 'sitting': 19, 'are': 11, 'has': 19, 'including': 13}
+
+For the keyword 'bridge' do 367 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 75, 'traveling': 25, 'crossing': 24, 'going': 42, 'riding': 15, 'driving': 15, 'passing': 11, 'sitting': 14, 'are': 26, 'walking': 14, 'has': 14}
+
+For the keyword 'adult' do 321 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'holding': 26, 'standing': 55, 'walking': 33, 'is': 71, 'sitting': 11, 'stands': 14, 'are': 40, 'playing': 11, 'flying': 13, 'looking': 12}
+
+For the keyword 'keyboard' do 530 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'sitting': 104, 'is': 86, 'laying': 22, 'are': 22, 'playing': 11, 'has': 26, 'typing': 14, 'sits': 22}
+
+For the keyword 'mouse' do 311 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'sitting': 62, 'is': 60, 'sits': 11}
+
+For the keyword 'river' do 459 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'crossing': 26, 'is': 78, 'riding': 35, 'sitting': 20, 'are': 55, 'standing': 40, 'walking': 38, 'surfing': 15, 'floating': 24, 'holding': 13}
+
+For the keyword 'metal' do 338 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'sitting': 73, 'riding': 11, 'are': 14, 'is': 45, 'standing': 25, 'hanging': 19, 'has': 16}
+
+For the keyword 'line' do 388 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'standing': 42, 'is': 39, 'waiting': 23, 'are': 49, 'walking': 36, 'hanging': 15, 'driving': 11, 'has': 11}
+
+For the keyword 'pole' do 539 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 104, 'hanging': 30, 'sitting': 39, 'standing': 26, 'are': 37, 'has': 40, 'holding': 25, "'s": 12}
+
+For the keyword 'waves' do 270 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'are': 13, 'riding': 94, 'is': 63, 'surfing': 46, 'catching': 11}
+
+For the keyword 'broccoli' do 597 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'containing': 21, 'is': 74, 'sitting': 24, 'are': 15, 'being': 13, 'including': 19, 'has': 25}
+
+For the keyword 'kids' do 340 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'sitting': 39, 'eating': 19, 'is': 16, 'holding': 14, 'play': 15, 'are': 89, 'playing': 88, 'riding': 17, 'standing': 29, 'flying': 11}
+
+For the keyword 'tub' do 327 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'sitting': 33, 'has': 28, 'is': 26}
+
+For the keyword 'stand' do 333 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 31, 'sitting': 30, 'hanging': 11, 'are': 24}
+
+For the keyword 'hair' do 313 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'sitting': 32, 'is': 66, 'holding': 39, 'using': 12, 'standing': 14, 'has': 24, 'drying': 27, 'wearing': 34}
+
+For the keyword 'birds' do 503 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'are': 122, 'flying': 75, 'sitting': 76, 'standing': 69, 'walking': 36, 'is': 25, 'fly': 19, 'looking': 15, 'eating': 13}
+
+For the keyword 'stop' do 492 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'is': 88, 'pulling': 11, 'waiting': 25, 'has': 29, 'sitting': 53, 'are': 35}
+
+For the keyword 'tower' do 889 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'looking': 15, 'rises': 14, 'flying': 13, 'is': 153, 'sitting': 55, 'stands': 34, 'has': 78, "'s": 18, 'standing': 23}
+
+For the keyword 'cup' do 460 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'are': 23, 'is': 64, 'sitting': 80, 'holding': 44, 'has': 20}
+
+For the keyword 'stone' do 258 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'sitting': 32, 'is': 16, 'standing': 24}
+
+For the keyword 'pile' do 299 different sentences please in JSON format.
+
+These are the verbs used with this keyword and their weights:
+{'are': 20, 'sitting': 91, 'is': 25, 'standing': 26}
+

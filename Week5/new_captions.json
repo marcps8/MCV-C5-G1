@@ -1,0 +1,3716 @@
+[
+    {
+        "caption": "Two dogs happily playing fetch in the backyard.",
+        "keywords": [
+            "dogs",
+            "playing"
+        ],
+        "id": 1,
+        "negative_id": 117
+    },
+    {
+        "caption": "A group of dogs chasing each other around the park.",
+        "keywords": [
+            "dogs",
+            "running"
+        ],
+        "id": 2,
+        "negative_id": 348
+    },
+    {
+        "caption": "The dogs eagerly devouring their dinner from their bowls.",
+        "keywords": [
+            "dogs",
+            "eating"
+        ],
+        "id": 3,
+        "negative_id": 383
+    },
+    {
+        "caption": "Joyful puppies romping in the grass with their toys.",
+        "keywords": [
+            "dogs",
+            "playing"
+        ],
+        "id": 4,
+        "negative_id": 382
+    },
+    {
+        "caption": "The dogs sprinting across the open field in excitement.",
+        "keywords": [
+            "dogs",
+            "running"
+        ],
+        "id": 5,
+        "negative_id": 383
+    },
+    {
+        "caption": "Hungry dogs eagerly gobbling up treats from their owner's hand.",
+        "keywords": [
+            "dogs",
+            "eating"
+        ],
+        "id": 6,
+        "negative_id": 198
+    },
+    {
+        "caption": "Two playful dogs wrestling playfully on the living room floor.",
+        "keywords": [
+            "dogs",
+            "playing"
+        ],
+        "id": 7,
+        "negative_id": 45
+    },
+    {
+        "caption": "The dogs dashing around the yard in a game of chase.",
+        "keywords": [
+            "dogs",
+            "running"
+        ],
+        "id": 8,
+        "negative_id": 121
+    },
+    {
+        "caption": "Contented dogs happily munching on their favorite bones.",
+        "keywords": [
+            "dogs",
+            "eating"
+        ],
+        "id": 9,
+        "negative_id": 291
+    },
+    {
+        "caption": "Excited dogs frolicking in the snow, tongues lolling.",
+        "keywords": [
+            "dogs",
+            "playing"
+        ],
+        "id": 10,
+        "negative_id": 326
+    },
+    {
+        "caption": "People are walking briskly along the busy sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "walking"
+        ],
+        "id": 11,
+        "negative_id": 259
+    },
+    {
+        "caption": "A group of friends sits on the sidewalk, chatting and laughing.",
+        "keywords": [
+            "sidewalk",
+            "sitting"
+        ],
+        "id": 12,
+        "negative_id": 377
+    },
+    {
+        "caption": "A cyclist rides past on the sidewalk, ringing their bell.",
+        "keywords": [
+            "sidewalk",
+            "riding"
+        ],
+        "id": 13,
+        "negative_id": 296
+    },
+    {
+        "caption": "A woman holding a bouquet of flowers walks gracefully down the sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "holding"
+        ],
+        "id": 14,
+        "negative_id": 373
+    },
+    {
+        "caption": "A skateboarder performs tricks on the sidewalk, drawing a crowd.",
+        "keywords": [
+            "sidewalk",
+            "skateboarding"
+        ],
+        "id": 15,
+        "negative_id": 126
+    },
+    {
+        "caption": "The sidewalk is lined with vendors selling fresh produce.",
+        "keywords": [
+            "sidewalk",
+            "is"
+        ],
+        "id": 16,
+        "negative_id": 182
+    },
+    {
+        "caption": "A man stands on the sidewalk, waiting for the bus.",
+        "keywords": [
+            "sidewalk",
+            "standing"
+        ],
+        "id": 17,
+        "negative_id": 381
+    },
+    {
+        "caption": "A street performer lays out their hat on the sidewalk, hoping for tips.",
+        "keywords": [
+            "sidewalk",
+            "laying"
+        ],
+        "id": 18,
+        "negative_id": 259
+    },
+    {
+        "caption": "A car drives dangerously close to the sidewalk, causing pedestrians to scatter.",
+        "keywords": [
+            "sidewalk",
+            "driving"
+        ],
+        "id": 19,
+        "negative_id": 183
+    },
+    {
+        "caption": "An elderly couple walks hand in hand along the sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "walks"
+        ],
+        "id": 20,
+        "negative_id": 228
+    },
+    {
+        "caption": "Children are playing hopscotch on the sidewalk, giggling with delight.",
+        "keywords": [
+            "sidewalk",
+            "playing"
+        ],
+        "id": 21,
+        "negative_id": 120
+    },
+    {
+        "caption": "A group of teenagers are skateboarding down the sidewalk, performing tricks.",
+        "keywords": [
+            "sidewalk",
+            "skateboarding"
+        ],
+        "id": 22,
+        "negative_id": 91
+    },
+    {
+        "caption": "A musician sits on the sidewalk, strumming their guitar and singing.",
+        "keywords": [
+            "sidewalk",
+            "sitting"
+        ],
+        "id": 23,
+        "negative_id": 66
+    },
+    {
+        "caption": "A delivery person walks briskly on the sidewalk, carrying packages.",
+        "keywords": [
+            "sidewalk",
+            "walking"
+        ],
+        "id": 24,
+        "negative_id": 222
+    },
+    {
+        "caption": "A dog is running happily alongside its owner on the sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "running"
+        ],
+        "id": 25,
+        "negative_id": 126
+    },
+    {
+        "caption": "A street artist is painting a vibrant mural on the sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "is"
+        ],
+        "id": 26,
+        "negative_id": 86
+    },
+    {
+        "caption": "A group of friends are sitting on the sidewalk, enjoying a picnic.",
+        "keywords": [
+            "sidewalk",
+            "sitting"
+        ],
+        "id": 27,
+        "negative_id": 277
+    },
+    {
+        "caption": "A young couple is holding hands as they stroll along the sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "holding"
+        ],
+        "id": 28,
+        "negative_id": 295
+    },
+    {
+        "caption": "A vendor is selling hot dogs from a cart on the sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "is"
+        ],
+        "id": 29,
+        "negative_id": 263
+    },
+    {
+        "caption": "A street performer is juggling balls on the sidewalk, entertaining passersby.",
+        "keywords": [
+            "sidewalk",
+            "is"
+        ],
+        "id": 30,
+        "negative_id": 123
+    },
+    {
+        "caption": "Beautiful flowers are blooming in the garden.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 31,
+        "negative_id": 277
+    },
+    {
+        "caption": "A lush green vine is climbing up the trellis.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 32,
+        "negative_id": 383
+    },
+    {
+        "caption": "Tiny seedlings are sprouting in the planter.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 33,
+        "negative_id": 189
+    },
+    {
+        "caption": "A potted cactus is sitting on the windowsill.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 34,
+        "negative_id": 187
+    },
+    {
+        "caption": "Colorful petals are fluttering in the breeze.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 35,
+        "negative_id": 277
+    },
+    {
+        "caption": "Fresh herbs are growing in the kitchen garden.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 36,
+        "negative_id": 298
+    },
+    {
+        "caption": "A row of sunflowers is swaying in the wind.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 37,
+        "negative_id": 232
+    },
+    {
+        "caption": "Dainty ferns are thriving in the shade.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 38,
+        "negative_id": 296
+    },
+    {
+        "caption": "A majestic oak tree is standing tall in the forest.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 39,
+        "negative_id": 86
+    },
+    {
+        "caption": "Delicate petals are unfurling under the morning sun.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 40,
+        "negative_id": 122
+    },
+    {
+        "caption": "Vibrant tulips are blooming in the flowerbed.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 41,
+        "negative_id": 298
+    },
+    {
+        "caption": "A delicate orchid is sitting on the windowsill, soaking up the sunlight.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 42,
+        "negative_id": 187
+    },
+    {
+        "caption": "Small succulents are lining the shelves, adding a touch of green to the room.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 43,
+        "negative_id": 382
+    },
+    {
+        "caption": "A bonsai tree is patiently being pruned by its caretaker.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 44,
+        "negative_id": 283
+    },
+    {
+        "caption": "Fragrant herbs are flourishing in the herb garden, ready to be harvested.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 45,
+        "negative_id": 177
+    },
+    {
+        "caption": "A row of daffodils is nodding in the gentle breeze.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 46,
+        "negative_id": 230
+    },
+    {
+        "caption": "A patch of wildflowers is blooming by the roadside, attracting bees and butterflies.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 47,
+        "negative_id": 9
+    },
+    {
+        "caption": "A group of ferns is thriving in the moist, shady corner of the garden.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 48,
+        "negative_id": 123
+    },
+    {
+        "caption": "Colorful hydrangeas are adding a pop of color to the front yard.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 49,
+        "negative_id": 189
+    },
+    {
+        "caption": "A lone dandelion is poking through a crack in the sidewalk, defying the odds.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 50,
+        "negative_id": 277
+    },
+    {
+        "caption": "People are walking briskly along the sidewalk, heading to work.",
+        "keywords": [
+            "sidewalk",
+            "walking"
+        ],
+        "id": 51,
+        "negative_id": 124
+    },
+    {
+        "caption": "A young couple is sitting on the sidewalk, enjoying a picnic lunch together.",
+        "keywords": [
+            "sidewalk",
+            "sitting"
+        ],
+        "id": 52,
+        "negative_id": 6
+    },
+    {
+        "caption": "A child is riding their scooter on the sidewalk, laughing with joy.",
+        "keywords": [
+            "sidewalk",
+            "riding"
+        ],
+        "id": 53,
+        "negative_id": 120
+    },
+    {
+        "caption": "The old man is holding onto his cane tightly as he walks down the sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "holding"
+        ],
+        "id": 54,
+        "negative_id": 118
+    },
+    {
+        "caption": "A skateboarder is doing tricks on the sidewalk, drawing a small crowd of onlookers.",
+        "keywords": [
+            "sidewalk",
+            "doing"
+        ],
+        "id": 55,
+        "negative_id": 126
+    },
+    {
+        "caption": "The sidewalk stands empty and silent in the early morning light.",
+        "keywords": [
+            "sidewalk",
+            "is"
+        ],
+        "id": 56,
+        "negative_id": 125
+    },
+    {
+        "caption": "Groups of tourists are standing on the sidewalk, consulting maps and guidebooks.",
+        "keywords": [
+            "sidewalk",
+            "standing"
+        ],
+        "id": 57,
+        "negative_id": 125
+    },
+    {
+        "caption": "A street performer has set up on the sidewalk, entertaining passersby with juggling and music.",
+        "keywords": [
+            "sidewalk",
+            "set up"
+        ],
+        "id": 58,
+        "negative_id": 121
+    },
+    {
+        "caption": "A mother is carrying her baby in a sling as she walks along the sidewalk.",
+        "keywords": [
+            "sidewalk",
+            "carrying"
+        ],
+        "id": 59,
+        "negative_id": 233
+    },
+    {
+        "caption": "A homeless man is sitting on the sidewalk, holding a sign asking for help.",
+        "keywords": [
+            "sidewalk",
+            "sitting"
+        ],
+        "id": 60,
+        "negative_id": 63
+    },
+    {
+        "caption": "Lush green ferns are growing in the shady corner of the garden.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 61,
+        "negative_id": 117
+    },
+    {
+        "caption": "A single sunflower is sitting in a vase on the windowsill, soaking up the sunlight.",
+        "keywords": [
+            "plants",
+            "sitting"
+        ],
+        "id": 62,
+        "negative_id": 276
+    },
+    {
+        "caption": "Rows of tomato plants are thriving in the vegetable garden, laden with ripe fruit.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 63,
+        "negative_id": 287
+    },
+    {
+        "caption": "A potted cactus is sitting on the desk, adding a touch of green to the office.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 64,
+        "negative_id": 382
+    },
+    {
+        "caption": "Wildflowers are blooming in the meadow, painting the landscape with vibrant colors.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 65,
+        "negative_id": 378
+    },
+    {
+        "caption": "A bonsai tree is patiently growing in its ceramic pot, tended to with care.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 66,
+        "negative_id": 230
+    },
+    {
+        "caption": "A cluster of mushrooms is sprouting up from the damp earth after a rainy night.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 67,
+        "negative_id": 354
+    },
+    {
+        "caption": "The ivy is climbing up the trellis, covering the wall with a lush green curtain.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 68,
+        "negative_id": 277
+    },
+    {
+        "caption": "Herbs are sitting in small pots on the kitchen windowsill, ready to be snipped for cooking.",
+        "keywords": [
+            "plants",
+            "are"
+        ],
+        "id": 69,
+        "negative_id": 177
+    },
+    {
+        "caption": "A patch of clover is growing in the backyard, attracting bees and butterflies.",
+        "keywords": [
+            "plants",
+            "is"
+        ],
+        "id": 70,
+        "negative_id": 287
+    },
+    {
+        "caption": "The skyscraper is towering over the city skyline, gleaming in the afternoon sun.",
+        "keywords": [
+            "building",
+            "is"
+        ],
+        "id": 71,
+        "negative_id": 189
+    },
+    {
+        "caption": "An old factory building is sitting abandoned by the river, a relic of the industrial era.",
+        "keywords": [
+            "building",
+            "is"
+        ],
+        "id": 72,
+        "negative_id": 6
+    },
+    {
+        "caption": "A group of tourists is walking past the historic building, snapping photos and admiring the architecture.",
+        "keywords": [
+            "building",
+            "is"
+        ],
+        "id": 73,
+        "negative_id": 287
+    },
+    {
+        "caption": "Construction workers are standing on the scaffolding, repairing the exterior of the building.",
+        "keywords": [
+            "building",
+            "are"
+        ],
+        "id": 74,
+        "negative_id": 201
+    },
+    {
+        "caption": "The apartment building is bustling with activity as residents come and go.",
+        "keywords": [
+            "building",
+            "is"
+        ],
+        "id": 75,
+        "negative_id": 177
+    },
+    {
+        "caption": "A security guard is standing watch at the entrance of the office building, checking IDs and logging visitors.",
+        "keywords": [
+            "building",
+            "is"
+        ],
+        "id": 76,
+        "negative_id": 348
+    },
+    {
+        "caption": "The building stands silent and empty, its windows boarded up and its doors locked.",
+        "keywords": [
+            "building",
+            "stands"
+        ],
+        "id": 77,
+        "negative_id": 277
+    },
+    {
+        "caption": "A crane is towering over the construction site, hoisting steel beams into place.",
+        "keywords": [
+            "building",
+            "is"
+        ],
+        "id": 78,
+        "negative_id": 294
+    },
+    {
+        "caption": "The building is sitting at the corner of the street, its brick facade weathered and worn.",
+        "keywords": [
+            "building",
+            "is"
+        ],
+        "id": 79,
+        "negative_id": 194
+    },
+    {
+        "caption": "A group of protesters is marching outside the government building, chanting slogans and waving signs.",
+        "keywords": [
+            "building",
+            "is"
+        ],
+        "id": 80,
+        "negative_id": 287
+    },
+    {
+        "caption": "Surfers are riding the waves, carving graceful arcs in the water with their boards.",
+        "keywords": [
+            "surf",
+            "riding"
+        ],
+        "id": 81,
+        "negative_id": 173
+    },
+    {
+        "caption": "A group of friends is walking along the beach, surfboards tucked under their arms.",
+        "keywords": [
+            "surf",
+            "walking"
+        ],
+        "id": 82,
+        "negative_id": 277
+    },
+    {
+        "caption": "A lone surfer is sitting on their board, waiting patiently for the perfect wave.",
+        "keywords": [
+            "surf",
+            "sitting"
+        ],
+        "id": 83,
+        "negative_id": 283
+    },
+    {
+        "caption": "The beach is crowded with surfers, all vying for their turn on the waves.",
+        "keywords": [
+            "surf",
+            "is"
+        ],
+        "id": 84,
+        "negative_id": 116
+    },
+    {
+        "caption": "The surfers are standing on the shore, waxing their boards and stretching their muscles.",
+        "keywords": [
+            "surf",
+            "standing"
+        ],
+        "id": 85,
+        "negative_id": 173
+    },
+    {
+        "caption": "A surf instructor is teaching a group of beginners, showing them how to paddle out and catch a wave.",
+        "keywords": [
+            "surf",
+            "is"
+        ],
+        "id": 86,
+        "negative_id": 54
+    },
+    {
+        "caption": "The waves are crashing against the rocks, sending up plumes of spray and foam.",
+        "keywords": [
+            "surf",
+            "are"
+        ],
+        "id": 87,
+        "negative_id": 44
+    },
+    {
+        "caption": "Surfers are walking back to shore after a long session in the water, tired but exhilarated.",
+        "keywords": [
+            "surf",
+            "walking"
+        ],
+        "id": 88,
+        "negative_id": 7
+    },
+    {
+        "caption": "A surfer is sitting on the beach, watching the sunset and enjoying the peaceful moment.",
+        "keywords": [
+            "surf",
+            "sitting"
+        ],
+        "id": 89,
+        "negative_id": 382
+    },
+    {
+        "caption": "The surfboard is leaning against the lifeguard tower, waiting for its owner to return.",
+        "keywords": [
+            "surf",
+            "is"
+        ],
+        "id": 90,
+        "negative_id": 122
+    },
+    {
+        "caption": "The intersection is bustling with traffic, cars honking and pedestrians crossing.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 91,
+        "negative_id": 127
+    },
+    {
+        "caption": "A traffic cop is directing cars through the busy intersection, blowing their whistle and waving their arms.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 92,
+        "negative_id": 275
+    },
+    {
+        "caption": "A cyclist is riding through the intersection, narrowly avoiding a collision with a taxi.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 93,
+        "negative_id": 276
+    },
+    {
+        "caption": "The intersection is quiet and deserted in the early hours of the morning, with only the occasional car passing through.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 94,
+        "negative_id": 44
+    },
+    {
+        "caption": "Pedestrians are waiting patiently at the intersection, watching the traffic light for their chance to cross.",
+        "keywords": [
+            "intersection",
+            "are"
+        ],
+        "id": 95,
+        "negative_id": 287
+    },
+    {
+        "caption": "The intersection is controlled by a roundabout, with cars circling around the central island.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 96,
+        "negative_id": 179
+    },
+    {
+        "caption": "A car is stopped at the intersection, waiting for the light to turn green.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 97,
+        "negative_id": 122
+    },
+    {
+        "caption": "A group of protesters is blocking the intersection, chanting slogans and holding signs.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 98,
+        "negative_id": 352
+    },
+    {
+        "caption": "The intersection is the site of a bustling street market, with vendors selling their wares and shoppers haggling for bargains.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 99,
+        "negative_id": 120
+    },
+    {
+        "caption": "A pedestrian is crossing the intersection, dodging cars and bicycles as they make their way to the other side.",
+        "keywords": [
+            "intersection",
+            "is"
+        ],
+        "id": 100,
+        "negative_id": 194
+    },
+    {
+        "caption": "The still pond is reflecting the image of the surrounding trees like a mirror.",
+        "keywords": [
+            "reflection",
+            "is"
+        ],
+        "id": 101,
+        "negative_id": 6
+    },
+    {
+        "caption": "The glass skyscraper is reflecting the golden light of the sunset, casting a warm glow on the city streets.",
+        "keywords": [
+            "reflection",
+            "is"
+        ],
+        "id": 102,
+        "negative_id": 383
+    },
+    {
+        "caption": "The polished marble floor is reflecting the overhead lights, creating a dazzling effect.",
+        "keywords": [
+            "reflection",
+            "is"
+        ],
+        "id": 103,
+        "negative_id": 116
+    },
+    {
+        "caption": "The calm lake is reflecting the colors of the sunset, painting the sky with hues of orange and pink.",
+        "keywords": [
+            "reflection",
+            "is"
+        ],
+        "id": 104,
+        "negative_id": 123
+    },
+    {
+        "caption": "A mirror is reflecting the image of a young woman, who is admiring her reflection with a smile.",
+        "keywords": [
+            "reflection",
+            "is"
+        ],
+        "id": 105,
+        "negative_id": 379
+    },
+    {
+        "caption": "The sunglasses are reflecting the bright sunlight, protecting the wearer's eyes from the glare.",
+        "keywords": [
+            "reflection",
+            "are"
+        ],
+        "id": 106,
+        "negative_id": 275
+    },
+    {
+        "caption": "The polished silverware is reflecting the candlelight, adding a touch of elegance to the dining table.",
+        "keywords": [
+            "reflection",
+            "is"
+        ],
+        "id": 107,
+        "negative_id": 377
+    },
+    {
+        "caption": "The shop window is reflecting the bustling street outside, giving passersby a glimpse of the merchandise inside.",
+        "keywords": [
+            "reflection",
+            "is"
+        ],
+        "id": 108,
+        "negative_id": 275
+    },
+    {
+        "caption": "The polished marble statue is reflecting the image of the admiring crowd, who are taking photos and selfies.",
+        "keywords": [
+            "reflection",
+            "is"
+        ],
+        "id": 109,
+        "negative_id": 179
+    },
+    {
+        "caption": "The mirrored sunglasses are reflecting the scene behind the wearer, revealing the busy city street.",
+        "keywords": [
+            "reflection",
+            "are"
+        ],
+        "id": 110,
+        "negative_id": 66
+    },
+    {
+        "caption": "A tourist is holding a map in front of the ancient statue.",
+        "keywords": [
+            "statue",
+            "tourist",
+            "holding",
+            "map"
+        ],
+        "id": 111,
+        "negative_id": 384
+    },
+    {
+        "caption": "The statue is towering over the city skyline, a symbol of its history and grandeur.",
+        "keywords": [
+            "statue",
+            "is",
+            "towering",
+            "city",
+            "skyline",
+            "symbol",
+            "history",
+            "grandeur"
+        ],
+        "id": 112,
+        "negative_id": 9
+    },
+    {
+        "caption": "A child is riding on the back of the statue, pretending it's a noble steed.",
+        "keywords": [
+            "statue",
+            "child",
+            "riding",
+            "back",
+            "pretending",
+            "noble",
+            "steed"
+        ],
+        "id": 113,
+        "negative_id": 120
+    },
+    {
+        "caption": "The statue is standing proudly in the center of the park, surrounded by colorful flowers.",
+        "keywords": [
+            "statue",
+            "is",
+            "standing",
+            "proudly",
+            "center",
+            "park",
+            "surrounded",
+            "colorful",
+            "flowers"
+        ],
+        "id": 114,
+        "negative_id": 377
+    },
+    {
+        "caption": "A group of friends is sitting on the steps of the monument, enjoying a picnic together.",
+        "keywords": [
+            "statue",
+            "group",
+            "friends",
+            "sitting",
+            "steps",
+            "monument",
+            "enjoying",
+            "picnic",
+            "together"
+        ],
+        "id": 115,
+        "negative_id": 379
+    },
+    {
+        "caption": "A shiny motorcycle is parked in front of a cafe.",
+        "keywords": [
+            "motorcycle",
+            "is"
+        ],
+        "id": 116,
+        "negative_id": 54
+    },
+    {
+        "caption": "A person is sitting on a motorcycle, waiting at a traffic light.",
+        "keywords": [
+            "motorcycle",
+            "sitting"
+        ],
+        "id": 117,
+        "negative_id": 41
+    },
+    {
+        "caption": "A motorcyclist is riding through a winding mountain road.",
+        "keywords": [
+            "motorcycle",
+            "riding"
+        ],
+        "id": 118,
+        "negative_id": 302
+    },
+    {
+        "caption": "A sleek motorcycle is standing upright in a showroom.",
+        "keywords": [
+            "motorcycle",
+            "standing"
+        ],
+        "id": 119,
+        "negative_id": 329
+    },
+    {
+        "caption": "A motorcyclist rides their bike down an empty highway at sunset.",
+        "keywords": [
+            "motorcycle",
+            "rides"
+        ],
+        "id": 120,
+        "negative_id": 353
+    },
+    {
+        "caption": "A group of bikers are cruising along a coastal road on their motorcycles.",
+        "keywords": [
+            "motorcycle",
+            "are"
+        ],
+        "id": 121,
+        "negative_id": 47
+    },
+    {
+        "caption": "A motorcyclist is wearing a helmet and riding gear while sitting on their bike.",
+        "keywords": [
+            "motorcycle",
+            "wearing"
+        ],
+        "id": 122,
+        "negative_id": 276
+    },
+    {
+        "caption": "A parked motorcycle sits quietly in a suburban driveway.",
+        "keywords": [
+            "motorcycle",
+            "sits"
+        ],
+        "id": 123,
+        "negative_id": 326
+    },
+    {
+        "caption": "A person is driving a motorcycle through a busy city street.",
+        "keywords": [
+            "motorcycle",
+            "driving"
+        ],
+        "id": 124,
+        "negative_id": 331
+    },
+    {
+        "caption": "A motorcycle is posing for a picture in front of a graffiti-covered wall.",
+        "keywords": [
+            "motorcycle",
+            "posing"
+        ],
+        "id": 125,
+        "negative_id": 389
+    },
+    {
+        "caption": "A motorcyclist leans into a turn while riding through a forested mountain pass.",
+        "keywords": [
+            "motorcycle",
+            "leaning"
+        ],
+        "id": 126,
+        "negative_id": 85
+    },
+    {
+        "caption": "A motorcycle stands out against the backdrop of a scenic coastal road.",
+        "keywords": [
+            "motorcycle",
+            "stand"
+        ],
+        "id": 127,
+        "negative_id": 159
+    },
+    {
+        "caption": "The clock is ticking on the wall.",
+        "keywords": [
+            "clock",
+            "is"
+        ],
+        "id": 128,
+        "negative_id": 174
+    },
+    {
+        "caption": "A clock sits on the bedside table, silently counting the hours.",
+        "keywords": [
+            "clock",
+            "sits"
+        ],
+        "id": 129,
+        "negative_id": 116
+    },
+    {
+        "caption": "The clock stands proudly in the center of the room, its hands frozen in time.",
+        "keywords": [
+            "clock",
+            "stands"
+        ],
+        "id": 130,
+        "negative_id": 9
+    },
+    {
+        "caption": "A clock is showing the time, its hands pointing to the hour and minute.",
+        "keywords": [
+            "clock",
+            "is",
+            "showing"
+        ],
+        "id": 131,
+        "negative_id": 118
+    },
+    {
+        "caption": "The clock is hanging on the kitchen wall, marking the passage of time.",
+        "keywords": [
+            "clock",
+            "is",
+            "hanging"
+        ],
+        "id": 132,
+        "negative_id": 377
+    },
+    {
+        "caption": "The clock on the mantelpiece is chiming, announcing the arrival of noon.",
+        "keywords": [
+            "clock",
+            "'s",
+            "chiming"
+        ],
+        "id": 133,
+        "negative_id": 174
+    },
+    {
+        "caption": "The clock sits atop the bookshelf, overlooked but ever vigilant.",
+        "keywords": [
+            "clock",
+            "sits"
+        ],
+        "id": 134,
+        "negative_id": 126
+    },
+    {
+        "caption": "A vintage clock is standing on the antique desk, a relic of another era.",
+        "keywords": [
+            "clock",
+            "is",
+            "standing"
+        ],
+        "id": 135,
+        "negative_id": 77
+    },
+    {
+        "caption": "The clock on the wall has stopped, its hands frozen at twelve.",
+        "keywords": [
+            "clock",
+            "'s",
+            "stopped"
+        ],
+        "id": 136,
+        "negative_id": 6
+    },
+    {
+        "caption": "A digital clock is mounted on the bedside table, glowing softly in the darkness.",
+        "keywords": [
+            "clock",
+            "is",
+            "mounted"
+        ],
+        "id": 137,
+        "negative_id": 275
+    },
+    {
+        "caption": "The clock on the tower is visible from miles away, a beacon in the night.",
+        "keywords": [
+            "clock",
+            "is",
+            "visible"
+        ],
+        "id": 138,
+        "negative_id": 6
+    },
+    {
+        "caption": "The clock on the classroom wall is counting down the minutes until the end of the lesson.",
+        "keywords": [
+            "clock",
+            "is",
+            "counting"
+        ],
+        "id": 139,
+        "negative_id": 6
+    },
+    {
+        "caption": "The clock sits in the corner of the room, its steady ticking filling the silence.",
+        "keywords": [
+            "clock",
+            "sits"
+        ],
+        "id": 140,
+        "negative_id": 122
+    },
+    {
+        "caption": "The clock on the dashboard is telling the time, guiding the driver on their journey.",
+        "keywords": [
+            "clock",
+            "is",
+            "telling"
+        ],
+        "id": 141,
+        "negative_id": 179
+    },
+    {
+        "caption": "The clock tower rises above the city skyline, a symbol of punctuality and order.",
+        "keywords": [
+            "clock",
+            "rises"
+        ],
+        "id": 142,
+        "negative_id": 173
+    },
+    {
+        "caption": "The old grandfather clock stands in the hallway, its pendulum swinging back and forth.",
+        "keywords": [
+            "clock",
+            "stands"
+        ],
+        "id": 143,
+        "negative_id": 9
+    },
+    {
+        "caption": "A small clock sits on the desk, its ticking barely audible over the hum of activity.",
+        "keywords": [
+            "clock",
+            "sits"
+        ],
+        "id": 144,
+        "negative_id": 173
+    },
+    {
+        "caption": "The clock is perched on the kitchen counter, reminding the cook of time's passage.",
+        "keywords": [
+            "clock",
+            "is",
+            "perched"
+        ],
+        "id": 145,
+        "negative_id": 9
+    },
+    {
+        "caption": "The clock in the town square is a meeting point for locals, its hands pointing to the hour.",
+        "keywords": [
+            "clock",
+            "is",
+            "pointing"
+        ],
+        "id": 146,
+        "negative_id": 383
+    },
+    {
+        "caption": "The clock on the wall is adorned with intricate designs, a work of art as well as a timepiece.",
+        "keywords": [
+            "clock",
+            "is",
+            "adorned"
+        ],
+        "id": 147,
+        "negative_id": 119
+    },
+    {
+        "caption": "The clock tower looms over the town, a silent guardian watching over its inhabitants.",
+        "keywords": [
+            "clock",
+            "looms"
+        ],
+        "id": 148,
+        "negative_id": 66
+    },
+    {
+        "caption": "The clock on the bedside table shows the time, its digital display glowing softly in the dark.",
+        "keywords": [
+            "clock",
+            "shows"
+        ],
+        "id": 149,
+        "negative_id": 287
+    },
+    {
+        "caption": "The clock on the mantlepiece is an antique, its hands moving with a gentle, rhythmic tick.",
+        "keywords": [
+            "clock",
+            "'s",
+            "moving"
+        ],
+        "id": 150,
+        "negative_id": 377
+    },
+    {
+        "caption": "A small clock is sitting on the shelf, its hands ticking away the seconds.",
+        "keywords": [
+            "clock",
+            "is",
+            "sitting"
+        ],
+        "id": 151,
+        "negative_id": 187
+    },
+    {
+        "caption": "Players are passing the soccer ball across the field.",
+        "keywords": [
+            "soccer",
+            "are",
+            "passing"
+        ],
+        "id": 152,
+        "negative_id": 6
+    },
+    {
+        "caption": "Children are playing soccer in the park, their laughter filling the air.",
+        "keywords": [
+            "soccer",
+            "are",
+            "playing"
+        ],
+        "id": 153,
+        "negative_id": 117
+    },
+    {
+        "caption": "A group of friends is kicking the soccer ball around on the beach.",
+        "keywords": [
+            "soccer",
+            "is",
+            "kicking"
+        ],
+        "id": 154,
+        "negative_id": 168
+    },
+    {
+        "caption": "The goalkeeper is diving to save a shot in the intense soccer match.",
+        "keywords": [
+            "soccer",
+            "is",
+            "diving"
+        ],
+        "id": 155,
+        "negative_id": 276
+    },
+    {
+        "caption": "Fans are cheering wildly in the stands as their team scores a goal in the soccer game.",
+        "keywords": [
+            "soccer",
+            "are",
+            "cheering"
+        ],
+        "id": 156,
+        "negative_id": 348
+    },
+    {
+        "caption": "A player is dribbling the soccer ball skillfully, weaving through the opposing team's defense.",
+        "keywords": [
+            "soccer",
+            "is",
+            "dribbling"
+        ],
+        "id": 157,
+        "negative_id": 86
+    },
+    {
+        "caption": "The coach is giving instructions to the soccer team during halftime.",
+        "keywords": [
+            "soccer",
+            "is",
+            "giving"
+        ],
+        "id": 158,
+        "negative_id": 9
+    },
+    {
+        "caption": "Soccer players are stretching and warming up before the big game.",
+        "keywords": [
+            "soccer",
+            "are",
+            "stretching"
+        ],
+        "id": 159,
+        "negative_id": 283
+    },
+    {
+        "caption": "A player is taking a penalty kick in the tense final moments of the soccer match.",
+        "keywords": [
+            "soccer",
+            "is",
+            "taking"
+        ],
+        "id": 160,
+        "negative_id": 348
+    },
+    {
+        "caption": "The referee is blowing the whistle to signal the start of the soccer match.",
+        "keywords": [
+            "soccer",
+            "is",
+            "blowing"
+        ],
+        "id": 161,
+        "negative_id": 287
+    },
+    {
+        "caption": "Two teams are facing off on the soccer field, ready to battle for victory.",
+        "keywords": [
+            "soccer",
+            "are",
+            "facing"
+        ],
+        "id": 162,
+        "negative_id": 80
+    },
+    {
+        "caption": "A young player is practicing soccer drills alone on the field.",
+        "keywords": [
+            "soccer",
+            "is",
+            "practicing"
+        ],
+        "id": 163,
+        "negative_id": 287
+    },
+    {
+        "caption": "The captain is leading the soccer team with determination and skill.",
+        "keywords": [
+            "soccer",
+            "is",
+            "leading"
+        ],
+        "id": 164,
+        "negative_id": 9
+    },
+    {
+        "caption": "The ball is flying into the net, scoring a goal for the soccer team.",
+        "keywords": [
+            "soccer",
+            "is",
+            "flying"
+        ],
+        "id": 165,
+        "negative_id": 194
+    },
+    {
+        "caption": "A player is celebrating with teammates after scoring a goal in the soccer match.",
+        "keywords": [
+            "soccer",
+            "is",
+            "celebrating"
+        ],
+        "id": 166,
+        "negative_id": 298
+    },
+    {
+        "caption": "A pack of dogs is running through the meadow, their tails wagging happily.",
+        "keywords": [
+            "dogs",
+            "is",
+            "running"
+        ],
+        "id": 167,
+        "negative_id": 348
+    },
+    {
+        "caption": "A cute puppy is sitting obediently, waiting for its owner's command.",
+        "keywords": [
+            "dogs",
+            "is",
+            "sitting"
+        ],
+        "id": 168,
+        "negative_id": 35
+    },
+    {
+        "caption": "Two dogs are playing together in the backyard, chasing each other with joy.",
+        "keywords": [
+            "dogs",
+            "are",
+            "playing"
+        ],
+        "id": 169,
+        "negative_id": 13
+    },
+    {
+        "caption": "A loyal dog is standing guard at the entrance of the house, watching over its territory.",
+        "keywords": [
+            "dogs",
+            "is",
+            "standing"
+        ],
+        "id": 170,
+        "negative_id": 201
+    },
+    {
+        "caption": "A fluffy dog is lying on the couch, enjoying a lazy afternoon nap.",
+        "keywords": [
+            "dogs",
+            "is",
+            "lying"
+        ],
+        "id": 171,
+        "negative_id": 233
+    },
+    {
+        "caption": "The owner is walking their dogs in the park, enjoying the fresh air and sunshine.",
+        "keywords": [
+            "dogs",
+            "is",
+            "walking"
+        ],
+        "id": 172,
+        "negative_id": 121
+    },
+    {
+        "caption": "A dog is looking up at its owner with big, pleading eyes, hoping for a treat.",
+        "keywords": [
+            "dogs",
+            "is",
+            "looking"
+        ],
+        "id": 173,
+        "negative_id": 223
+    },
+    {
+        "caption": "Two dogs are fighting over a chew toy, growling and wrestling playfully.",
+        "keywords": [
+            "dogs",
+            "are",
+            "fighting"
+        ],
+        "id": 174,
+        "negative_id": 371
+    },
+    {
+        "caption": "A group of dogs is playing fetch with their owner in the backyard, eager to catch the ball.",
+        "keywords": [
+            "dogs",
+            "is",
+            "playing"
+        ],
+        "id": 175,
+        "negative_id": 123
+    },
+    {
+        "caption": "A dog is sleeping peacefully by the fireplace, curled up in a cozy ball of fur.",
+        "keywords": [
+            "dogs",
+            "is",
+            "sleeping"
+        ],
+        "id": 176,
+        "negative_id": 283
+    },
+    {
+        "caption": "A dog is holding a stick in its mouth, proudly showing off its latest find.",
+        "keywords": [
+            "dogs",
+            "is",
+            "holding"
+        ],
+        "id": 177,
+        "negative_id": 332
+    },
+    {
+        "caption": "A dog is riding in the back of a pickup truck, enjoying the wind in its fur.",
+        "keywords": [
+            "dogs",
+            "is",
+            "riding"
+        ],
+        "id": 178,
+        "negative_id": 120
+    },
+    {
+        "caption": "A dog is sitting patiently beside its owner, waiting for a command.",
+        "keywords": [
+            "dogs",
+            "is",
+            "sitting"
+        ],
+        "id": 179,
+        "negative_id": 70
+    },
+    {
+        "caption": "The dogs are being groomed by their owner, enjoying the attention and pampering.",
+        "keywords": [
+            "dogs",
+            "are",
+            "being"
+        ],
+        "id": 180,
+        "negative_id": 119
+    },
+    {
+        "caption": "A dog is cooking dinner for its family, carefully stirring the pot on the stove.",
+        "keywords": [
+            "dogs",
+            "is",
+            "cooking"
+        ],
+        "id": 181,
+        "negative_id": 384
+    },
+    {
+        "caption": "A group of friends are enjoying a cold beer at the bar, laughing and chatting.",
+        "keywords": [
+            "beer",
+            "are",
+            "enjoying"
+        ],
+        "id": 182,
+        "negative_id": 173
+    },
+    {
+        "caption": "A man is holding a tall glass of beer, taking a sip and savoring the taste.",
+        "keywords": [
+            "beer",
+            "is",
+            "holding"
+        ],
+        "id": 183,
+        "negative_id": 7
+    },
+    {
+        "caption": "The beer is sitting on the table, its golden color sparkling in the sunlight.",
+        "keywords": [
+            "beer",
+            "is",
+            "sitting"
+        ],
+        "id": 184,
+        "negative_id": 276
+    },
+    {
+        "caption": "A woman is drinking beer straight from the bottle.",
+        "keywords": [
+            "beer",
+            "is",
+            "drinking"
+        ],
+        "id": 185,
+        "negative_id": 376
+    },
+    {
+        "caption": "The beer is chilling in the fridge.",
+        "keywords": [
+            "beer",
+            "is",
+            "chilling"
+        ],
+        "id": 186,
+        "negative_id": 276
+    },
+    {
+        "caption": "A group of friends are sharing a pitcher of beer, clinking their glasses together in celebration.",
+        "keywords": [
+            "beer",
+            "are",
+            "sharing"
+        ],
+        "id": 187,
+        "negative_id": 97
+    },
+    {
+        "caption": "The bartender is pouring beer from the tap.",
+        "keywords": [
+            "beer",
+            "is",
+            "pouring"
+        ],
+        "id": 188,
+        "negative_id": 66
+    },
+    {
+        "caption": "A couple is toasting with their beer bottles.",
+        "keywords": [
+            "beer",
+            "is",
+            "toasting"
+        ],
+        "id": 189,
+        "negative_id": 170
+    },
+    {
+        "caption": "The beer is sitting on the picnic blanket.",
+        "keywords": [
+            "beer",
+            "is",
+            "sitting"
+        ],
+        "id": 190,
+        "negative_id": 174
+    },
+    {
+        "caption": "A group of friends are sipping beer by the campfire, sharing stories under the starry sky.",
+        "keywords": [
+            "beer",
+            "are",
+            "sipping"
+        ],
+        "id": 191,
+        "negative_id": 168
+    },
+    {
+        "caption": "A bartender is serving beer to the customers, expertly pouring it into frosty mugs.",
+        "keywords": [
+            "beer",
+            "is",
+            "serving"
+        ],
+        "id": 192,
+        "negative_id": 3
+    },
+    {
+        "caption": "The beer is bubbling in the glass, its effervescence adding to the anticipation of the first sip.",
+        "keywords": [
+            "beer",
+            "is",
+            "bubbling"
+        ],
+        "id": 193,
+        "negative_id": 9
+    },
+    {
+        "caption": "A group of colleagues are enjoying after-work drinks, clinking their beer glasses in celebration.",
+        "keywords": [
+            "beer",
+            "are",
+            "enjoying"
+        ],
+        "id": 194,
+        "negative_id": 308
+    },
+    {
+        "caption": "The beer is resting in the cooler, keeping cool for the barbecue party later in the day.",
+        "keywords": [
+            "beer",
+            "is",
+            "resting"
+        ],
+        "id": 195,
+        "negative_id": 383
+    },
+    {
+        "caption": "A bartender is handing a cold beer to a customer, their smile reflecting the satisfaction of a good drink.",
+        "keywords": [
+            "beer",
+            "is",
+            "handing"
+        ],
+        "id": 196,
+        "negative_id": 36
+    },
+    {
+        "caption": "A photographer is holding a camera, adjusting the settings before taking a photo.",
+        "keywords": [
+            "camera",
+            "is",
+            "holding"
+        ],
+        "id": 197,
+        "negative_id": 121
+    },
+    {
+        "caption": "A model is posing for the camera, striking a confident pose in front of the lens.",
+        "keywords": [
+            "camera",
+            "is",
+            "posing"
+        ],
+        "id": 198,
+        "negative_id": 378
+    },
+    {
+        "caption": "The camera is sitting on the tripod, steady and ready to capture the perfect shot.",
+        "keywords": [
+            "camera",
+            "is",
+            "sitting"
+        ],
+        "id": 199,
+        "negative_id": 377
+    },
+    {
+        "caption": "A person is smiling at the camera, their joy evident in the warmth of their expression.",
+        "keywords": [
+            "camera",
+            "is",
+            "smiling"
+        ],
+        "id": 200,
+        "negative_id": 378
+    },
+    {
+        "caption": "A photographer is wearing a camera around their neck, ready to capture memorable moments.",
+        "keywords": [
+            "camera",
+            "is",
+            "wearing"
+        ],
+        "id": 201,
+        "negative_id": 125
+    },
+    {
+        "caption": "A tourist is taking photos with their camera, capturing the beauty of the cityscape.",
+        "keywords": [
+            "camera",
+            "is",
+            "taking"
+        ],
+        "id": 202,
+        "negative_id": 381
+    },
+    {
+        "caption": "A group of friends are standing together, posing for a photo with the camera.",
+        "keywords": [
+            "camera",
+            "are",
+            "standing"
+        ],
+        "id": 203,
+        "negative_id": 384
+    },
+    {
+        "caption": "The camera is looking out over the horizon, capturing the vastness of the landscape.",
+        "keywords": [
+            "camera",
+            "is",
+            "looking"
+        ],
+        "id": 204,
+        "negative_id": 44
+    },
+    {
+        "caption": "A photographer is holding the camera steady, focusing intently on the subject.",
+        "keywords": [
+            "camera",
+            "is",
+            "holding"
+        ],
+        "id": 205,
+        "negative_id": 121
+    },
+    {
+        "caption": "The camera is facing the mirror, reflecting the image of the photographer behind it.",
+        "keywords": [
+            "camera",
+            "is",
+            "facing"
+        ],
+        "id": 206,
+        "negative_id": 118
+    },
+    {
+        "caption": "A couple is staring lovingly at each other through the camera lens, lost in their own world.",
+        "keywords": [
+            "camera",
+            "is",
+            "staring"
+        ],
+        "id": 207,
+        "negative_id": 19
+    },
+    {
+        "caption": "The camera is laying on the table, waiting to be picked up and used for the next adventure.",
+        "keywords": [
+            "camera",
+            "is",
+            "laying"
+        ],
+        "id": 208,
+        "negative_id": 6
+    },
+    {
+        "caption": "A photographer is taking a selfie with the camera, capturing a moment of self-reflection.",
+        "keywords": [
+            "camera",
+            "is",
+            "taking"
+        ],
+        "id": 209,
+        "negative_id": 9
+    },
+    {
+        "caption": "The camera is held in the hands of a professional, its weight reassuring in their skilled grip.",
+        "keywords": [
+            "camera",
+            "is",
+            "held"
+        ],
+        "id": 210,
+        "negative_id": 9
+    },
+    {
+        "caption": "A tourist is looking through the camera's viewfinder, framing the perfect shot.",
+        "keywords": [
+            "camera",
+            "is",
+            "looking"
+        ],
+        "id": 211,
+        "negative_id": 125
+    },
+    {
+        "caption": "A train is crossing the bridge, its rhythmic clatter echoing through the valley below.",
+        "keywords": [
+            "bridge",
+            "is",
+            "crossing"
+        ],
+        "id": 212,
+        "negative_id": 379
+    },
+    {
+        "caption": "A car is driving over the bridge, its headlights piercing through the darkness of the night.",
+        "keywords": [
+            "bridge",
+            "is",
+            "driving"
+        ],
+        "id": 213,
+        "negative_id": 287
+    },
+    {
+        "caption": "A cyclist is riding across the bridge, feeling the wind rush past as they pedal forward.",
+        "keywords": [
+            "bridge",
+            "is",
+            "riding"
+        ],
+        "id": 214,
+        "negative_id": 117
+    },
+    {
+        "caption": "A group of friends is walking along the bridge, chatting and laughing as they enjoy the view.",
+        "keywords": [
+            "bridge",
+            "are",
+            "walking"
+        ],
+        "id": 215,
+        "negative_id": 379
+    },
+    {
+        "caption": "The bridge is traveling over the river, connecting two bustling neighborhoods on either side.",
+        "keywords": [
+            "bridge",
+            "is",
+            "traveling"
+        ],
+        "id": 216,
+        "negative_id": 377
+    },
+    {
+        "caption": "A boat is passing beneath the bridge, its wake shimmering in the sunlight.",
+        "keywords": [
+            "bridge",
+            "is",
+            "passing"
+        ],
+        "id": 217,
+        "negative_id": 287
+    },
+    {
+        "caption": "A bus is going over the bridge, its passengers gazing out at the city skyline.",
+        "keywords": [
+            "bridge",
+            "is",
+            "going"
+        ],
+        "id": 218,
+        "negative_id": 116
+    },
+    {
+        "caption": "A family is sitting on the bridge, enjoying a picnic as they watch the boats glide by.",
+        "keywords": [
+            "bridge",
+            "is",
+            "sitting"
+        ],
+        "id": 219,
+        "negative_id": 174
+    },
+    {
+        "caption": "The bridge is spanning the river, its arches an architectural marvel against the sky.",
+        "keywords": [
+            "bridge",
+            "is",
+            "spanning"
+        ],
+        "id": 220,
+        "negative_id": 6
+    },
+    {
+        "caption": "A group of tourists is admiring the view from the bridge, snapping photos of the city below.",
+        "keywords": [
+            "bridge",
+            "are",
+            "admiring"
+        ],
+        "id": 221,
+        "negative_id": 126
+    },
+    {
+        "caption": "A truck is passing over the bridge, its cargo bound for destinations unknown.",
+        "keywords": [
+            "bridge",
+            "is",
+            "passing"
+        ],
+        "id": 222,
+        "negative_id": 24
+    },
+    {
+        "caption": "A jogger is running across the bridge, the rhythmic beat of their footsteps echoing along the span.",
+        "keywords": [
+            "bridge",
+            "is",
+            "running"
+        ],
+        "id": 223,
+        "negative_id": 384
+    },
+    {
+        "caption": "The bridge has stood for centuries, a testament to the ingenuity and craftsmanship of its builders.",
+        "keywords": [
+            "bridge",
+            "has",
+            "stood"
+        ],
+        "id": 224,
+        "negative_id": 381
+    },
+    {
+        "caption": "The kitchen sinks are gleaming with cleanliness, reflecting the morning sunlight streaming through the window.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 225,
+        "negative_id": 9
+    },
+    {
+        "caption": "The bathroom sinks are overflowing with soapy water, evidence of a lively morning routine.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 226,
+        "negative_id": 197
+    },
+    {
+        "caption": "The utility room sinks are filled with dirty dishes, awaiting their turn to be scrubbed clean.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 227,
+        "negative_id": 171
+    },
+    {
+        "caption": "The bar sinks are sparkling with fresh ice, ready to chill a night's worth of drinks.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 228,
+        "negative_id": 386
+    },
+    {
+        "caption": "The outdoor sinks are connected to the garden hose, offering a convenient spot for watering plants.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 229,
+        "negative_id": 44
+    },
+    {
+        "caption": "The classroom sinks are equipped with motion-sensing faucets, promoting water conservation.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 230,
+        "negative_id": 24
+    },
+    {
+        "caption": "The hotel sinks are stocked with miniature toiletries, inviting guests to freshen up after a long journey.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 231,
+        "negative_id": 252
+    },
+    {
+        "caption": "The public restroom sinks are bustling with activity, as people wash their hands before returning to their day.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 232,
+        "negative_id": 295
+    },
+    {
+        "caption": "The farmhouse sinks are large and deep, ideal for washing oversized pots and pans.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 233,
+        "negative_id": 207
+    },
+    {
+        "caption": "The studio sinks are filled with colorful paints, evidence of a productive day of artistic expression.",
+        "keywords": [
+            "sinks",
+            "are"
+        ],
+        "id": 234,
+        "negative_id": 189
+    },
+    {
+        "caption": "A wooden bridge is crossing the wide river, connecting two picturesque villages on either side.",
+        "keywords": [
+            "river",
+            "crossing"
+        ],
+        "id": 235,
+        "negative_id": 298
+    },
+    {
+        "caption": "A family of ducks is swimming gracefully in the calm river, their movements creating ripples on the surface.",
+        "keywords": [
+            "river",
+            "is"
+        ],
+        "id": 236,
+        "negative_id": 168
+    },
+    {
+        "caption": "A group of friends is riding inflatable tubes down the lazy river, enjoying a leisurely afternoon on the water.",
+        "keywords": [
+            "river",
+            "riding"
+        ],
+        "id": 237,
+        "negative_id": 383
+    },
+    {
+        "caption": "A lone fisherman is sitting on the riverbank, patiently waiting for the perfect catch.",
+        "keywords": [
+            "river",
+            "sitting"
+        ],
+        "id": 238,
+        "negative_id": 380
+    },
+    {
+        "caption": "A pair of swans are gracefully gliding across the serene river, their elegant forms reflected in the water below.",
+        "keywords": [
+            "river",
+            "are"
+        ],
+        "id": 239,
+        "negative_id": 174
+    },
+    {
+        "caption": "A heron is standing motionless in the shallow river, its sharp eyes focused intently on the water, waiting for prey.",
+        "keywords": [
+            "river",
+            "is"
+        ],
+        "id": 240,
+        "negative_id": 194
+    },
+    {
+        "caption": "A hiker is walking along the winding river trail, enjoying the soothing sound of flowing water and rustling leaves.",
+        "keywords": [
+            "river",
+            "walking"
+        ],
+        "id": 241,
+        "negative_id": 382
+    },
+    {
+        "caption": "A group of surfers is riding the challenging waves of the river, showcasing their skills on the turbulent water.",
+        "keywords": [
+            "river",
+            "surfing"
+        ],
+        "id": 242,
+        "negative_id": 120
+    },
+    {
+        "caption": "A colorful raft is floating down the fast-flowing river, its occupants laughing and splashing in the cool water.",
+        "keywords": [
+            "river",
+            "floating"
+        ],
+        "id": 243,
+        "negative_id": 383
+    },
+    {
+        "caption": "A child is holding a makeshift boat made from leaves and twigs, excitedly launching it into the gentle current of the river.",
+        "keywords": [
+            "river",
+            "holding"
+        ],
+        "id": 244,
+        "negative_id": 173
+    },
+    {
+        "caption": "The monitor is displaying a vibrant array of colors, illuminating the dimly lit room with its bright screen.",
+        "keywords": [
+            "monitor",
+            "is"
+        ],
+        "id": 245,
+        "negative_id": 117
+    },
+    {
+        "caption": "A person is sitting in front of the monitor, engrossed in their work as they type furiously on the keyboard.",
+        "keywords": [
+            "monitor",
+            "sitting"
+        ],
+        "id": 246,
+        "negative_id": 44
+    },
+    {
+        "caption": "The cat is looking curiously at the monitor, its eyes following the movement of the cursor on the screen.",
+        "keywords": [
+            "monitor",
+            "looking"
+        ],
+        "id": 247,
+        "negative_id": 187
+    },
+    {
+        "caption": "The monitor is showing a breathtaking landscape, transporting the viewer to a distant and tranquil place.",
+        "keywords": [
+            "monitor",
+            "is"
+        ],
+        "id": 248,
+        "negative_id": 189
+    },
+    {
+        "caption": "A group of students is sitting around the monitor, collaborating on a project as they discuss ideas and make notes.",
+        "keywords": [
+            "monitor",
+            "sitting"
+        ],
+        "id": 249,
+        "negative_id": 35
+    },
+    {
+        "caption": "The monitor is displaying vital signs, providing crucial information to the medical team as they monitor the patient's condition.",
+        "keywords": [
+            "monitor",
+            "is"
+        ],
+        "id": 250,
+        "negative_id": 194
+    },
+    {
+        "caption": "A photographer is looking intently at the monitor, carefully adjusting the colors and contrast of the image to achieve the perfect shot.",
+        "keywords": [
+            "monitor",
+            "looking"
+        ],
+        "id": 251,
+        "negative_id": 382
+    },
+    {
+        "caption": "The monitor is sitting atop a cluttered desk, surrounded by stacks of papers and office supplies.",
+        "keywords": [
+            "monitor",
+            "sitting"
+        ],
+        "id": 252,
+        "negative_id": 66
+    },
+    {
+        "caption": "The monitor is showing a live feed of the bustling city streets, capturing the vibrant energy of urban life.",
+        "keywords": [
+            "monitor",
+            "is"
+        ],
+        "id": 253,
+        "negative_id": 383
+    },
+    {
+        "caption": "A gamer is sitting in front of the monitor, fully immersed in the virtual world as they navigate through challenging levels.",
+        "keywords": [
+            "monitor",
+            "sitting"
+        ],
+        "id": 254,
+        "negative_id": 277
+    },
+    {
+        "caption": "The windows are letting in streams of golden sunlight, casting warm rays across the room and illuminating every corner.",
+        "keywords": [
+            "windows",
+            "are"
+        ],
+        "id": 255,
+        "negative_id": 179
+    },
+    {
+        "caption": "The house has windows of all shapes and sizes, each offering a unique view of the surrounding landscape.",
+        "keywords": [
+            "windows",
+            "has"
+        ],
+        "id": 256,
+        "negative_id": 376
+    },
+    {
+        "caption": "A cat is sitting on the windowsill, basking in the sunlight and lazily watching the world outside.",
+        "keywords": [
+            "windows",
+            "sitting"
+        ],
+        "id": 257,
+        "negative_id": 194
+    },
+    {
+        "caption": "The windows are providing a glimpse into the bustling street below, where people hurry past on their daily errands.",
+        "keywords": [
+            "windows",
+            "are"
+        ],
+        "id": 258,
+        "negative_id": 66
+    },
+    {
+        "caption": "The old mansion has windows adorned with intricate designs, adding a touch of elegance to its historic facade.",
+        "keywords": [
+            "windows",
+            "has"
+        ],
+        "id": 259,
+        "negative_id": 23
+    },
+    {
+        "caption": "A gentle breeze is blowing through the open windows, carrying with it the scent of fresh flowers and newly mown grass.",
+        "keywords": [
+            "windows",
+            "is"
+        ],
+        "id": 260,
+        "negative_id": 377
+    },
+    {
+        "caption": "The windows are covered with a thin layer of frost, creating delicate patterns that sparkle in the morning light.",
+        "keywords": [
+            "windows",
+            "are"
+        ],
+        "id": 261,
+        "negative_id": 377
+    },
+    {
+        "caption": "The windows are framed by billowing curtains, their sheer fabric gently swaying in the breeze like ethereal clouds.",
+        "keywords": [
+            "windows",
+            "are"
+        ],
+        "id": 262,
+        "negative_id": 119
+    },
+    {
+        "caption": "The classroom has large windows that overlook a peaceful garden, providing a serene backdrop for learning.",
+        "keywords": [
+            "windows",
+            "has"
+        ],
+        "id": 263,
+        "negative_id": 266
+    },
+    {
+        "caption": "A group of friends is sitting by the windows, sipping hot cocoa and sharing stories as they watch the snowfall outside.",
+        "keywords": [
+            "windows",
+            "sitting"
+        ],
+        "id": 264,
+        "negative_id": 123
+    },
+    {
+        "caption": "The clock is hanging on the wall, its pendulum swinging back and forth with hypnotic rhythm.",
+        "keywords": [
+            "clock",
+            "is"
+        ],
+        "id": 265,
+        "negative_id": 381
+    },
+    {
+        "caption": "A vintage clock is sitting on the mantelpiece, its hands frozen in time, a relic of days gone by.",
+        "keywords": [
+            "clock",
+            "sitting"
+        ],
+        "id": 266,
+        "negative_id": 230
+    },
+    {
+        "caption": "The clock's hands are pointing to midnight, signaling the start of a new day filled with endless possibilities.",
+        "keywords": [
+            "clock",
+            "'s"
+        ],
+        "id": 267,
+        "negative_id": 179
+    },
+    {
+        "caption": "A grandfather clock is standing in the corner, its solemn presence filling the room with a sense of history.",
+        "keywords": [
+            "clock",
+            "is"
+        ],
+        "id": 268,
+        "negative_id": 124
+    },
+    {
+        "caption": "The clock stands tall against the wall, its intricate gears visible through the glass casing, a marvel of engineering.",
+        "keywords": [
+            "clock",
+            "stands"
+        ],
+        "id": 269,
+        "negative_id": 381
+    },
+    {
+        "caption": "The clock has Roman numerals engraved on its face, each one carefully crafted to mark the passage of time.",
+        "keywords": [
+            "clock",
+            "has"
+        ],
+        "id": 270,
+        "negative_id": 9
+    },
+    {
+        "caption": "A cat is sitting beside the clock, lazily watching the seconds tick away with half-closed eyes.",
+        "keywords": [
+            "clock",
+            "sitting"
+        ],
+        "id": 271,
+        "negative_id": 123
+    },
+    {
+        "caption": "The clock is showing the wrong time, its hands frozen in place, oblivious to the world around it.",
+        "keywords": [
+            "clock",
+            "is"
+        ],
+        "id": 272,
+        "negative_id": 275
+    },
+    {
+        "caption": "The clock's chime rings out through the house, a melodic reminder of the fleeting nature of time.",
+        "keywords": [
+            "clock",
+            "'s"
+        ],
+        "id": 273,
+        "negative_id": 380
+    },
+    {
+        "caption": "A digital clock is sitting on the bedside table, its bright display casting an eerie glow in the darkness.",
+        "keywords": [
+            "clock",
+            "sitting"
+        ],
+        "id": 274,
+        "negative_id": 383
+    },
+    {
+        "caption": "He adjusts his sleek black tie, adding a touch of elegance to his attire.",
+        "keywords": [
+            "tie",
+            "adjusting"
+        ],
+        "id": 275,
+        "negative_id": 213
+    },
+    {
+        "caption": "She stands confidently, her tie perfectly knotted, a symbol of professionalism.",
+        "keywords": [
+            "tie",
+            "standing"
+        ],
+        "id": 276,
+        "negative_id": 296
+    },
+    {
+        "caption": "A man sits at his desk, his tie slightly askew, a sign of a long day at work.",
+        "keywords": [
+            "tie",
+            "sitting"
+        ],
+        "id": 277,
+        "negative_id": 385
+    },
+    {
+        "caption": "The businessman smiles for the camera, his colorful tie adding a pop of personality to his outfit.",
+        "keywords": [
+            "tie",
+            "smiling"
+        ],
+        "id": 278,
+        "negative_id": 380
+    },
+    {
+        "caption": "She wears a floral tie, the vibrant colors reflecting her cheerful personality.",
+        "keywords": [
+            "tie",
+            "wearing"
+        ],
+        "id": 279,
+        "negative_id": 166
+    },
+    {
+        "caption": "He holds his tie in one hand, the other busy adjusting the knot to perfection.",
+        "keywords": [
+            "tie",
+            "holding"
+        ],
+        "id": 280,
+        "negative_id": 383
+    },
+    {
+        "caption": "The man poses for a portrait, his tie meticulously straightened, ready for the camera.",
+        "keywords": [
+            "tie",
+            "posing"
+        ],
+        "id": 281,
+        "negative_id": 117
+    },
+    {
+        "caption": "The woman gazes in the mirror, her tie neatly arranged, ensuring she looks her best for the day ahead.",
+        "keywords": [
+            "tie",
+            "looking"
+        ],
+        "id": 282,
+        "negative_id": 380
+    },
+    {
+        "caption": "He sports a striped tie, the classic pattern complementing his tailored suit.",
+        "keywords": [
+            "tie",
+            "sporting"
+        ],
+        "id": 283,
+        "negative_id": 263
+    },
+    {
+        "caption": "The groom stands at the altar, his tie matching the color scheme of the wedding, a symbol of the special day.",
+        "keywords": [
+            "tie",
+            "matching"
+        ],
+        "id": 284,
+        "negative_id": 168
+    },
+    {
+        "caption": "A stack of bricks sits beside the construction site, waiting to be used.",
+        "keywords": [
+            "brick",
+            "sitting"
+        ],
+        "id": 285,
+        "negative_id": 201
+    },
+    {
+        "caption": "The old building is made of weathered bricks, a testament to its enduring strength.",
+        "keywords": [
+            "brick",
+            "is"
+        ],
+        "id": 286,
+        "negative_id": 263
+    },
+    {
+        "caption": "Each brick has been carefully laid by skilled craftsmen, creating a sturdy foundation.",
+        "keywords": [
+            "brick",
+            "has"
+        ],
+        "id": 287,
+        "negative_id": 48
+    },
+    {
+        "caption": "The wall stands tall, constructed from rows of neatly stacked bricks.",
+        "keywords": [
+            "brick",
+            "standing"
+        ],
+        "id": 288,
+        "negative_id": 383
+    },
+    {
+        "caption": "Amidst the rubble, a lone brick stands as a reminder of the building that once stood here.",
+        "keywords": [
+            "brick",
+            "stands"
+        ],
+        "id": 289,
+        "negative_id": 179
+    },
+    {
+        "caption": "The path is paved with red bricks, leading the way through the garden.",
+        "keywords": [
+            "brick",
+            "paved"
+        ],
+        "id": 290,
+        "negative_id": 277
+    },
+    {
+        "caption": "A brick chimney rises from the roof, releasing wisps of smoke into the air.",
+        "keywords": [
+            "brick",
+            "rises"
+        ],
+        "id": 291,
+        "negative_id": 174
+    },
+    {
+        "caption": "The brick facade of the house exudes warmth and character, welcoming visitors with open arms.",
+        "keywords": [
+            "brick",
+            "exudes"
+        ],
+        "id": 292,
+        "negative_id": 9
+    },
+    {
+        "caption": "The brick pathway winds its way through the park, inviting visitors to explore its lush surroundings.",
+        "keywords": [
+            "brick",
+            "winds"
+        ],
+        "id": 293,
+        "negative_id": 174
+    },
+    {
+        "caption": "A pile of bricks lies abandoned in the corner, remnants of a project left unfinished.",
+        "keywords": [
+            "brick",
+            "lies"
+        ],
+        "id": 294,
+        "negative_id": 78
+    },
+    {
+        "caption": "She holds a sheet of paper in her hand, carefully reading the words written on it.",
+        "keywords": [
+            "paper",
+            "holding"
+        ],
+        "id": 295,
+        "negative_id": 117
+    },
+    {
+        "caption": "The desk is cluttered with papers, each one representing a different task waiting to be completed.",
+        "keywords": [
+            "paper",
+            "is"
+        ],
+        "id": 296,
+        "negative_id": 354
+    },
+    {
+        "caption": "With precision, she begins cutting the paper into intricate shapes, a skill honed over years of practice.",
+        "keywords": [
+            "paper",
+            "cutting"
+        ],
+        "id": 297,
+        "negative_id": 116
+    },
+    {
+        "caption": "A group of friends sits around the table, chatting and laughing as they fold paper into playful origami figures.",
+        "keywords": [
+            "paper",
+            "sitting"
+        ],
+        "id": 298,
+        "negative_id": 93
+    },
+    {
+        "caption": "The artist's studio is filled with stacks of paper, a blank canvas waiting to be transformed into a masterpiece.",
+        "keywords": [
+            "paper",
+            "has"
+        ],
+        "id": 299,
+        "negative_id": 394
+    },
+    {
+        "caption": "The toddler eagerly eats the paper, much to the dismay of his parents who try to stop him.",
+        "keywords": [
+            "paper",
+            "eating"
+        ],
+        "id": 300,
+        "negative_id": 287
+    },
+    {
+        "caption": "The office worker sits at her desk, surrounded by piles of paperwork, each one requiring her attention.",
+        "keywords": [
+            "paper",
+            "sitting"
+        ],
+        "id": 301,
+        "negative_id": 86
+    },
+    {
+        "caption": "The bookshelf is lined with leather-bound volumes, their pages yellowed with age but still filled with wisdom.",
+        "keywords": [
+            "paper",
+            "are"
+        ],
+        "id": 302,
+        "negative_id": 387
+    },
+    {
+        "caption": "The teacher hands out sheets of paper to each student, preparing them for the day's lesson.",
+        "keywords": [
+            "paper",
+            "handing"
+        ],
+        "id": 303,
+        "negative_id": 177
+    },
+    {
+        "caption": "The manuscript sits on the editor's desk, awaiting its final revisions before being sent off to the printer.",
+        "keywords": [
+            "paper",
+            "sits"
+        ],
+        "id": 304,
+        "negative_id": 125
+    },
+    {
+        "caption": "A loaf of bread is displayed on the kitchen counter, freshly baked and tempting.",
+        "keywords": [
+            "bread",
+            "is"
+        ],
+        "id": 305,
+        "negative_id": 179
+    },
+    {
+        "caption": "The bread sits untouched on the table, waiting for someone to come and enjoy its warm, yeasty goodness.",
+        "keywords": [
+            "bread",
+            "sits"
+        ],
+        "id": 306,
+        "negative_id": 118
+    },
+    {
+        "caption": "Several slices of bread are stacked neatly on the cutting board, ready to be made into sandwiches for lunch.",
+        "keywords": [
+            "bread",
+            "are"
+        ],
+        "id": 307,
+        "negative_id": 173
+    },
+    {
+        "caption": "The baker proudly displays his creations, rows of bread lined up on the shelves like soldiers standing at attention.",
+        "keywords": [
+            "bread",
+            "is"
+        ],
+        "id": 308,
+        "negative_id": 122
+    },
+    {
+        "caption": "The picnic basket is filled with goodies, including a loaf of bread perfect for making sandwiches.",
+        "keywords": [
+            "bread",
+            "including"
+        ],
+        "id": 309,
+        "negative_id": 279
+    },
+    {
+        "caption": "The aroma of freshly baked bread fills the air, enticing passersby to stop and sample the wares.",
+        "keywords": [
+            "bread",
+            "fills"
+        ],
+        "id": 310,
+        "negative_id": 120
+    },
+    {
+        "caption": "The bread has gone stale, forgotten in the pantry amidst cans and jars of long-forgotten ingredients.",
+        "keywords": [
+            "bread",
+            "has"
+        ],
+        "id": 311,
+        "negative_id": 126
+    },
+    {
+        "caption": "She carefully slices the bread, her knife gliding effortlessly through the soft, pillowy interior.",
+        "keywords": [
+            "bread",
+            "slicing"
+        ],
+        "id": 312,
+        "negative_id": 123
+    },
+    {
+        "caption": "The children eagerly gather around the table, their eyes lighting up at the sight of freshly baked bread.",
+        "keywords": [
+            "bread",
+            "baked"
+        ],
+        "id": 313,
+        "negative_id": 124
+    },
+    {
+        "caption": "The bakery window is filled with an array of bread, each loaf more enticing than the last.",
+        "keywords": [
+            "bread",
+            "is"
+        ],
+        "id": 314,
+        "negative_id": 382
+    },
+    {
+        "caption": "The adult holds a book in one hand, lost in the pages as they stand beneath the shade of a tree.",
+        "keywords": [
+            "adult",
+            "holding"
+        ],
+        "id": 315,
+        "negative_id": 174
+    },
+    {
+        "caption": "An adult stands tall on the mountaintop, surveying the breathtaking landscape spread out before them.",
+        "keywords": [
+            "adult",
+            "standing"
+        ],
+        "id": 316,
+        "negative_id": 121
+    },
+    {
+        "caption": "A group of adults walks along the sandy beach, the waves lapping gently at their feet as they enjoy a leisurely stroll.",
+        "keywords": [
+            "adult",
+            "walking"
+        ],
+        "id": 317,
+        "negative_id": 381
+    },
+    {
+        "caption": "The adult is lost in thought, staring out the window with a distant look in their eyes.",
+        "keywords": [
+            "adult",
+            "is"
+        ],
+        "id": 318,
+        "negative_id": 124
+    },
+    {
+        "caption": "Sitting alone in the park, the adult enjoys a moment of quiet reflection amidst the hustle and bustle of the city.",
+        "keywords": [
+            "adult",
+            "sitting"
+        ],
+        "id": 319,
+        "negative_id": 378
+    },
+    {
+        "caption": "The adult stands proudly on the podium, accepting the award for their outstanding achievements.",
+        "keywords": [
+            "adult",
+            "stands"
+        ],
+        "id": 320,
+        "negative_id": 44
+    },
+    {
+        "caption": "A group of adults are gathered around the table, engaged in lively conversation and laughter.",
+        "keywords": [
+            "adult",
+            "are"
+        ],
+        "id": 321,
+        "negative_id": 235
+    },
+    {
+        "caption": "With a kite in hand, the adult laughs joyfully as they feel the wind lift them off the ground, flying high above the treetops.",
+        "keywords": [
+            "adult",
+            "flying"
+        ],
+        "id": 322,
+        "negative_id": 276
+    },
+    {
+        "caption": "Lost in thought, the adult looks out over the city skyline, contemplating the vastness of the world below.",
+        "keywords": [
+            "adult",
+            "looking"
+        ],
+        "id": 323,
+        "negative_id": 189
+    },
+    {
+        "caption": "The adults play a friendly game of volleyball on the beach, their laughter filling the air as they dive and spike the ball.",
+        "keywords": [
+            "adult",
+            "playing"
+        ],
+        "id": 324,
+        "negative_id": 380
+    },
+    {
+        "caption": "The keyboard sits on the desk, awaiting the next keystroke to bring the screen to life.",
+        "keywords": [
+            "keyboard",
+            "sitting"
+        ],
+        "id": 325,
+        "negative_id": 121
+    },
+    {
+        "caption": "An array of colorful buttons adorns the keyboard, each one waiting to be pressed by eager fingers.",
+        "keywords": [
+            "keyboard",
+            "is"
+        ],
+        "id": 326,
+        "negative_id": 125
+    },
+    {
+        "caption": "The keyboard is laying haphazardly on the cluttered desk, forgotten amidst a sea of papers and office supplies.",
+        "keywords": [
+            "keyboard",
+            "laying"
+        ],
+        "id": 327,
+        "negative_id": 179
+    },
+    {
+        "caption": "A group of programmers are gathered around the keyboard, brainstorming ideas and coding late into the night.",
+        "keywords": [
+            "keyboard",
+            "are"
+        ],
+        "id": 328,
+        "negative_id": 6
+    },
+    {
+        "caption": "The musician has a keyboard in front of them, fingers dancing across the keys as they compose a new melody.",
+        "keywords": [
+            "keyboard",
+            "playing"
+        ],
+        "id": 329,
+        "negative_id": 6
+    },
+    {
+        "caption": "The sleek, modern keyboard has a minimalist design, with smooth lines and backlit keys that glow softly in the dark.",
+        "keywords": [
+            "keyboard",
+            "has"
+        ],
+        "id": 330,
+        "negative_id": 117
+    },
+    {
+        "caption": "The writer sits at the desk, fingers flying across the keyboard as they pour their thoughts onto the screen.",
+        "keywords": [
+            "keyboard",
+            "typing"
+        ],
+        "id": 331,
+        "negative_id": 119
+    },
+    {
+        "caption": "With a contented sigh, the cat sits atop the warm keyboard, basking in the gentle hum of the computer beneath.",
+        "keywords": [
+            "keyboard",
+            "sits"
+        ],
+        "id": 332,
+        "negative_id": 201
+    },
+    {
+        "caption": "The keyboard is covered in a thin layer of dust, a testament to its long hours of faithful service.",
+        "keywords": [
+            "keyboard",
+            "is"
+        ],
+        "id": 333,
+        "negative_id": 58
+    },
+    {
+        "caption": "The keyboard sits on the piano, waiting patiently for the pianist's skilled fingers to bring it to life with a beautiful melody.",
+        "keywords": [
+            "keyboard",
+            "sitting"
+        ],
+        "id": 334,
+        "negative_id": 174
+    },
+    {
+        "caption": "A flock of colorful birds are flying gracefully across the sky, their wings outstretched as they catch the breeze.",
+        "keywords": [
+            "birds",
+            "are"
+        ],
+        "id": 335,
+        "negative_id": 380
+    },
+    {
+        "caption": "The majestic eagle soars high above the mountains, its keen eyes scanning the landscape below for prey.",
+        "keywords": [
+            "birds",
+            "flying"
+        ],
+        "id": 336,
+        "negative_id": 174
+    },
+    {
+        "caption": "A pair of robins are sitting on the branch of a tree, chirping happily as they watch the world go by.",
+        "keywords": [
+            "birds",
+            "sitting"
+        ],
+        "id": 337,
+        "negative_id": 177
+    },
+    {
+        "caption": "The heron stands motionless at the water's edge, waiting patiently for its next meal to swim within reach.",
+        "keywords": [
+            "birds",
+            "standing"
+        ],
+        "id": 338,
+        "negative_id": 276
+    },
+    {
+        "caption": "A family of ducks are walking in a neat line along the edge of the pond, their fluffy chicks trailing behind them.",
+        "keywords": [
+            "birds",
+            "walking"
+        ],
+        "id": 339,
+        "negative_id": 384
+    },
+    {
+        "caption": "The tiny hummingbird is flying from flower to flower, its iridescent feathers shimmering in the sunlight.",
+        "keywords": [
+            "birds",
+            "is"
+        ],
+        "id": 340,
+        "negative_id": 122
+    },
+    {
+        "caption": "The seagulls fly in lazy circles above the beach, their plaintive cries mingling with the sound of the crashing waves.",
+        "keywords": [
+            "birds",
+            "fly"
+        ],
+        "id": 341,
+        "negative_id": 168
+    },
+    {
+        "caption": "The curious sparrow hops along the ground, its head cocked to one side as it searches for food.",
+        "keywords": [
+            "birds",
+            "walking"
+        ],
+        "id": 342,
+        "negative_id": 174
+    },
+    {
+        "caption": "The owl sits perched in the old oak tree, its wise eyes gazing out into the night as it waits for darkness to fall.",
+        "keywords": [
+            "birds",
+            "sitting"
+        ],
+        "id": 343,
+        "negative_id": 174
+    },
+    {
+        "caption": "The colorful parrot is eating a juicy piece of fruit, its bright feathers ruffling in the breeze as it enjoys its meal.",
+        "keywords": [
+            "birds",
+            "eating"
+        ],
+        "id": 344,
+        "negative_id": 201
+    },
+    {
+        "caption": "A small brown mouse sits on the edge of a wooden shelf, its tiny whiskers twitching as it sniffs the air.",
+        "keywords": [
+            "mouse",
+            "sits"
+        ],
+        "id": 345,
+        "negative_id": 174
+    },
+    {
+        "caption": "The white mouse is sitting on a colorful wheel, its tiny paws gripping the spokes as it takes a break from running.",
+        "keywords": [
+            "mouse",
+            "is"
+        ],
+        "id": 346,
+        "negative_id": 276
+    },
+    {
+        "caption": "The cute little mouse is sitting in the corner of the room, nibbling on a piece of cheese with its sharp teeth.",
+        "keywords": [
+            "mouse",
+            "is"
+        ],
+        "id": 347,
+        "negative_id": 124
+    },
+    {
+        "caption": "A curious mouse sits on its hind legs, its beady eyes watching intently as it listens for any sign of danger.",
+        "keywords": [
+            "mouse",
+            "sits"
+        ],
+        "id": 348,
+        "negative_id": 248
+    },
+    {
+        "caption": "The mouse is sitting in a cozy nest made of twigs and leaves, its soft fur keeping it warm on a chilly day.",
+        "keywords": [
+            "mouse",
+            "is"
+        ],
+        "id": 349,
+        "negative_id": 379
+    },
+    {
+        "caption": "The little mouse sits at the entrance to its burrow, peering out cautiously as it checks for predators.",
+        "keywords": [
+            "mouse",
+            "sits"
+        ],
+        "id": 350,
+        "negative_id": 119
+    },
+    {
+        "caption": "The tiny mouse sits on top of a pile of books, its whiskers twitching with curiosity as it explores its surroundings.",
+        "keywords": [
+            "mouse",
+            "sits"
+        ],
+        "id": 351,
+        "negative_id": 174
+    },
+    {
+        "caption": "The playful mouse sits on its hind legs, its front paws reaching out as it tries to catch a passing insect.",
+        "keywords": [
+            "mouse",
+            "sits"
+        ],
+        "id": 352,
+        "negative_id": 385
+    },
+    {
+        "caption": "The brown mouse sits in the corner of the room, its ears twitching as it listens to the sound of approaching footsteps.",
+        "keywords": [
+            "mouse",
+            "sits"
+        ],
+        "id": 353,
+        "negative_id": 119
+    },
+    {
+        "caption": "The little mouse sits on a green leaf, its tiny nose twitching as it nibbles on a seed.",
+        "keywords": [
+            "mouse",
+            "sits"
+        ],
+        "id": 354,
+        "negative_id": 288
+    },
+    {
+        "caption": "A shiny metal object is sitting on a polished wooden table, reflecting the light from the window.",
+        "keywords": [
+            "metal",
+            "is"
+        ],
+        "id": 355,
+        "negative_id": 121
+    },
+    {
+        "caption": "The old metal sign is hanging from a rusty chain, swaying gently in the breeze.",
+        "keywords": [
+            "metal",
+            "hanging"
+        ],
+        "id": 356,
+        "negative_id": 6
+    },
+    {
+        "caption": "Several pieces of scrap metal are piled up in the corner of the junkyard, waiting to be recycled.",
+        "keywords": [
+            "metal",
+            "are"
+        ],
+        "id": 357,
+        "negative_id": 122
+    },
+    {
+        "caption": "The heavy metal door is standing open, revealing a glimpse of the darkened room beyond.",
+        "keywords": [
+            "metal",
+            "is"
+        ],
+        "id": 358,
+        "negative_id": 275
+    },
+    {
+        "caption": "A sleek metal sculpture is sitting in the center of the art gallery, drawing the attention of passersby.",
+        "keywords": [
+            "metal",
+            "is"
+        ],
+        "id": 359,
+        "negative_id": 383
+    },
+    {
+        "caption": "The bright red motorcycle, its metal frame gleaming in the sunlight, is riding along the winding mountain road.",
+        "keywords": [
+            "metal",
+            "riding"
+        ],
+        "id": 360,
+        "negative_id": 383
+    },
+    {
+        "caption": "The metal gate is standing open, welcoming visitors into the lush green garden beyond.",
+        "keywords": [
+            "metal",
+            "is"
+        ],
+        "id": 361,
+        "negative_id": 275
+    },
+    {
+        "caption": "A row of metal chairs is sitting empty in the waiting room, their cold surfaces reflecting the fluorescent light overhead.",
+        "keywords": [
+            "metal",
+            "is"
+        ],
+        "id": 362,
+        "negative_id": 348
+    },
+    {
+        "caption": "The sturdy metal bridge is standing strong against the force of the rushing river below.",
+        "keywords": [
+            "metal",
+            "is"
+        ],
+        "id": 363,
+        "negative_id": 122
+    },
+    {
+        "caption": "The metal chains are hanging from the ceiling, swaying gently in the breeze.",
+        "keywords": [
+            "metal",
+            "are"
+        ],
+        "id": 364,
+        "negative_id": 173
+    },
+    {
+        "caption": "The salad bowl is containing fresh broccoli florets, adding a crisp texture to the mix.",
+        "keywords": [
+            "broccoli",
+            "is containing"
+        ],
+        "id": 365,
+        "negative_id": 194
+    },
+    {
+        "caption": "A plate of roasted vegetables is sitting on the kitchen counter, with broccoli as one of the main ingredients.",
+        "keywords": [
+            "broccoli",
+            "is sitting"
+        ],
+        "id": 366,
+        "negative_id": 126
+    },
+    {
+        "caption": "Several dishes are being prepared for the dinner party, including a broccoli casserole.",
+        "keywords": [
+            "broccoli",
+            "are being prepared"
+        ],
+        "id": 367,
+        "negative_id": 135
+    },
+    {
+        "caption": "The buffet table has a variety of dishes, including steamed broccoli with lemon zest.",
+        "keywords": [
+            "broccoli",
+            "has"
+        ],
+        "id": 368,
+        "negative_id": 168
+    },
+    {
+        "caption": "A bowl of creamy broccoli soup is simmering on the stove, filling the kitchen with a delightful aroma.",
+        "keywords": [
+            "broccoli",
+            "is simmering"
+        ],
+        "id": 369,
+        "negative_id": 384
+    },
+    {
+        "caption": "The salad bar is featuring a broccoli salad with cranberries and almonds, appealing to health-conscious diners.",
+        "keywords": [
+            "broccoli",
+            "is featuring"
+        ],
+        "id": 370,
+        "negative_id": 117
+    },
+    {
+        "caption": "The vegetable platter is containing an assortment of raw vegetables, with broccoli as the centerpiece.",
+        "keywords": [
+            "broccoli",
+            "is containing"
+        ],
+        "id": 371,
+        "negative_id": 44
+    },
+    {
+        "caption": "The stir-fry is sizzling in the wok, with broccoli florets adding a vibrant burst of color.",
+        "keywords": [
+            "broccoli",
+            "is sizzling"
+        ],
+        "id": 372,
+        "negative_id": 9
+    },
+    {
+        "caption": "The baking sheet is filled with roasted vegetables, including tender broccoli spears seasoned with garlic and herbs.",
+        "keywords": [
+            "broccoli",
+            "is filled"
+        ],
+        "id": 373,
+        "negative_id": 10
+    },
+    {
+        "caption": "A plate of steamed broccoli is sitting on the dinner table, ready to be enjoyed with a drizzle of lemon juice.",
+        "keywords": [
+            "broccoli",
+            "is sitting"
+        ],
+        "id": 374,
+        "negative_id": 396
+    },
+    {
+        "caption": "Kids playing in the park.",
+        "keywords": [
+            "kids",
+            "playing"
+        ],
+        "id": 375,
+        "negative_id": 173
+    },
+    {
+        "caption": "A kid sitting on a bench.",
+        "keywords": [
+            "kids",
+            "sitting"
+        ],
+        "id": 376,
+        "negative_id": 277
+    },
+    {
+        "caption": "Kids eating ice cream cones.",
+        "keywords": [
+            "kids",
+            "eating"
+        ],
+        "id": 377,
+        "negative_id": 213
+    },
+    {
+        "caption": "A kid holding a balloon.",
+        "keywords": [
+            "kids",
+            "holding"
+        ],
+        "id": 378,
+        "negative_id": 35
+    },
+    {
+        "caption": "Kids playing soccer.",
+        "keywords": [
+            "kids",
+            "playing"
+        ],
+        "id": 379,
+        "negative_id": 141
+    },
+    {
+        "caption": "A kid riding a bike.",
+        "keywords": [
+            "kids",
+            "riding"
+        ],
+        "id": 380,
+        "negative_id": 397
+    },
+    {
+        "caption": "Kids standing in line.",
+        "keywords": [
+            "kids",
+            "standing"
+        ],
+        "id": 381,
+        "negative_id": 149
+    },
+    {
+        "caption": "A kid flying a kite.",
+        "keywords": [
+            "kids",
+            "flying"
+        ],
+        "id": 382,
+        "negative_id": 265
+    },
+    {
+        "caption": "Kids playing with toys.",
+        "keywords": [
+            "kids",
+            "playing"
+        ],
+        "id": 383,
+        "negative_id": 5
+    },
+    {
+        "caption": "Kids sitting at a table.",
+        "keywords": [
+            "kids",
+            "sitting"
+        ],
+        "id": 384,
+        "negative_id": 166
+    },
+    {
+        "caption": "A tower rises above the city skyline.",
+        "keywords": [
+            "tower",
+            "rises"
+        ],
+        "id": 385,
+        "negative_id": 326
+    },
+    {
+        "caption": "A tower standing tall against the blue sky.",
+        "keywords": [
+            "tower",
+            "standing"
+        ],
+        "id": 386,
+        "negative_id": 232
+    },
+    {
+        "caption": "Tourists looking up at the tower in amazement.",
+        "keywords": [
+            "tower",
+            "looking"
+        ],
+        "id": 387,
+        "negative_id": 227
+    },
+    {
+        "caption": "The tower sits majestically on the hilltop.",
+        "keywords": [
+            "tower",
+            "sitting"
+        ],
+        "id": 388,
+        "negative_id": 177
+    },
+    {
+        "caption": "The tower has a distinct architectural style.",
+        "keywords": [
+            "tower",
+            "has"
+        ],
+        "id": 389,
+        "negative_id": 380
+    },
+    {
+        "caption": "A tower flying the national flag.",
+        "keywords": [
+            "tower",
+            "flying"
+        ],
+        "id": 390,
+        "negative_id": 201
+    },
+    {
+        "caption": "The tower is a symbol of the city's strength.",
+        "keywords": [
+            "tower",
+            "is"
+        ],
+        "id": 391,
+        "negative_id": 174
+    },
+    {
+        "caption": "The tower's height dominates the landscape.",
+        "keywords": [
+            "tower",
+            "'s"
+        ],
+        "id": 392,
+        "negative_id": 275
+    },
+    {
+        "caption": "A tower stands proudly in the city center.",
+        "keywords": [
+            "tower",
+            "stands"
+        ],
+        "id": 393,
+        "negative_id": 233
+    },
+    {
+        "caption": "The tower looks even more magnificent at night.",
+        "keywords": [
+            "tower",
+            "looking"
+        ],
+        "id": 394,
+        "negative_id": 105
+    },
+    {
+        "caption": "The bus is stopped at the station.",
+        "keywords": [
+            "stop",
+            "is"
+        ],
+        "id": 395,
+        "negative_id": 275
+    },
+    {
+        "caption": "A person waiting at the stop sign.",
+        "keywords": [
+            "stop",
+            "waiting"
+        ],
+        "id": 396,
+        "negative_id": 374
+    },
+    {
+        "caption": "The train has stopped at the platform.",
+        "keywords": [
+            "stop",
+            "has"
+        ],
+        "id": 397,
+        "negative_id": 119
+    },
+    {
+        "caption": "A group of people sitting at the bus stop.",
+        "keywords": [
+            "stop",
+            "sitting"
+        ],
+        "id": 398,
+        "negative_id": 88
+    },
+    {
+        "caption": "The car is pulling over to the stop.",
+        "keywords": [
+            "stop",
+            "pulling"
+        ],
+        "id": 399,
+        "negative_id": 377
+    },
+    {
+        "caption": "Passengers are standing at the train stop.",
+        "keywords": [
+            "stop",
+            "are"
+        ],
+        "id": 400,
+        "negative_id": 352
+    }
+]

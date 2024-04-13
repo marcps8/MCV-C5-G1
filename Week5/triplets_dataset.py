@@ -33,9 +33,13 @@ class TripletsDataset(Dataset):
         return anchor_caption, positive_image, negative_image
 
     def load_image(self, image_id):
-        image_path = os.path.join(
-            self.root_dir, f"COCO_train2014_{str(image_id).zfill(12)}.jpg"
-        )
+        if isinstance(image_id, int):
+            image_path = os.path.join(
+                self.root_dir, f"COCO_train2014_{str(image_id).zfill(12)}.jpg"
+            )
+        else:
+            image_path = f"/export/home/group01/MCV-C5-G1/Week5/generated_images/{image_id}"
+
         image = Image.open(image_path).convert("RGB")
         return image
 

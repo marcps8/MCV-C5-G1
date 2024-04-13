@@ -87,6 +87,7 @@ class Network:
 
     def extract_features(self, save_path_db=None, save_path_query=None):
         self.model_img.eval()
+        self.embed.eval()
 
         with torch.no_grad():
             db_features, query_features = [], []
@@ -113,3 +114,5 @@ class Network:
                 pickle.dump(db_features, f)
             with open(save_path_query, "wb") as f:
                 pickle.dump(query_features, f)
+
+                

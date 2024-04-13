@@ -65,7 +65,6 @@ if __name__ == "__main__":
         load_triplets=load_triplets,
         output_path=triplets_path
     )
-    
     print("Generating embeddings...")
     text_embeddings = generate_embeddings(triplets, config["text_model"])
     train_dataset = TripletsDataset(triplets=triplets, root_dir=TRAIN_PATH, transform=get_transforms())

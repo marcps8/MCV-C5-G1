@@ -2,6 +2,7 @@ import json
 import os
 import pickle
 import random
+import copy
 
 import numpy as np
 import torch
@@ -58,11 +59,11 @@ def mAP(actual, predicted):
 
 
 # Function to get caption for a given image_id
-def get_caption(image_id, captions):
+def get_captions_dict(captions):
+    dict = {}
     for item in captions:
-        if item["image_id"] == image_id:
-            return item["caption"]
-    return None  # Return None if image_id is not found
+        dict[item["image_id"]] = item["caption"]
+    return dict  
 
 
 def get_triplets_from_text_to_image(
@@ -74,107 +75,36 @@ def get_triplets_from_text_to_image(
             triplets = pickle.load(f)
 
         return triplets
-
+    captions_dict = get_captions_dict(annotations)
     triplets = []
     image_ids = list(set([annotation["image_id"] for annotation in annotations]))
-    idx = 0
     for annotation in tqdm.tqdm(annotations):
         anchor_caption = annotation["caption"]
         anchor_image_id = annotation["image_id"]
 
         negative_image_ids = [id for id in image_ids if id != anchor_image_id]
 
-        # Try to get a hard negative: caption must be the
+        # Try to get a soft negative: caption must be the
         # less similar as possible in positive and negative images
 
         negative_image_id = random.choice(negative_image_ids)
         min_distance_to_anchor = calculate_similarity(
-            anchor_caption, get_caption(negative_image_id, annotations)
+            anchor_caption, captions_dict[negative_image_id]
         )
         for i in range(MAX_NEGATIVE_ITERATIONS):
             negative_candidate = random.choice(negative_image_ids)
-            caption_candidate = get_caption(negative_candidate, annotations)
+            caption_candidate = captions_dict[negative_candidate]
             similarity_score = calculate_similarity(anchor_caption, caption_candidate)
             if similarity_score < min_distance_to_anchor:
                 min_distance_to_anchor = similarity_score
                 negative_image_id = negative_candidate
 
         triplets.append((anchor_caption, anchor_image_id, negative_image_id))
-        idx += 1
-        if idx > 10:
-            break
-    with open(output_path, "wb") as f:
-        pickle.dump(triplets, f)
-
-    return triplets
-
-
-# TO-DO
-def get_triplets_from_image_to_text(
-    annotations: dict = None, load_triplets: bool = False, output_path: str = None
-):
-    if load_triplets:
-        with open(output_path, "rb") as f:
-            triplets = pickle.load(f)
-
-        return triplets
-
-    triplets = []
-
-    shuffle_annotations = annotations
-    for annotation in tqdm.tqdm(annotations):
-        anchor_caption = annotation["caption"]
-        anchor_image_id = annotation["image_id"]
-
-        min_similarity = 1
-        most_negative_caption = None
-        random.shuffle(shuffle_annotations)
-        for annotation in shuffle_annotations:
-            if annotation["image_id"] == anchor_image_id:
-                continue
-
-            negative_caption = annotation["caption"]
-            similarity_score = calculate_similarity(anchor_caption, negative_caption)
-            if similarity_score < min_similarity:
-                min_similarity = similarity_score
-                most_negative_caption = negative_caption
-
-                if similarity_score > 0.2 and similarity_score < 0.5:
-                    break
-
-        print(f"Positive Sentence: {anchor_caption}")
-        print(f"Negative Sentence: {most_negative_caption}")
-        print(f"Similarity Score: {similarity_score}")
-        triplets.append((anchor_image_id, anchor_caption, most_negative_caption))
 
     with open(output_path, "wb") as f:
         pickle.dump(triplets, f)
 
     return triplets
-
-
-def get_correspondences_from_image_to_text(
-    annotations: dict, load_correspondences, output_path
-):
-
-    correspondences = []
-
-    if load_correspondences:
-        with open(output_path, "rb") as f:
-            corresp = pickle.load(f)
-
-        return corresp
-
-    for annotation in tqdm.tqdm(annotations):
-        anchor_caption = annotation["caption"]
-        anchor_image_id = annotation["image_id"]
-
-        correspondences.append((anchor_image_id, anchor_caption))
-
-    with open(output_path, "wb") as f:
-        pickle.dump(correspondences, f)
-
-    return correspondences
 
 
 def calculate_similarity(sentence1, sentence2):
@@ -245,3 +175,76 @@ def get_val_transforms():
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ]
     )
+
+
+def get_triplets_from_text_to_image_old(
+    annotations: dict = None, load_triplets: bool = False, output_path: str = None
+):
+    if load_triplets:
+        with open(output_path, "rb") as f:
+            triplets = pickle.load(f)
+
+        return triplets
+
+    triplets = []
+    image_ids = list(set([annotation["image_id"] for annotation in annotations]))
+
+    for annotation in tqdm.tqdm(annotations):
+        anchor_caption = annotation["caption"]
+        anchor_image_id = annotation["image_id"]
+
+        negative_image_ids = [id for id in image_ids if id != anchor_image_id]
+        negative_image_id = random.choice(negative_image_ids)
+
+        triplets.append((anchor_caption, anchor_image_id, negative_image_id))
+
+    with open(output_path, "wb") as f:
+        pickle.dump(triplets, f)
+
+    return triplets
+
+def load_validation_image(root_dir, image_id):
+    image_path = os.path.join(
+        root_dir, f"COCO_val2014_{str(image_id).zfill(12)}.jpg"
+    )
+    image = Image.open(image_path).convert("RGB")
+    return image
+
+def add_id_captions_json(json_file="new_captions.json"):
+    with open(json_file, 'r') as f:
+        json_data = json.load(f)
+        
+    for i, item in enumerate(json_data, start=1):
+        item['id'] = i
+
+    with open(json_file, 'w') as file:
+        json.dump(json_data, file, indent=4)
+
+def add_negative_id_captions_json(json_file="new_captions.json"):
+    with open(json_file, 'r') as f:
+        json_data = json.load(f)
+    
+    for i, item in enumerate(json_data, start=1):
+        shuffled_data = copy.deepcopy(json_data)
+        random.shuffle(shuffled_data)
+        
+        noun = item['keywords'][0]
+        min_similarity = 1
+        print(item['id'])
+        for possible_negative in shuffled_data:
+            if (item['id'] == possible_negative['id']) or (noun in possible_negative['keywords']):
+                continue
+            
+            similarity_score = calculate_similarity(item['caption'], possible_negative['caption'])
+            if similarity_score < min_similarity:
+                min_similarity = similarity_score
+                most_negative_id = possible_negative['id']
+                
+                if min_similarity < 0.1:
+                    break
+                
+        item['negative_id'] = most_negative_id    
+
+    with open(json_file, 'w') as file:
+        json.dump(json_data, file, indent=4)
+        
