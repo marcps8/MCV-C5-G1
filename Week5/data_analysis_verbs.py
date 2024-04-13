@@ -95,29 +95,11 @@ else:
     with open(PKL_VAL_VERB_ANALYSIS, "wb") as f:
         pkl.dump(val_verb_counts, f)
 
-
-"""
-print("Noun Counts:")
 i = 0
-train_noun_counts = {noun: count for noun, count in train_noun_counts.items() if count > 1}
-for noun, count in train_noun_counts.items():
-    print(f"{noun}: {count}")
-    i += 1
-    if i >= 20:
-        break
-"""
-i = 0
-#print("\nNoun-Verb Counts:")
 noun_verb_counts = {
     noun: {verb: count for verb, count in verb_counter.items() if count >= 5}
     for noun, verb_counter in train_verb_counts.items()
 }
-
-#for noun, verb_counter in noun_verb_counts.items():
-#    print(f"{noun}: {verb_counter}")
-#    i += 1
-#    if i >= 5:
-#        break
 
 total_nouns = sum(train_noun_counts.values())
 noun_percentages = {noun: (count / total_nouns) * 100 for noun, count in train_noun_counts.items()}
@@ -125,12 +107,7 @@ noun_percentages = {noun: (count / total_nouns) * 100 for noun, count in train_n
 #print(f"Most Common: {val_noun_counts.most_common(200)}")
 #print(f"Less Common: {val_noun_counts.most_common()[:-21:-1]}")
 
-
 def get_less_common_labels(validation_nouns, training_nouns):
-    total_val_nouns = sum(validation_nouns.values())
-    val_percentages = {noun: (count / 200000) * 100 for noun, count in validation_nouns.items()}
-    
-    total_train_nouns = sum(training_nouns.values())
     train_percentages = {noun: (count / validation_nouns[noun]) * 100 for noun, count in training_nouns.items() if validation_nouns[noun]}
    
     less_common_labels = {}
@@ -140,8 +117,7 @@ def get_less_common_labels(validation_nouns, training_nouns):
                 less_common_labels.update({noun: percentage})
         else:
             continue
-       
-    # print(less_common_labels)     
+   
     return less_common_labels
     
 less_common = get_less_common_labels(validation_nouns=val_noun_counts, training_nouns=train_noun_counts)
@@ -164,34 +140,3 @@ with open("sentences_info_more_500.txt", "w") as file:
         file.write(str(balancing_dict[noun]) + "\n\n")
         
     
-"""
-print("Let's do more sentences, I will give you the keyword noun and its most used verbs and the number of sentences for each one.")
-balancing_dict = {}
-for noun, _ in less_common.items():
-    balancing_dict.update({noun: {}})
-    number_of_sentences = int(val_noun_counts[noun] * 0.5) #We do the 50% because we have half the validation data
-    for t_verb, t_freq in train_verb_counts[noun].items():
-        if t_verb in val_verb_counts[noun].keys():
-            balancing_dict[noun].update({t_verb : val_verb_counts[noun][t_verb] - total_nouns})
-    print(f"For the keyword '{noun}' do {number_of_sentences} different sentences please in json format.")
-    print('')
-    print('These are the verbs used with this keyword and each weights:')
-    print(balancing_dict[noun])
-    print('')
-    break
-"""
-#print(less_common)
-#for noun, percentage in noun_percentages.items():
-#    print(f'{noun}: {percentage:.2f}%')
-"""
-min_counts = 20
-less_common_train = {
-    token: count
-    for token, count in train_noun_counts.items()
-    if count < val_noun_counts[token] * 0.5 and val_noun_counts[token] > min_counts
-}
-print(less_common_train)
-print("Tokens less common in training compared to validation:")
-for token, count in less_common_train.items():
-    print(f"{token}: Training: {count} - Validation:  {val_noun_counts[token]}")
-"""
