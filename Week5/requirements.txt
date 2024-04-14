@@ -1,0 +1,14 @@
+bokeh==3.4.1
+diffusers==0.27.2
+matplotlib==3.8.3
+nltk==3.8.1
+numpy==1.26.4
+opencv_python==4.9.0.80
+pandas==2.2.2
+Pillow==10.3.0
+scikit_learn==1.4.1.post1
+torch==2.2.1
+torchvision==0.17.1
+tqdm==4.66.2
+transformers==4.39.3
+yellowbrick==1.5

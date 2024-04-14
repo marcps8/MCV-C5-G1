@@ -14,8 +14,7 @@ from utils_week5 import (
     generate_embeddings,
     get_val_transforms,
     get_triplets_from_text_to_image_old as get_triplets_from_text_to_image,
-    load_json,
-    load_validation_image
+    load_json
 )
 
 OUTPUT_PATH = "/export/home/group01/MCV-C5-G1/Week5"
@@ -42,7 +41,7 @@ def retrieval(
     X_train = scaler.fit_transform(X_train)
     print("X_train.shape: ", X_train.shape)
 
-    knn = NearestNeighbors(n_neighbors=5)
+    knn = NearestNeighbors(n_neighbors=25)
     knn.fit(X_train)
 
     print("Start NearestNeighbours validation.")
@@ -54,24 +53,30 @@ def retrieval(
 
     print("Length of indices: ", len(indices))
     results = {}
+    # for idx in range(len(indices)):
+    #     results.update({
+    #         triplets_val[idx][0]: [
+    #             triplets_val[img_idx][1] for img_idx in indices[idx]
+    #         ]
+    #     })
+    
     for idx in range(len(indices)):
-        results.update({
-            triplets_val[idx][0]: [
-                triplets_val[img_idx][1] for img_idx in indices[idx]
-            ]
-        })
+        query_id = triplets_val[idx][0]
+        neighbor_ids = []
+        unique_neighbor_count = 0
+        for img_idx in indices[idx]:
+            neighbor_id = triplets_val[img_idx][1]
+            if neighbor_id not in neighbor_ids:
+                neighbor_ids.append(neighbor_id)
+                unique_neighbor_count += 1
+            if unique_neighbor_count >= 5:
+                break
         
-    caption = triplets_val[0][0]    
-    retrieved_images = results[caption]
-    print("Caption: ", caption)
-    print("Retrieved: ", retrieved_images)
-    for img in retrieved_images:
-        image = np.array(load_validation_image(VAL_PATH, img))
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        cv2.imwrite(OUTPUT_PATH + f"/retrieved_images/retrieved_images_{img}.png", image)
-        
-    with open(OUTPUT_PATH + f"/pickles/results/results_txt2img", "wb") as f:
-        pkl.dump(results, f)
+        results[query_id] = neighbor_ids[:5] 
+    
+    print("Results: ", results)
+    # with open(OUTPUT_PATH + f"/pickles/results/results_txt2img", "wb") as f:
+    #     pkl.dump(results, f)
 
 
 if __name__ == "__main__":
@@ -99,9 +104,7 @@ if __name__ == "__main__":
         "model_path": model_path,
         "embed_path": embed_path,
         "embed_size": args.embed_size,
-        "batch_size": args.batch_size,
-        "margin": 0.5,
-        "lr": 1e-4,
+        "batch_size": args.batch_size
     }
 
     if os.path.exists(triplets_path):

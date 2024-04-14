@@ -63,16 +63,28 @@ class Network:
 
                 running_loss += loss.item()
 
+            if epoch%10 == 0:
+                torch.save(
+                    self.model_img.state_dict(),
+                    save_model_path + f"_epoch_{epoch}.pth"
+                )
+                torch.save(
+                    self.embed.state_dict(), 
+                    save_embed_path +  f"_epoch_{epoch}.pth"
+                )
+
             print(
                 f"Epoch [{epoch+1}/{epochs}], Loss: {running_loss / len(self.train_loader)}"
             )
 
-        if save_model_path and save_embed_path:
             torch.save(
                 self.model_img.state_dict(),
-                save_model_path,
+                save_model_path + f"_final.pth"
             )
-            torch.save(self.embed.state_dict(), save_embed_path)
+            torch.save(
+                self.embed.state_dict(), 
+                save_embed_path +  f"_final.pth"
+            )
 
     def load_model(self):
         self.embed = EmbeddingLayer(self.config["embed_size"])
@@ -86,20 +98,23 @@ class Network:
         )
 
     def extract_features(self, save_path_db=None, save_path_query=None):
+        self.model_img.to(self.device)
+        self.embed.to(self.device)
+
         self.model_img.eval()
         self.embed.eval()
 
         with torch.no_grad():
             db_features, query_features = [], []
-            # Batch (32 x ...)
-            for captions, imgs in tqdm(self.val_loader):
+            # Batch (batch_size x ...)
+            for captions, imgs in tqdm(self.val_loader):                
                 # Images
-                imgs_out = self.model_img(imgs)
+                imgs_out = self.model_img(imgs.to(self.device))
                 np_imgs_out = [img_out.cpu().numpy() for img_out in imgs_out]
                 db_features.append(np_imgs_out)
                 # Captions
                 captions_out = [
-                    self.embed(self.text_embeddings[caption]) for caption in captions
+                    self.embed(self.text_embeddings[caption].to(self.device)) for caption in captions
                 ]
                 np_captions_out = [
                     caption_out.cpu().numpy() for caption_out in captions_out

@@ -38,7 +38,7 @@ class TripletsDataset(Dataset):
                 self.root_dir, f"COCO_train2014_{str(image_id).zfill(12)}.jpg"
             )
         else:
-            image_path = f"/export/home/group01/MCV-C5-G1/Week5/generated_images/{image_id}"
+            image_path = f"/export/home/group01/MCV-C5-G1/Week5/generated_images/{image_id}.png"
 
         image = Image.open(image_path).convert("RGB")
         return image

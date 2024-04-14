@@ -36,8 +36,8 @@ if __name__ == "__main__":
     }
 
     triplets_path = OUTPUT_PATH + f"/pickles/triplets/triplets_final.pkl"
-    model_path = OUTPUT_PATH + f"/weights/text2img_final.pth"
-    embed_path = OUTPUT_PATH + f"/weights/embed_final.pth"
+    model_path = OUTPUT_PATH + f"/weights/text2img_final"
+    embed_path = OUTPUT_PATH + f"/weights/embed_final"
 
     train_annotations = load_json(TRAIN_CAPTIONS_PATH)
     len_train_annotations = len(train_annotations["annotations"])
