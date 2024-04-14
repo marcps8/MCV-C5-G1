@@ -205,7 +205,20 @@ pip install -r requirements.txt
 4. **Run the code**
 
 - Explicar captions gen
-- Explicar image gen
+In purpose to generate new images for our training, we use a script that gets a prompt and a model ID and generates new images.
+```bash
+usage: image_generator.py [-h] [--prompt PROMPT] [--model MODEL] 
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --prompt PROMPT: Prompt to generate the image.
+  --model MODEL: Model ID of the model we want to generate the image with , must be one of [
+        stabilityai/stable-diffusion-2-1,
+        stabilityai/sd-turbo,
+        stabilityai/stable-diffusion-xl-base-1.0,
+        stabilityai/sdxl-turbo,
+    ].
+```
 
 The training process starts by specifying the number of epochs, the embed size and the batch size. In order to run the training of the text2image model, you can run the following:
 ```bash
