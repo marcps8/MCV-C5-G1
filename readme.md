@@ -167,3 +167,69 @@ Run the following command in the terminal to execute the script:
 python coco_retrieval.py
 ```
 </details>
+
+## Week 4
+
+>To see the slides click [here](https://docs.google.com/presentation/d/1DmCwsStIktRPHN3IOHt3m_z29UOQlXI_Cq2a6QjipuM/edit?usp=sharing) 
+
+<details>
+  <summary>Click me to read about this week!</summary>
+</details>
+
+## Week 5
+
+>To see the slides click [here](https://docs.google.com/presentation/d/1M1VadhiROXX68Dbb5Q60gxvGzTkFQ2q84CkjliEygQU/edit?usp=sharing) 
+
+<details>
+  <summary>Click me to read about this week!</summary>
+  
+### Instructions
+### Instructions
+
+To run the evaluation process for object detection models, follow these steps:
+
+1. **Set Up Environment:**
+  - Ensure that you have all the necessary dependencies installed. You can check the requirements in the project's `requirements.txt` file.
+  - Make sure you have access to the MCV server or set up the environment locally.
+
+2. **Clone the Repository:**
+```bash 
+git clone https://github.com/marcps8/MCV-C5-G1.git
+```
+
+3. **Install requirements** 
+```bash
+pip install -r requirements.txt
+```
+
+4. **Run the code**
+
+- Explicar captions gen
+- Explicar image gen
+
+The training process starts by specifying the number of epochs, the embed size and the batch size. In order to run the training of the text2image model, you can run the following:
+```bash
+usage: txt2img_train.py [-h] [--embed-size EMBED_SIZE] [--batch-size BATCH_SIZE] [--epochs EPOCHS] [--sample-size SAMPLE_SIZE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --embed-size EMBED_SIZE: Embed size used for the features.
+  --batch-size BATCH_SIZE: Batch size used in the training.
+  --epochs EPOCHS: Number of epochs.
+  --sample-size SAMPLE_SIZE: Float [0, 1] indicating the amount of data to use from the train dataset.
+```
+  
+The retrieval process uses a model already trained and it generates results for each caption in the validation set. It can be run using the following command:
+```bash
+usage: txt2img_retrieve.py [-h] [--embed-size EMBED_SIZE] [--batch-size BATCH_SIZE] [--model-name MODEL_NAME] [--embed-name EMBED_NAME]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --embed-size EMBED_SIZE: Embed size used for the features.
+  --batch-size BATCH_SIZE: Batch size used in the training.
+  --model-name MODEL_NAME: Weights filename used for the model.
+  --embed-name EMBED_NAME: Weights filename used for the embbeding layer.
+```
+
+The results will be stored under the Week5/results folder, in the format of a dictionary where each key is the caption and the value an array containing five image ids (the five nearest neighbors).
+</details>
