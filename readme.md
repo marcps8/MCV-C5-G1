@@ -204,7 +204,13 @@ pip install -r requirements.txt
 
 4. **Run the code**
 
-- Explicar captions gen
+To perform the captions analysis and generate the keywords and verbs to generate new captions just run the following: 
+```bash
+CPU usage: python data_analysis_verbs.py
+GPU usage: sbatch data_analysis
+```
+It will generate a sentences_info_more_500.txt file on the main root with all the nouns-verbs pairs for generating the captions with ChatGPT 3.5
+
 In purpose to generate new images for our training, we use a script that gets a prompt and a model ID and generates new images.
 ```bash
 usage: image_generator.py [-h] [--prompt PROMPT] [--model MODEL] 
