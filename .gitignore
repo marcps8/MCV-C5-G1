@@ -10,3 +10,6 @@
 *.json*
 Week5/*_proves.py
 Week5/copy_images_from_id.py
+Week6/data/*
+*.pt*
+Week6/evaluation/*.csv
