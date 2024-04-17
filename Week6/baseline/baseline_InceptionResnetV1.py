@@ -21,7 +21,7 @@ from facenet_pytorch import InceptionResnetV1
 # Note: this notebook requires torch >= 1.10.0
 print("torch version: ", torch.__version__)
 device = "cuda" if torch.cuda.is_available() else "cpu"
-print("devide: ", device)
+print("device: ", device)
 
 
 
