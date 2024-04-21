@@ -66,8 +66,8 @@ def print_image_samples(data_path):
     plt.imshow(img_as_array)
     plt.title(f"Image class: {image_class} | Image shape: {img_as_array.shape} -> [height, width, color_channels]")
     plt.axis(False)
-    plt.savefig("sample_data_intro.jpg")
-    print("sample image saved as sample_data_intro.jpg")
+    # plt.savefig("sample_data_intro.jpg")
+    # print("sample image saved as sample_data_intro.jpg")
     
     return image_path_list
 
@@ -76,7 +76,7 @@ def print_image_samples(data_path):
 
 
 def get_data_sets_path(data_path):
-    train_dir = os.path.join(data_path,"train")
+    train_dir = os.path.join(data_path,"train_downsampled")
     valid_dir = os.path.join(data_path,"valid")
     test_dir = os.path.join(data_path,"test")
     print("train dir: ", train_dir)
@@ -131,7 +131,7 @@ def plot_transformed_images(image_paths, transform, n=3, seed=42):
             ax[1].imshow(transformed_image) 
             ax[1].set_title(f"Transformed \nSize: {transformed_image.shape}")
             ax[1].axis("off")
-            plt.savefig("transformed_image.jpg")
+            # plt.savefig("transformed_image.jpg")
 
 
 
@@ -186,7 +186,7 @@ def detail_one_sample_data(train_data, class_names):
     plt.imshow(img.permute(1, 2, 0))
     plt.axis("off")
     plt.title(class_names[label], fontsize=14);    
-    plt.savefig("sample_data_detailed.jpg")
+    # plt.savefig("sample_data_detailed.jpg")
 
 
 
@@ -379,7 +379,6 @@ def train(model: torch.nn.Module,
         if (test_acc > best_accuracy):
             best_accuracy = test_acc
             best_epoch = epoch
-            #torch.save(model.state_dict(), 'best-model-parameters.pt')
 
             # save model checkpoint
             torch.save({
@@ -387,7 +386,7 @@ def train(model: torch.nn.Module,
                         'model_state_dict': model.state_dict(),
                         'optimizer_state_dict': optimizer.state_dict(),
                         'loss': loss_fn,
-                        }, 'best-model-parameters.pt')
+                        }, 'model/best-model-parameters-downsampled.pt')
 
             print("model saved")
                     
@@ -436,7 +435,7 @@ def save_loss_curves(model_results):
     plt.title('Accuracy')
     plt.xlabel('Epochs')
     plt.legend()
-    plt.savefig("training_history.jpg")
+    plt.savefig("model/training_history_downsampled.jpg")
 
 
 
@@ -487,7 +486,7 @@ def my_test_step(model: torch.nn.Module, dataloader: torch.utils.data.DataLoader
     test_acc = test_acc / len(dataloader)
     print("Average accuracy = ", test_acc)
 
-    np.savetxt("predictions_test_set.csv",
+    np.savetxt("model/predictions_test_set_downsampled.csv",
         predictions,
         delimiter =",",
         fmt ='% s')
@@ -519,8 +518,8 @@ def main(data_path,model_stage,parameters_dict,class_weights):
     testSingleForwardPass(train_dataloader, model)
 
     # saving the model image as "model.gv.png"
-    model_graph = draw_graph(model, input_size=(1,3,224,224), expand_nested=True)
-    model_graph.visual_graph.render(format='pdf')
+    # model_graph = draw_graph(model, input_size=(1,3,224,224), expand_nested=True)
+    # model_graph.visual_graph.render(format='pdf')
 
     #
     # TRAIN

@@ -184,7 +184,6 @@ python coco_retrieval.py
   <summary>Click me to read about this week!</summary>
   
 ### Instructions
-### Instructions
 
 To run the evaluation process for object detection models, follow these steps:
 
@@ -251,4 +250,32 @@ optional arguments:
 ```
 
 The results will be stored under the Week5/results folder, in the format of a dictionary where each key is the caption and the value an array containing five image ids (the five nearest neighbors).
+</details>
+
+## Week 6
+
+>To see the slides click [here](https://docs.google.com/presentation/d/1e4rXhry45dk7iETQhAZtwQnHOqcaaPmtLEb1_aHjoS8/edit?usp=sharing) 
+
+<details>
+  <summary>Click me to read about this week!</summary>
+
+### Instructions
+
+To run the evaluation process for object detection models, follow these steps:
+
+1. **Set Up Environment:**
+   - Ensure that you have all the necessary dependencies installed. You can check the requirements in the project's `Week6/requirements.txt` file.
+   - Make sure you have access to the MCV server or set up the environment locally.
+2. **Clone the Repository:**
+```bash 
+git clone https://github.com/marcps8/MCV-C5-G1.git
+```
+
+3. **Install requirements** 
+```bash
+pip install -r requirements.txt
+```
+4. **Run the code**
+* **Data Augmentation**: You can see the code of the generation of data in `utils/generate_samples.py`. It can be run by simply running `python` with the script name. Afterwards, the `utils/face_cropper.py` script has to be run in order to crop the faces from the images. Please, update all paths to match whatever necessary.
+* **Downsampling**: The script using for downsampling data can be found in `utils/downsample_data.py`. As before, it can be run by simply calling `python` and the name of the script.
 </details>
