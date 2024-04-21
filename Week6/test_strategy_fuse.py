@@ -70,7 +70,7 @@ def fuse_test_step(model: torch.nn.Module, dataloader: torch.utils.data.DataLoad
 
             inputs_text, inputs_image, inputs_audio, labels = inputs_text.to(device), inputs_image.to(device), inputs_audio.to(device),  labels.to(device)
             
-            y_pred = model(inputs_image, inputs_text, inputs_audio, aggregation="mul")
+            y_pred = model(inputs_image, inputs_text, inputs_audio, aggregation="add")
                       
             _, predicted = torch.max(y_pred.data, 1)
             total_val += labels.size(0)
@@ -97,7 +97,7 @@ def fuse_test_step(model: torch.nn.Module, dataloader: torch.utils.data.DataLoad
         accuracy = correct / t
         print(f"Average Accuracy: {accuracy}")
         
-        np.savetxt("evaluation/predictions_test_set_combined_loss_300_mul.csv",
+        np.savetxt("evaluation/predictions_test_set_combined_loss_300.csv",
             original_predictions,
             delimiter =",",
             fmt ='% s')
@@ -127,7 +127,7 @@ def fuse_test_step(model: torch.nn.Module, dataloader: torch.utils.data.DataLoad
         accuracy = correct_predictions / total_predictions
         print(f"Combined Average Accuracy: {accuracy}")
         
-        np.savetxt("evaluation/predictions_test_set_combined_loss_300_mul_our.csv",
+        np.savetxt("evaluation/predictions_test_set_combined_loss_300_our.csv",
             our_predictions,
             delimiter =",",
             fmt ='% s')
@@ -259,7 +259,7 @@ def main(data_path,parameters_dict,class_weights):
                         text_in_features=768,
                         out_features=300,
                         num_classes=7,
-                        aggregation="mul")
+                        aggregation="add")
     model.to(device)
     
     #model.load_state_dict(torch.load(MODEL, map_location=torch.device(device)))
