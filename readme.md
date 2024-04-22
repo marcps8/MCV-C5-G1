@@ -276,8 +276,25 @@ git clone https://github.com/marcps8/MCV-C5-G1.git
 pip install -r requirements.txt
 ```
 4. **Run the code**
-* **Data Augmentation**: You can see the code of the generation of data in `utils/generate_samples.py`. It can be run by simply running `python` with the script name. Afterwards, the `utils/face_cropper.py` script has to be run in order to crop the faces from the images. Please, update all paths to match whatever necessary.
+* **Data Augmentation**: You can see the code of the generation of data in `utils/generate_samples.py`. It can be run by simply running `python` with the script name. Afterward, the `utils/face_cropper.py` script has to be run to crop the faces from the images. Please, update all paths to match whatever is necessary.
 * **Downsampling**: The script using for downsampling data can be found in `utils/downsample_data.py`. As before, it can be run by simply calling `python` and the name of the script.
-* **Image-only classifier**: Within the `models` folder, you can find files with structure `X_augmentation_IncephtionResnetV1.py`, where X can be either `baseline`, `augmented` or `undersampled`. These files follow the same structure as the one given as example.
+* **Image-only classifier**: Within the `models` folder, you can find files with structure `X_augmentation_IncephtionResnetV1.py`, where X can be either `baseline`, `augmented`, or `undersampled`. These files follow the same structure as the one given as an example.
+
+* To execute the multimodal part you have the files with the *fuse* extensions in the same folder. The file to execute all the training parts is the file `fuse_training.py`. In this file you have a parser with the following args:
+```bash
+usage: train_fuse.py [-h] [--load-model] [--save-plots]
+
+optional arguments:
+  -h, --help    show this help message and exit
+  --combined_loss  Flag to add the domain combined loss.
+  --model_name  Stores the model; paths specified in code.
+  --batch_size The batch size
+  --epochs Number of epochs to train
+```
+Other variables are hardcoded in the file, for example, the audio strategy or the way to combine the embeddings of different modalities, refer to the file `fuse_training.py` to do the proposed changes.
+
+5 **Evaluate the code**
+
+To evaluate the trained models, see the **evaluation** folder readme with a test example
 
 </details>
