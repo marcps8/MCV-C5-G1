@@ -41,10 +41,6 @@ class Adapter(nn.Module):
         else:
             return torch.relu(self.maintain_projection(x))
             
-        
-    
-
-
 
 class CombinedModel(nn.Module):
     
@@ -63,6 +59,26 @@ class CombinedModel(nn.Module):
         self.mse = nn.L1Loss(reduction="mean")
         
         self.aggregation = aggregation
+        
+        
+    def extract_prediction_from_audio(self, x):
+        x = self.audio_adapter(x)
+        
+        return self.classification_head(x)
+    
+
+    def extract_prediction_from_text(self, x):
+        x = self.text_adapter(x)
+        
+        return self.classification_head(x)
+    
+
+    def extract_prediction_from_image(self, x):
+        x = self.image_adapter(x)
+        
+        return self.classification_head(x)
+    
+    
     
     def forward(self, x_image, x_text, x_audio, aggregation="add"):
         torch.autograd.set_detect_anomaly(True)

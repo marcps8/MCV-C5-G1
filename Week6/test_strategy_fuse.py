@@ -27,7 +27,7 @@ import embedding_images as image_extractor
 from model.augmentation_InceptionResnetV1 import walk_through_dir, transform_data, get_data_sets_path, loadImageData, detail_one_sample_data, myDataLoader
 
 IMG_EMBEDDINGS = "/ghome/group01/MCV-C5-G1/Week6/feature_embeddings/image/"
-MODEL = "/ghome/group01/MCV-C5-G1/Week6/model/fuse/combined_loss_300.pt"
+MODEL = "/ghome/group01/MCV-C5-G1/Week6/model/fuse/combined_loss_300_mul_256.pt"
 DATASET_TEST_DIR = 'data/test'
 
 device = "cuda" if torch.cuda.is_available() else "cpu"   
@@ -50,7 +50,7 @@ def fuse_test_step(model: torch.nn.Module, dataloader: torch.utils.data.DataLoad
     img_embedd_pkl = '/ghome/group01/MCV-C5-G1/Week6/feature_embeddings/image/test_embeddings.pkl'
     if os.path.exists(img_embedd_pkl):
         with open(img_embedd_pkl, 'rb') as file:
-            pkl_img_embedds = pickle.dump(data, file)
+            pkl_img_embedds = pickle.load(file)
             
     with torch.no_grad():
         counter = 1
@@ -58,21 +58,25 @@ def fuse_test_step(model: torch.nn.Module, dataloader: torch.utils.data.DataLoad
         correct_train = 0
         embeddings = [["Test Embeddings"]]
         for data in dataloader:
-                
+            if counter == 100:
+                break
             print(f"Batch: {counter} of {len(dataloader)}")
             inputs_image, inputs_audio, inputs_text, labels = data
+            print(labels)
             
             if os.path.exists(img_embedd_pkl):
                 inputs_image = pkl_img_embedds[counter]
+                inputs_image = inputs_image.reshape(1, -1)
             else:
                 inputs_image = image_extractor.extract_embeddings(data=inputs_image)
-            embeddings.extend(inputs_image)
+                embeddings.extend(inputs_image)
 
             inputs_text, inputs_image, inputs_audio, labels = inputs_text.to(device), inputs_image.to(device), inputs_audio.to(device),  labels.to(device)
             
-            y_pred = model(inputs_image, inputs_text, inputs_audio, aggregation="add")
+            y_pred = model(inputs_image, inputs_text, inputs_audio, aggregation="mul")
                       
             _, predicted = torch.max(y_pred.data, 1)
+            print(predicted)
             total_val += labels.size(0)
             correct_train += (predicted == labels).sum().item()
 
@@ -81,6 +85,9 @@ def fuse_test_step(model: torch.nn.Module, dataloader: torch.utils.data.DataLoad
             video_predictions[user_id].append(predictions[counter])
             counter +=1
             
+        accuracy = correct_train / total_val
+        print(f"Average Accuracy: {accuracy}")
+        
         if not os.path.exists(img_embedd_pkl):    
             with open(img_embedd_pkl, 'wb') as file:
                 pickle.dump(embeddings, file)
@@ -259,7 +266,7 @@ def main(data_path,parameters_dict,class_weights):
                         text_in_features=768,
                         out_features=300,
                         num_classes=7,
-                        aggregation="add")
+                        aggregation="mul")
     model.to(device)
     
     #model.load_state_dict(torch.load(MODEL, map_location=torch.device(device)))

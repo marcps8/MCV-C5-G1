@@ -1,8 +1,12 @@
 import librosa
 import numpy as np
 
+import whisper
+
 
 from transformers import WhisperModel, WhisperFeatureExtractor
+
+from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
 
 import torch.nn as nn
@@ -16,6 +20,8 @@ def extract_features(file_name: str):
      
     # Shape is (128)
     return mfccs_processed
+
+
 
 
 @torch.no_grad()
@@ -38,8 +44,15 @@ def extract_features_from_whisper(file_name: str):
 # Example
 if __name__ == "__main__":
     test = "/ghome/group01/MCV-C5-G1/Week6/data/train/1/-2qsCrkXdWs.001.wav"
-    melt = (extract_features_from_whisper(test))
-    m = extract_features(test)
-    print(melt.shape)
-    print(m.shape)
+    audio, sample_rate = librosa.load(test, res_type='kaiser_fast', sr=16000) 
 
+    #melt = (extract_features_from_whisper(test))
+    #m = extract_features(test)
+
+    processor = WhisperProcessor.from_pretrained("openai/whisper-tiny.en")
+    model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny.en")
+    input_features = processor(
+    audio, sampling_rate=sample_rate, return_tensors="pt").input_features
+    predicted_ids = model.generate(input_features)
+    transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)
+    print(transcription[0])
