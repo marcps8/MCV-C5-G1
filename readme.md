@@ -4,6 +4,9 @@
 - Carlos Boned
 - Marc Perez
 
+
+In this parent folder, there is the final *report* on object detection and the *slides* of the final presentation of the subject.
+
 # Code Explanation
 This repository contains the code related to the project on 'Object Detection and Segmentation' of the C5: Visual Recognition of the Master in Computer Vision at UAB.
 
